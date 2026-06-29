@@ -1,0 +1,3 @@
+Cambio solicitado:
+- Se eliminó la sección/tarjeta informativa larga que mostraba Ruta, Efecto, Potencia, Golpe, Corrección y Modo físico debajo del selector de jugadas.
+- Se mantiene el selector de las 149 jugadas, la guía visual, video e imagen guía, tiro físico, taco fuera de la mesa, PWA, responsive móvil y compatibilidad con GitHub Pages/Google Sites.

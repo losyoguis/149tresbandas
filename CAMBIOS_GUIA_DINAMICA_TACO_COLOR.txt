@@ -1,0 +1,10 @@
+CAMBIOS - GUÍA DINÁMICA SINCRONIZADA CON EL TACO Y COLOR DE BOLA
+
+1. La guía dinámica ahora detecta la bola que realmente queda en la ruta del taco.
+2. Si el taco apunta a la roja, la bola receptora de la guía se muestra roja.
+3. Si el taco apunta a la amarilla, la bola receptora de la guía cambia automáticamente a amarilla.
+4. La posición de la blanca y la receptora en la guía dinámica gira y se desplaza en tiempo real según el ángulo del taco.
+5. El punto de partida visual conserva la referencia de la imagen/contacto de cada jugada, pero la guía se actualiza al mover el taco.
+6. Los botones Fino, 1/4, 1/2 y 3/4 continúan como pruebas manuales y no se marca ninguno como recomendado.
+7. El visor de contacto también actualiza color y orientación según la dirección actual de la tacada.
+8. Se actualizó la versión del service worker para evitar caché viejo en navegador o APK.

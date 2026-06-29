@@ -1,0 +1,27 @@
+CAMBIOS APLICADOS
+
+1. Botones Fino, 1/4, 1/2 y 3/4
+- Ahora funcionan como pruebas manuales de grosor de impacto.
+- No se marca ningún botón como recomendado por defecto.
+- Al presionar un botón se actualiza la guía dinámica, pero se conserva como prueba del jugador.
+
+2. Guía dinámica sincronizada con el taco
+- Las bolas de la guía dinámica ya no quedan fijas.
+- La blanca y la bola receptora se mueven/rotan visualmente según la dirección del taco.
+- El punto azul del efecto sigue actualizándose con el efecto real seleccionado.
+- La bola receptora conserva el color correcto: roja o amarilla según la jugada.
+
+3. Revisión de jugadas 001 a 060
+- Se recalibró la potencia física para las jugadas 001 a 060.
+- Se ajustó el motor para que las bolas rueden mejor en recorridos largos de tres bandas.
+- Se aplicaron ajustes finos a las jugadas 011, 012, 023, 032, 036 y 040, que necesitaban más precisión de mira, potencia o efecto para cerrar con física real.
+- Verificación interna: las jugadas 001 a 060 encontraron solución física con primera bola correcta, segunda bola correcta y mínimo 3 bandas.
+
+4. Física
+- Se aumentó ligeramente la duración del rodamiento.
+- Se mejoró el rebote en bandas.
+- Se ajustó la transferencia de efecto y la potencia máxima.
+- La predicción y el tiro usan el mismo cálculo de potencia.
+
+5. Caché
+- Se actualizó el service worker a la versión v80 para evitar que el navegador cargue una versión anterior.

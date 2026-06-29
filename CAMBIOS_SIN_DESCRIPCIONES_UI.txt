@@ -1,0 +1,6 @@
+Cambios finales solicitados:
+
+- Se quitaron/ocultaron las descripciones restantes de la interfaz.
+- Se mantiene la funcionalidad de la mesa, selector de jugadas, video, imágenes, efecto, potencia, taco y disparo.
+- Los elementos internos que JavaScript actualiza siguen existiendo, pero no se muestran para mantener la pantalla limpia.
+- Conserva PWA, responsive móvil, GitHub Pages y compatibilidad para incrustar en Google Sites.

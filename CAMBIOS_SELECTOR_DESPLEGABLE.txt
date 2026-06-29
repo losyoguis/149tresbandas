@@ -1,0 +1,7 @@
+CAMBIOS DEL SELECTOR DE CARAMBOLAS
+
+- Se movió el texto "Selecciona la carambola: al cargarla se muestra automáticamente la guía exacta" al interior del desplegable como opción por defecto.
+- Se eliminó ese texto como título visible encima del selector para dejar más limpia la interfaz.
+- Al seleccionar cualquier jugada, la carambola se carga automáticamente y se muestra su guía exacta.
+- Se protegió el evento del desplegable para que la opción informativa no intente cargar una jugada inválida.
+- Se actualizó la versión del service worker para evitar caché de versiones anteriores.

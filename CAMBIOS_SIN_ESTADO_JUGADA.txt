@@ -1,0 +1,6 @@
+CAMBIOS - SIN ESTADO/RESUMEN DE JUGADA
+
+- Se ocultó definitivamente la sección de estado/resumen de la jugada que mostraba textos como:
+  "Jugada 003...", "Tiro preparado", "Ruta actual" y "Objetivo".
+- Se mantiene la lógica interna del juego, la guía de trayectoria sobre la mesa, selector de jugadas, video, imágenes, taco, potencia, efecto, PWA y diseño responsive.
+- Se protegió la función setGuideText para evitar errores si el bloque informativo se elimina o permanece oculto.

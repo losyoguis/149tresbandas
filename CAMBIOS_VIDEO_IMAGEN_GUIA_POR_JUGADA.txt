@@ -1,0 +1,14 @@
+Actualización: información completa por jugada en "Video e imagen guía".
+
+Se reforzó el modal de Video e imagen guía para que cada una de las 149 jugadas muestre claramente:
+- Número y nombre del módulo.
+- Número de la jugada actual.
+- Nombre técnico de la jugada/carambola.
+- Rango de jugadas del bloque.
+- Tiempo correspondiente en el video.
+- Descripción técnica adaptada al bloque de entrenamiento.
+
+Cobertura validada:
+- Jugadas cubiertas: 001 a 149.
+- Módulos integrados: 1 a 7.
+- La app principal conserva mesa, selector, video, imágenes guía, PWA, responsive móvil y tiro físico.

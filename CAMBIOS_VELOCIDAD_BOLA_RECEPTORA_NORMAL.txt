@@ -1,0 +1,17 @@
+CAMBIOS - VELOCIDAD NORMAL DE LA PRIMERA BOLA RECEPTORA
+
+Versión: velocidad-receptora-normal-v82
+
+Ajustes aplicados:
+1. Se moderó la velocidad de la primera bola golpeada por la blanca.
+2. Se agregó un control físico de transferencia para evitar que la bola receptora salga disparada o se vea sobreactuada.
+3. Se limitó la velocidad máxima de la bola receptora según la potencia real de la tacada.
+4. Se sincronizó el mismo ajuste en la simulación usada por la guía predictiva, para que lo que se ve en la guía se parezca al tiro real.
+5. Se suavizó también el movimiento visual de las bolas objetivo en modo demostración/video.
+6. Se redujo la transferencia secundaria entre bolas animadas para evitar reacciones exageradas.
+7. Se actualizó el Service Worker a v82 para evitar caché viejo en el navegador o APK.
+
+Resultado esperado:
+- La bola que recibe el primer golpe se mueve con velocidad más natural.
+- La blanca conserva la lógica de tacada, potencia y efecto.
+- Las carambolas siguen siendo jugables, pero el movimiento visual ya no queda exagerado.

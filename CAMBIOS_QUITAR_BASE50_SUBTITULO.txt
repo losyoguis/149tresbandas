@@ -1,0 +1,8 @@
+Cambios de esta versión
+=======================
+
+1. Se eliminó la página independiente base50.html.
+2. Se quitó el hipervínculo al Sistema Base 50 desde index.html.
+3. Se agregó debajo del título principal el subtítulo: "Aprende 149 jugadas".
+4. Se actualizó sw.js para no cachear base50.html.
+5. Se conserva la app principal con mejoras móviles, PWA, GitHub Pages/Sites y taco visible fuera de la mesa.

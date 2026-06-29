@@ -1,0 +1,9 @@
+CAMBIOS - GUÍA DINÁMICA SINCRONIZADA
+
+- La guía dinámica ahora sincroniza el color de la bola receptora con la jugada seleccionada.
+- En jugadas como la 002, la guía muestra la blanca adelante con la roja detrás a la derecha, como aparece en la figura del video.
+- Si la receptora de la jugada es amarilla, la guía cambia automáticamente a bola amarilla.
+- El punto azul del efecto sigue conectado al efecto real configurado en la bola blanca.
+- El grosor del impacto mantiene los botones Fino, 1/4, 1/2 y 3/4, pero ahora respeta la composición visual de la figura de referencia.
+- Las sombras de las bolas se mueven con las posiciones de la guía dinámica para que no queden desfasadas.
+- Se actualizó el service worker para evitar caché viejo del navegador.

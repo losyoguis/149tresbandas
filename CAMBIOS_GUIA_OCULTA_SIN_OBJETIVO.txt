@@ -1,0 +1,8 @@
+CAMBIOS - GUIA DINAMICA OCULTA SIN OBJETIVO
+
+- La guia dinamica ya no usa la posicion de la imagen como reemplazo cuando no se apunta a una bola.
+- La guia solo aparece cuando la ruta del taco encara claramente la bola roja o la bola amarilla.
+- Si el taco apunta al vacio o queda lejos de ambas bolas, se ocultan la blanca, la receptora, sombras y punto de efecto del visor dinamico.
+- Si el taco apunta a la roja, la guia muestra roja; si apunta a la amarilla, muestra amarilla.
+- Los botones Fino, 1/4, 1/2 y 3/4 siguen funcionando solo como pruebas manuales y no sugieren ninguno por defecto.
+- Se actualizo sw.js para evitar cache viejo.

@@ -1,0 +1,11 @@
+CAMBIOS - Grosor de impacto conectado con la tacada real
+
+- Los botones Fino, 1/4 de bola, 1/2 bola y 3/4 de bola ya no solo cambian la mini guía dinámica.
+- Al seleccionar un grosor, el taco del juego se reajusta físicamente hacia la bola receptora correspondiente.
+- El ajuste modifica aimAngle, por lo que el disparo real usa esa nueva posición de tacada.
+- Si el taco apunta a la roja, el grosor se aplica sobre la roja.
+- Si el taco apunta a la amarilla, el grosor se aplica sobre la amarilla.
+- Si no se apunta a ninguna bola pero hay una jugada cargada, el botón usa manualmente la primera bola de esa jugada para permitir la prueba.
+- No se marca ningún botón como sugerido; solo queda activo el grosor que el jugador eligió.
+- La guía dinámica sigue ocultándose cuando no hay bola apuntada, salvo cuando el botón ajusta manualmente la tacada hacia una bola válida.
+- Se actualizó el service worker a v84 para evitar caché antiguo.

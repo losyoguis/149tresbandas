@@ -1,0 +1,13 @@
+Se complementó la sección "Video e imagen guía" para las 149 jugadas.
+
+Cambios realizados:
+- Se agregaron 7 módulos temáticos según el contenido del video.
+- Cada jugada muestra dentro del modal:
+  * Título del módulo.
+  * Subtítulo con el nombre de la carambola.
+  * Rango de jugadas.
+  * Tiempo del video.
+  * Descripción técnica correspondiente.
+- Se ajustó el estilo visual del bloque de observación para mostrar título y subtítulo.
+
+La lógica del juego, video, imágenes guía y selector de jugadas se mantiene funcional.

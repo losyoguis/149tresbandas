@@ -1,0 +1,14 @@
+Corrección de visibilidad en "Video e imagen guía".
+
+Problema corregido:
+- La información de módulos y jugadas estaba cargada en el código, pero una regla CSS anterior la ocultaba.
+
+Cambio aplicado:
+- Se quitó la regla que ocultaba #videoObservation y .video-observation.
+- El bloque técnico ahora aparece arriba del video y de las imágenes, justo debajo de los botones Anterior / Siguiente.
+- Cada jugada muestra: número y nombre del módulo, número de jugada, nombre de la carambola, rango, tiempo del video y descripción técnica.
+
+Validación:
+- Las jugadas 001 a 149 están cubiertas por los módulos.
+- Sintaxis JavaScript validada.
+- Manifest PWA validado.

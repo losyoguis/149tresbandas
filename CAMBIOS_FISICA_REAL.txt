@@ -1,0 +1,39 @@
+Cambios aplicados en esta versión
+=================================
+
+1. La ruta del video ya NO fuerza el movimiento de la bola blanca al tirar.
+   - La guía queda como referencia visual.
+   - La tacada real sale únicamente del taco, potencia, efecto y física.
+
+2. Se ajustó la potencia.
+   - Golpes suaves ahora son realmente suaves.
+   - Golpes fuertes conservan fuerza suficiente para recorridos de tres bandas.
+   - La curva de potencia ya no es lineal rígida.
+
+3. Se ajustó la física general.
+   - Fricción más realista para que las bolas no rueden eternamente.
+   - Rebote en bandas con pérdida lógica de energía.
+   - Subpasos físicos más finos para reducir saltos o atravesamientos.
+
+4. Se mejoró el efecto.
+   - El efecto se calcula con relación al ángulo del taco.
+   - El corrido y el retroceso afectan principalmente la salida de la blanca después del contacto.
+   - El efecto lateral influye en bandas y choque bola-bola.
+
+5. Se unificó la lógica de la guía y el tiro.
+   - La línea predictiva usa el mismo motor físico que el disparo real.
+   - En modo técnica/video se compara contra la guía, pero no se reproduce artificialmente.
+
+6. Se actualizó el service worker.
+   - Nuevo nombre de caché para evitar que el navegador cargue una versión anterior.
+
+Modo recomendado de uso
+=======================
+
+- Carga una jugada.
+- Observa la ruta de referencia.
+- Ajusta taco, efecto y potencia.
+- Dispara con Tirar o doble toque.
+- Compara el recorrido real con la guía.
+
+Esta versión privilegia la física real sobre la animación guiada.

@@ -1,0 +1,7 @@
+CAMBIOS - TACO FUERA DE LA MESA
+
+- Se eliminó la versión con selector de sistemas, retomando la app final anterior sin ese módulo.
+- Se mantuvieron las mejoras móviles, PWA, GitHub Pages y Google Sites de la versión final.
+- Se ajustó el CSS de la mesa y del SVG para que el taco pueda sobresalir visualmente del área de la mesa al halarlo.
+- La física del tiro se conserva: potencia, efecto, grosor, colisiones, bandas y demostración siguen funcionando como antes.
+- La mesa mantiene las bolas dentro del paño; solo el taco, su punta, mango y marcador de potencia pueden verse fuera cuando la tacada lo requiere.
