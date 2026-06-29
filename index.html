@@ -1080,6 +1080,32 @@
       border: 0;
     }
 
+
+    .video-source-block {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+    .video-credit {
+      margin: 0;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,213,106,.25);
+      border-radius: 12px;
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.35;
+    }
+    .video-credit strong {
+      color: var(--gold);
+    }
+    .video-credit a {
+      color: var(--cream);
+      font-weight: 900;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
     .video-study-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.55fr) minmax(300px, .85fr);
@@ -2159,11 +2185,11 @@
       </div>
       <section id="videoObservation" class="video-observation" aria-label="Observación técnica de la jugada"></section>
       <div class="video-study-layout">
-        <div class="video-frame-wrap">
-          <video id="videoFrame" title="Video guía de billar tres bandas" controls playsinline preload="metadata" poster="assets/verificacion_video_026_060.jpg">
-            <source src="assets/videos/clases-de-billar.mp4" type="video/mp4">
-            Tu navegador no puede reproducir este video local.
-          </video>
+        <div class="video-source-block">
+          <div class="video-frame-wrap">
+            <iframe id="videoFrame" src="https://drive.google.com/file/d/1JCC4aoJQ8q_wCdvEyT5iBR3wzx2HoEah/preview" width="640" height="480" title="Video guía de billar tres bandas" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <p class="video-credit"><strong>Fuente y derechos de autor:</strong> reproductor embebido desde Google Drive. Video original disponible en YouTube: <a href="https://www.youtube.com/watch?v=yHSlryjw8z0" target="_blank" rel="noopener noreferrer">ver video original</a>. Los derechos pertenecen a su autor o canal correspondiente. Esta app lo referencia únicamente como material educativo de consulta y práctica.</p>
         </div>
         <aside class="video-images-panel" aria-label="Imágenes de referencia junto al video">
           <h3 id="videoImagesTitle">Imágenes de la jugada</h3>
@@ -6952,7 +6978,8 @@
       if (practiceImagesModal && practiceImagesModal.classList.contains('open')) renderPracticeReferenceImages();
       if (videoModal && videoModal.classList.contains('open')) {
         renderVideoModalImages();
-        seekVideoToPracticeShot(!videoFrame.paused);
+        const shouldAutoplay = !(videoFrame && videoFrame.tagName !== 'IFRAME' && videoFrame.paused);
+        seekVideoToPracticeShot(shouldAutoplay);
       }
       if (announce) {
         setGuideText(`<strong>Jugada ${s.code} cargada:</strong> ${s.title}. <span class="route">Ruta de referencia:</span> ${s.route}. Presiona <span class="route">Tirar</span> o haz doble toque para ejecutar la tacada física y comparar con la guía.`);
@@ -9255,7 +9282,9 @@
       stepPhysics();
       requestAnimationFrame(loop);
     }
-    const VIDEO_URL = 'assets/videos/clases-de-billar.mp4';
+    const VIDEO_URL = 'https://drive.google.com/file/d/1JCC4aoJQ8q_wCdvEyT5iBR3wzx2HoEah/preview';
+    const VIDEO_EMBEDDED_DRIVE = true;
+    let driveVideoReloadKey = 0;
 
     const VIDEO_SEEK_PREROLL = 0;
     const ESTIMATED_VIDEO_FIRST_START_SECONDS = 32;
@@ -9294,14 +9323,9 @@
     let videoSegmentShotCode = null;
 
     function activateVideoAudio() {
-      if (!videoFrame) return;
-      try {
-        videoFrame.muted = false;
-        videoFrame.defaultMuted = false;
-        videoFrame.volume = 1;
-      } catch (err) {
-        console.warn('No se pudo activar el sonido del video:', err);
-      }
+      // El video ahora se reproduce desde Google Drive en un iframe.
+      // El audio depende del archivo alojado en Drive y se controla desde el reproductor embebido.
+      return true;
     }
 
     function practiceVideoMeta(shot) {
@@ -9335,17 +9359,13 @@
       const end = videoShotEndSeconds(s);
       const startTxt = Number.isFinite(start) ? formatVideoTimestamp(start) : '--:--';
       const endTxt = Number.isFinite(end) ? formatVideoTimestamp(end) : '--:--';
-      videoModalStatus.textContent = s ? `Jugada ${s.code} · ${startTxt} a ${endTxt} · sonido ON` : 'Jugada actual';
+      videoModalStatus.textContent = s ? `Jugada ${s.code} · ${startTxt} a ${endTxt} · video Drive` : 'Jugada actual';
       renderVideoObservation(s);
     }
 
     function enforceVideoSegmentEnd() {
-      if (!videoSegmentEndSeconds || !videoModal.classList.contains('open')) return;
-      if ((videoFrame.currentTime || 0) >= videoSegmentEndSeconds) {
-        try { videoFrame.currentTime = videoSegmentEndSeconds; } catch (err) {}
-        videoFrame.pause?.();
-        videoSegmentEndSeconds = null;
-      }
+      // Con Google Drive no es posible controlar desde JavaScript el tiempo interno del iframe.
+      return;
     }
 
     function parseVideoTimestamp(value) {
@@ -9376,10 +9396,35 @@
       return currentPracticeShot();
     }
 
+    function buildDrivePreviewUrlAtTime(seconds = 0, autoplay = true) {
+      const safeSeconds = Math.max(0, Math.floor(Number(seconds) || 0));
+      driveVideoReloadKey += 1;
+      const query = new URLSearchParams({
+        start: String(safeSeconds),
+        t: String(safeSeconds),
+        autoplay: autoplay ? '1' : '0',
+        shot: videoSeekShot()?.code || '',
+        reload: String(driveVideoReloadKey)
+      });
+      // Google Drive no expone API JS de seek por estar dentro de un iframe cross-origin.
+      // Por eso se recarga el preview con parámetros y fragmento temporal HTML5.
+      return `${VIDEO_URL}?${query.toString()}#t=${safeSeconds}s`;
+    }
+
+    function loadDriveVideoAtPracticeShot(shot, autoplay = true) {
+      if (!videoFrame || videoFrame.tagName !== 'IFRAME') return false;
+      const startSeconds = Math.max(0, Math.floor(videoShotStartSeconds(shot) || 0));
+      const src = buildDrivePreviewUrlAtTime(startSeconds, autoplay);
+      videoFrame.setAttribute('src', src);
+      videoFrame.dataset.currentShot = shot?.code || '';
+      videoFrame.dataset.currentStart = String(startSeconds);
+      return true;
+    }
+
     function seekVideoToPracticeShot(autoplay = true) {
       const s = ensureSelectedPracticeShotForVideo();
-      const meta = practiceVideoMeta(s);
-      const startSeconds = Math.max(0, videoShotStartSeconds(s));
+      const rawStartSeconds = videoShotStartSeconds(s);
+      const startSeconds = Number.isFinite(rawStartSeconds) ? Math.max(0, rawStartSeconds) : 0;
       const endSeconds = videoShotEndSeconds(s);
       const label = s ? `Jugada ${s.code}` : 'jugada actual';
 
@@ -9388,43 +9433,14 @@
       renderVideoModalImages();
       updateVideoModalStatus(s);
 
-      const doSeek = () => {
-        const startPlayback = () => {
-          try {
-            if (Number.isFinite(startSeconds) && Math.abs((videoFrame.currentTime || 0) - startSeconds) > 0.20) {
-              videoFrame.currentTime = startSeconds;
-            }
-          } catch (err) {}
-          activateVideoAudio();
-          if (autoplay) videoFrame.play?.().catch(() => {});
-          else videoFrame.pause?.();
-        };
-
-        try {
-          videoFrame.pause?.();
-          if (Number.isFinite(startSeconds)) {
-            const alreadyThere = Math.abs((videoFrame.currentTime || 0) - startSeconds) <= 0.20;
-            if (!alreadyThere) {
-              videoFrame.addEventListener('seeked', startPlayback, { once: true });
-              videoFrame.currentTime = startSeconds;
-            } else {
-              startPlayback();
-            }
-          }
-        } catch (err) {
-          console.warn('No se pudo ubicar el video en el inicio exacto de la jugada seleccionada:', err);
-          startPlayback();
-        }
-      };
-
-      if (videoFrame.readyState >= 1) doSeek();
-      else videoFrame.addEventListener('loadedmetadata', doSeek, { once: true });
+      if (s && videoFrame && videoFrame.tagName === 'IFRAME') {
+        loadDriveVideoAtPracticeShot(s, autoplay);
+      }
 
       if (s) {
-        const exactness = meta && meta.estimated ? ' (tiempo calculado)' : '';
-        const startText = Number.isFinite(startSeconds) ? ` en ${formatVideoTimestamp(startSeconds)}${exactness}` : '';
-        const endText = Number.isFinite(endSeconds) ? ` y se pausa en ${formatVideoTimestamp(endSeconds)}` : '';
-        setGuideText(`<strong>Video guía local:</strong> se ubicó en el inicio de <span class="route">${label}</span>${startText}${endText}.`);
+        const startText = Number.isFinite(startSeconds) ? `Referencia en el video: ${formatVideoTimestamp(startSeconds)}` : 'Referencia de tiempo no disponible';
+        const endText = Number.isFinite(endSeconds) ? ` hasta ${formatVideoTimestamp(endSeconds)}` : '';
+        setGuideText(`<strong>Video guía Drive:</strong> se cargó <span class="route">${label}</span>. ${startText}${endText}. Si Google Drive no arranca solo, presiona reproducir dentro del iframe.`);
       }
     }
 
@@ -9434,12 +9450,6 @@
       playSound('ui', .45);
       videoModal.classList.add('open');
       videoModal.setAttribute('aria-hidden', 'false');
-      if (!videoFrame.currentSrc) {
-        const source = videoFrame.querySelector('source');
-        if (source && !source.src) source.src = VIDEO_URL;
-        videoFrame.load?.();
-      }
-      activateVideoAudio();
       seekVideoToPracticeShot(true);
     }
 
@@ -9456,7 +9466,12 @@
     function closeVideoModal() {
       videoModal.classList.remove('open');
       videoModal.setAttribute('aria-hidden', 'true');
-      videoFrame.pause?.();
+      // Reinicia el iframe para detener audio/video al cerrar el modal.
+      if (videoFrame && videoFrame.tagName === 'IFRAME') {
+        videoFrame.setAttribute('src', VIDEO_URL);
+      } else if (videoFrame) {
+        videoFrame.pause?.();
+      }
       playSound('ui', .35);
     }
 
@@ -9633,9 +9648,11 @@
     closeVideoBtn.addEventListener('click', closeVideoModal);
     if (videoPrevShotBtn) videoPrevShotBtn.addEventListener('click', () => stepVideoModalShot(-1));
     if (videoNextShotBtn) videoNextShotBtn.addEventListener('click', () => stepVideoModalShot(1));
-    videoFrame.addEventListener('timeupdate', enforceVideoSegmentEnd);
-    videoFrame.addEventListener('play', activateVideoAudio);
-    videoFrame.addEventListener('loadedmetadata', activateVideoAudio);
+    if (videoFrame && videoFrame.tagName !== 'IFRAME') {
+      videoFrame.addEventListener('timeupdate', enforceVideoSegmentEnd);
+      videoFrame.addEventListener('play', activateVideoAudio);
+      videoFrame.addEventListener('loadedmetadata', activateVideoAudio);
+    }
     videoModal.addEventListener('click', (evt) => {
       if (evt.target === videoModal) closeVideoModal();
     });

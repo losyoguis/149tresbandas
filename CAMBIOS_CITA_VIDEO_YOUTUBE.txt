@@ -1,0 +1,9 @@
+Se agregó una cita visible debajo del video en la sección "Video e imagen guía".
+
+Cita agregada:
+- Fuente: video original disponible en YouTube.
+- Enlace: https://www.youtube.com/watch?v=yHSlryjw8z0
+- Aviso de derechos: los derechos pertenecen a su autor o canal correspondiente.
+- Uso: referencia educativa de consulta y práctica.
+
+El video local fue reemplazado posteriormente por un iframe de Google Drive, manteniendo la lógica del simulador.

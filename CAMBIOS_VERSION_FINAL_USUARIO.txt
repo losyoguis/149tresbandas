@@ -7,4 +7,4 @@ CAMBIOS VERSION FINAL USUARIO - Billar Tres Bandas Pro
 - Se añadió botón Demostración para reproducir la ruta modelo en modo práctica, separado del tiro físico real.
 - Se ajustó la física: más rodaje, menos frenado artificial, bandas más naturales, efecto lateral más controlado y transferencia de velocidad más estable en la primera bola.
 - Se reforzó el responsive: controles inferiores tipo app, mesa adaptada a móvil, modo horizontal compacto y modal de video más cómodo.
-- Se mantiene toda la base de 149 jugadas, imágenes, video local y guía dinámica de grosor/contacto.
+- Se mantiene toda la base de 149 jugadas, imágenes, video embebido desde Google Drive y guía dinámica de grosor/contacto.

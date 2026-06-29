@@ -51,12 +51,12 @@ Se reemplazaron las imágenes de posición inicial y recorrido por fotogramas ex
 - En `Juego real libre`, el tiro usa física con rebote, fricción, efecto, choque bola-bola y validación de tres bandas.
 - La validación mantiene: primer contacto correcto, mínimo tres bandas y cierre con la segunda bola.
 - Se generó `assets/verificacion_video_026_060.jpg` como hoja de control de los fotogramas de recorrido extraídos.
-Actualización video local: se reemplazó el iframe de YouTube por un reproductor HTML5 con el archivo local assets/videos/clases-de-billar.mp4 para evitar el error 153 y no depender de YouTube.
+Actualización video Drive: el reproductor usa iframe de Google Drive para conservar el audio sin incluir un MP4 local pesado.
 
 ## Corrección de movimiento de bolas objetivo
 Se corrigió el modo Técnica video para que la bola receptora y la bola de cierre también se animen después del contacto. La blanca conserva la ruta exacta del video, pero ahora cada contacto genera desplazamiento visual realista con fricción y rebote de banda para las bolas objetivo.
 
-Actualización video local: el botón Video guía ahora inicia automáticamente en el tiempo de la jugada activa o seleccionada, por ejemplo la 050 abre cerca de 46:10.
+Actualización video Drive: el botón Video guía abre el iframe embebido y actualiza la jugada, imágenes y descripción; el tiempo se muestra como referencia porque Google Drive no permite salto automático desde JavaScript.
 
 
 Nota imágenes 1 y 2: el visor de imágenes muestra únicamente la posición inicial y el recorrido guiado; se eliminó la Imagen 3 del modal para que la práctica sea más limpia.

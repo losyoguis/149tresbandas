@@ -17,7 +17,7 @@ BILLAR TRES BANDAS PRO - PUBLICACIÓN EN GITHUB Y GOOGLE SITES
 - Para jugar mejor en móvil, se recomienda girar el celular horizontalmente.
 
 4. Notas importantes
-- El archivo assets/videos/clases-de-billar.mp4 está incluido localmente. Por eso el ZIP es pesado, pero no depende de YouTube.
+- El video guía se reproduce mediante iframe de Google Drive. El ZIP queda más liviano porque ya no incluye el MP4 local.
 - El video ahora carga con preload=metadata para que la página abra más rápido.
 - El Service Worker no descarga el video completo automáticamente; solo cachea núcleo e imágenes consultadas.
 - En modo práctica, el botón Demostración reproduce la ruta modelo; el botón Tirar conserva la física real.

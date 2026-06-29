@@ -96,9 +96,9 @@ Actualización 060: se integró la jugada 060 con posición inicial y recorrido 
 
 Actualización video exacto: se reanalizó el MP4 subido y se reemplazaron las jugadas 026–060 con fotogramas reales del video; además se recalibró la física de fricción, banda, efecto y colisión.
 
-Actualización video local: se reemplazó el iframe de YouTube por un reproductor HTML5 con el archivo local assets/videos/clases-de-billar.mp4 para evitar el error 153 y no depender de YouTube.
+Actualización video Drive: el video guía se reproduce mediante iframe de Google Drive para conservar audio y evitar incluir un MP4 pesado dentro del ZIP.
 
-Actualización video local: el botón Video guía ahora inicia automáticamente en el tiempo de la jugada activa o seleccionada, por ejemplo la 050 abre cerca de 46:10.
+Actualización video Drive: el botón Video guía abre el iframe embebido y actualiza la jugada, imágenes y descripción; el tiempo se muestra como referencia porque Google Drive no permite salto automático desde JavaScript.
 
 
 Nota imágenes 1 y 2: el visor de imágenes muestra únicamente la posición inicial y el recorrido guiado; se eliminó la Imagen 3 del modal para que la práctica sea más limpia.

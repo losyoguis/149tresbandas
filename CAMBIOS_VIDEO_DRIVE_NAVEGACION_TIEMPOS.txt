@@ -1,0 +1,11 @@
+Corrección de navegación del video de Google Drive.
+
+Cambios realizados:
+- El botón "Video e imagen guía" ahora recarga el iframe de Google Drive en el tiempo de la jugada seleccionada.
+- Los botones "Anterior" y "Siguiente" actualizan la jugada, imágenes, información técnica y tiempo del video.
+- Se agregó construcción dinámica de URL con parámetros start, t y fragmento temporal #t=segundos para apuntar al momento de la jugada.
+- Se ajustó el cierre del modal para reiniciar el iframe y detener reproducción.
+- Se eliminó la dependencia de funciones propias de video local como pause/currentTime cuando el reproductor es iframe.
+
+Nota técnica:
+Google Drive no expone una API JavaScript pública para controlar internamente el tiempo de un iframe por seguridad cross-origin. Por eso la app usa recarga del iframe con marca de tiempo en la URL, que es la forma compatible para mantener la navegación por jugadas usando un video alojado en Drive.

@@ -1,0 +1,10 @@
+Se reemplazó el reproductor local MP4 por un iframe de Google Drive dentro de la sección "Video e imagen guía".
+
+Cambios:
+- Se eliminó el archivo local iframe de Google Drive del paquete final.
+- Se insertó el iframe: https://drive.google.com/file/d/1JCC4aoJQ8q_wCdvEyT5iBR3wzx2HoEah/preview
+- Se mantuvo el mismo modal visual, imágenes guía, información técnica por jugada y cita del video original.
+- Se ajustó el JavaScript para evitar errores al usar iframe en lugar de video local.
+- Los botones Anterior/Siguiente siguen actualizando la jugada, imágenes e información técnica.
+
+Nota: Google Drive no permite que la app controle por JavaScript el tiempo exacto del iframe; el usuario debe usar los controles del reproductor embebido.

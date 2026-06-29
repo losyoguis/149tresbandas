@@ -1,4 +1,4 @@
-const CACHE_NAME = 'billar-tres-bandas-pro-v149-sin-info-card';
+const CACHE_NAME = 'billar-tres-bandas-pro-v149-drive-iframe';
 const CORE_ASSETS = [
   './', './index.html', './manifest.webmanifest',
   './icon-48.png', './icon-72.png', './icon-96.png', './icon-128.png', './icon-144.png', './icon-152.png', './icon-192.png', './icon-384.png', './icon-512.png'
