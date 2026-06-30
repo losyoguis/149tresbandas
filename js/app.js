@@ -43,7 +43,7 @@
     // v182 profesional: guía principal persistente + sincronización exacta del efecto
     // durante la preparación y durante la tacada; ya no se borra al atacar.
     // La potencia puede ser larga, pero el paño, las bandas y el efecto mantienen física estable.
-    const PROFESSIONAL_PHYSICS_VERSION = 'v202_produccion_predictiva';
+    const PROFESSIONAL_PHYSICS_VERSION = 'v206_mesa_completa_mesa_maxima_controles_derecha';
     const PROFESSIONAL_TABLE_FRICTION = 0.99532;
     const PROFESSIONAL_OBJECT_FRICTION = 0.99472;
     const CUE_SWERVE_STRENGTH = 0.00072; // curvatura sutil por efecto lateral antes/después de bandas.
@@ -9536,6 +9536,7 @@
       guideBtn.classList.toggle('guide-on', !!guide);
       guideBtn.setAttribute('aria-pressed', guide ? 'true' : 'false');
       guideBtn.disabled = shotActive || placingMode || replayingMotion;
+      syncFullscreenCompactLabels();
     }
 
     function setGuideEnabled(enabled, announce = false) {
@@ -10607,6 +10608,20 @@
       updateDeflectionGuide();
     }
 
+
+    function syncFullscreenCompactLabels() {
+      const compact = !!tableFullscreenMode;
+      if (replayBtn) replayBtn.textContent = compact ? 'Repetir' : 'Repetir tiro';
+      if (motionReplayBtn) motionReplayBtn.textContent = compact ? 'Replay' : 'Ver replay';
+      if (exitPracticeBtn) exitPracticeBtn.textContent = compact ? 'Libre' : 'Modo libre';
+      if (randomBtn) randomBtn.textContent = compact ? 'Nueva' : 'Nueva posición';
+      if (demoBtn) demoBtn.textContent = compact ? 'Demo' : 'Demostración';
+      if (guideBtn) guideBtn.textContent = compact ? `Guía ${guide ? 'ON' : 'OFF'}` : `Guía: ${guide ? 'ON' : 'OFF'}`;
+      if (placeBtn) placeBtn.textContent = compact ? `Ubicar ${placingMode ? 'ON' : 'OFF'}` : `Ubicar bolas: ${placingMode ? 'ON' : 'OFF'}`;
+      if (fullscreenTableBtn) fullscreenTableBtn.textContent = compact ? 'Salir' : 'Mesa completa';
+      if (shootBtn) shootBtn.textContent = 'Tirar';
+    }
+
     function syncTableFullscreenUI() {
       document.body.classList.toggle('table-fullscreen-mode', !!tableFullscreenMode);
       if (fullscreenTableBtn) {
@@ -10614,6 +10629,7 @@
         fullscreenTableBtn.classList.toggle('fullscreen-on', !!tableFullscreenMode);
         fullscreenTableBtn.setAttribute('aria-pressed', tableFullscreenMode ? 'true' : 'false');
       }
+      syncFullscreenCompactLabels();
       if (tvRemoteHint) {
         tvRemoteHint.textContent = tableFullscreenMode
           ? 'Control remoto: ◀ ▶ apunta · ▲ ▼ potencia · OK tira · Atrás sale'
@@ -10629,7 +10645,10 @@
       const next = !!enabled;
       tableFullscreenMode = next;
       syncTableFullscreenUI();
-      const fsTarget = tableShell || table || document.documentElement;
+      // v203: en Mesa completa el elemento en pantalla completa debe contener
+      // también la barra inferior de acciones. Si se usa solo tableShell,
+      // el botón Tirar queda fuera del fullscreen nativo en móviles/TV.
+      const fsTarget = document.querySelector('.app') || document.documentElement;
       try {
         if (next && fsTarget && !document.fullscreenElement && fsTarget.requestFullscreen) {
           await fsTarget.requestFullscreen({ navigationUI: 'hide' });
@@ -10643,7 +10662,7 @@
       syncTableFullscreenUI();
       if (announce) {
         setGuideText(next
-          ? '<strong>Mesa completa:</strong> modo móvil/TV activado. Juega con los dedos o con control remoto: flechas para apuntar y potencia, OK/Enter para tirar, Atrás/Escape para salir.'
+          ? '<strong>Mesa completa:</strong> modo activado. A un lado queda el selector de carambolas y los botones compactos: <span class="route">Tirar</span>, repetir, replay, guía, modo libre, ubicar y nueva posición.'
           : '<strong>Mesa completa:</strong> modo normal activado.');
       }
     }
@@ -10810,6 +10829,7 @@
       table.classList.toggle('placing', placingMode && !shotActive);
       placeBtn.textContent = `Ubicar bolas: ${placingMode ? 'ON' : 'OFF'}`;
       placeBtn.classList.toggle('place-on', placingMode);
+      syncFullscreenCompactLabels();
     }
 
     function clearShotAfterPlacement() {
@@ -10961,7 +10981,7 @@
       syncPlacementUI();
       setMode('libre', false);
       resetShotState();
-      setGuideText('<strong>Listo:</strong> motor profesional v202 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, efecto visual transparente para la física, instrucciones disponibles y sincronización exacta del punto de efecto entre imagen, bola tacadora y guía dinámica. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
+      setGuideText('<strong>Listo:</strong> motor profesional v206 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, efecto visual transparente para la física, video móvil optimizado para Android/iOS y Mesa completa con la mesa maximizada y controles compactos a la derecha. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
     }
 
     function randomTable() {
@@ -13025,13 +13045,15 @@
       requestAnimationFrame(loop);
     }
     const DRIVE_VIDEO_FILE_ID = '1JCC4aoJQ8q_wCdvEyT5iBR3wzx2HoEah';
+    const YOUTUBE_VIDEO_ID = 'yHSlryjw8z0';
     const DRIVE_VIDEO_BASE_SRC = `https://drive.google.com/file/d/${DRIVE_VIDEO_FILE_ID}/preview`;
-    const DRIVE_VIDEO_IFRAME_CODE = `<iframe src="${DRIVE_VIDEO_BASE_SRC}" width="640" height="480"></iframe>`;
+    const YOUTUBE_VIDEO_BASE_SRC = `https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}`;
+    const DRIVE_VIDEO_IFRAME_CODE = `<iframe src="${DRIVE_VIDEO_BASE_SRC}" width="640" height="360"></iframe>`;
     let driveVideoReloadKey = 0;
 
-    const VIDEO_CACHE_KEY = 'billar3b.driveVideoIframeCache.v162';
-    const DRIVE_IFRAME_CODE_KEY = 'billar3b.driveIframeCode.v162';
-    const VIDEO_CACHE_VERSION = 173;
+    const VIDEO_CACHE_KEY = 'billar3b.videoIframeCache.v204';
+    const DRIVE_IFRAME_CODE_KEY = 'billar3b.iframeCode.v204';
+    const VIDEO_CACHE_VERSION = 204;
     const VIDEO_CACHE_MAX_ENTRIES = 180;
     let videoCacheMemory = null;
 
@@ -13326,6 +13348,51 @@
       return currentPracticeShot();
     }
 
+
+    function shouldUseMobileVideoPlayer() {
+      const ua = String(navigator.userAgent || navigator.vendor || '').toLowerCase();
+      const mobileUA = /android|iphone|ipad|ipod|mobile|miuibrowser|safari/.test(ua) && !/windows nt|macintosh; intel mac os x/.test(ua);
+      const coarsePointer = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+      const narrow = window.matchMedia && window.matchMedia('(max-width: 860px)').matches;
+      const standalone = window.matchMedia && window.matchMedia('(display-mode: standalone)').matches;
+      return !!(mobileUA || coarsePointer || narrow || standalone);
+    }
+
+    function buildYouTubeEmbedUrlAtTime(seconds = 0, autoplay = true, endSeconds = null, shotCode = '') {
+      const safeSeconds = Math.max(0, Math.floor(Number(seconds) || 0));
+      const safeCode = String(shotCode || videoSeekShot()?.code || '001').padStart(3, '0');
+      const params = new URLSearchParams();
+      params.set('start', String(safeSeconds));
+      params.set('rel', '0');
+      params.set('modestbranding', '1');
+      params.set('playsinline', '1');
+      params.set('controls', '1');
+      params.set('fs', '1');
+      params.set('iv_load_policy', '3');
+      params.set('disablekb', '0');
+      params.set('enablejsapi', '0');
+      params.set('origin', window.location.origin || 'https://yoguis.github.io');
+      params.set('shot', safeCode);
+      params.set('sync', `v${VIDEO_CACHE_VERSION}`);
+      if (autoplay) params.set('autoplay', '1');
+      if (Number.isFinite(endSeconds)) params.set('end', String(Math.max(safeSeconds + 1, Math.floor(endSeconds))));
+      return `${YOUTUBE_VIDEO_BASE_SRC}?${params.toString()}`;
+    }
+
+    function buildBestVideoUrlAtTime(seconds = 0, autoplay = true, endSeconds = null, shotCode = '', cacheBust = false) {
+      return shouldUseMobileVideoPlayer()
+        ? buildYouTubeEmbedUrlAtTime(seconds, autoplay, endSeconds, shotCode)
+        : buildDrivePreviewUrlAtTime(seconds, autoplay, endSeconds, shotCode, cacheBust);
+    }
+
+    function setVideoProviderDataset() {
+      if (!videoFrame) return;
+      const provider = shouldUseMobileVideoPlayer() ? 'youtube-mobile' : 'drive-desktop';
+      videoFrame.dataset.videoProvider = provider;
+      const wrap = videoFrame.closest ? videoFrame.closest('.video-frame-wrap') : null;
+      if (wrap) wrap.dataset.videoProvider = provider;
+    }
+
     function buildDrivePreviewUrlAtTime(seconds = 0, autoplay = true, endSeconds = null, shotCode = '', cacheBust = false) {
       // Código original solicitado y guardado en localStorage:
       // <iframe src="https://drive.google.com/file/d/1JCC4aoJQ8q_wCdvEyT5iBR3wzx2HoEah/preview" width="640" height="480"></iframe>
@@ -13361,19 +13428,23 @@
       const exactSyncShot = !!VIDEO_SYNC_LOCKED_SHOTS[String(shot?.code || '').padStart(3, '0')];
       videoSegmentEndSeconds = Number.isFinite(endSeconds) ? endSeconds : null;
       videoSegmentShotCode = shot ? shot.code : null;
-      const src = buildDrivePreviewUrlAtTime(startSeconds, autoplay, endSeconds, shot?.code || '', exactSyncShot || true);
+      setVideoProviderDataset();
+      const src = buildBestVideoUrlAtTime(startSeconds, autoplay, endSeconds, shot?.code || '', exactSyncShot || true);
       const previousShot = videoFrame.dataset.currentShot || '';
       const previousStart = videoFrame.dataset.currentStart || '';
+      const previousProvider = videoFrame.dataset.previousProvider || '';
       videoFrame.dataset.currentShot = shot?.code || '';
       videoFrame.dataset.currentStart = String(startSeconds);
       videoFrame.dataset.currentEnd = Number.isFinite(endSeconds) ? String(Math.floor(endSeconds)) : '';
       videoFrame.dataset.driveFileId = DRIVE_VIDEO_FILE_ID;
+      videoFrame.dataset.youtubeId = YOUTUBE_VIDEO_ID;
 
-      // Al cambiar de jugada se descarga primero el iframe. Esto evita que Google Drive
+      // Al cambiar de jugada se descarga primero el iframe. Esto evita que Google Drive/YouTube móvil
       // conserve el tiempo anterior y hace que Anterior/Siguiente arranquen en el
       // marcador exacto guardado para cada jugada.
-      const mustReload = videoFrame.getAttribute('src') !== src || previousShot !== shot.code || previousStart !== String(startSeconds);
+      const mustReload = videoFrame.getAttribute('src') !== src || previousShot !== shot.code || previousStart !== String(startSeconds) || previousProvider !== videoFrame.dataset.videoProvider;
       if (mustReload) {
+        videoFrame.dataset.previousProvider = videoFrame.dataset.videoProvider || '';
         videoFrame.setAttribute('src', 'about:blank');
         window.setTimeout(() => {
           if (!videoModal || !videoModal.classList.contains('open')) return;
@@ -13466,6 +13537,24 @@
       playSound('ui', .32);
       if (instructionsBtn) instructionsBtn.focus({ preventScroll: true });
     }
+
+
+    function refreshOpenVideoForViewport() {
+      if (!videoModal || !videoModal.classList.contains('open')) return;
+      const s = videoSeekShot();
+      if (!s) return;
+      updateVideoModalStatus(s);
+      loadDriveVideoAtPracticeShot(s, false);
+    }
+
+    let videoViewportTimer = null;
+    function scheduleVideoViewportRefresh() {
+      if (videoViewportTimer) window.clearTimeout(videoViewportTimer);
+      videoViewportTimer = window.setTimeout(refreshOpenVideoForViewport, 260);
+    }
+
+    window.addEventListener('resize', scheduleVideoViewportRefresh, { passive: true });
+    window.addEventListener('orientationchange', scheduleVideoViewportRefresh, { passive: true });
 
     window.addEventListener('pointerdown', unlockAudio, { passive: true });
     window.addEventListener('keydown', unlockAudio, { passive: true });
