@@ -1,0 +1,13 @@
+{
+  "version": "v201-neon-bola-blanca",
+  "changes": [
+    "Color de iluminación cambiado a neón cian/violeta.",
+    "Duración visual de la iluminación reducida.",
+    "La bola blanca se resalta siempre que una guía queda iluminada."
+  ],
+  "expected": {
+    "neon_color": true,
+    "brief_animation": true,
+    "cue_ball_always_highlighted": true
+  }
+}

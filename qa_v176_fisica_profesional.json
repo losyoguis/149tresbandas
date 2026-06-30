@@ -1,0 +1,22 @@
+{
+  "version": "v176-fisica-profesional",
+  "generated_at": "2026-06-30",
+  "checks": {
+    "javascript_syntax": "node --check js/app.js OK",
+    "shots_active": 148,
+    "professional_physics": true,
+    "demo_scores_points": false,
+    "demo_counts_attempts": false,
+    "real_shot_counts_attempts": true,
+    "guide_uses_simulation": true,
+    "service_worker_cache_updated": true
+  },
+  "main_changes": [
+    "paño estable con fricción dinámica por velocidad",
+    "bandas con ángulo de incidencia, pérdida tangencial y apertura/cierre por efecto",
+    "efecto lateral con curvatura sutil y decaimiento gradual",
+    "throw y corrido/retroceso mejorados en colisiones",
+    "demostración separada del marcador",
+    "diagnóstico técnico de fallos en modo práctica"
+  ]
+}

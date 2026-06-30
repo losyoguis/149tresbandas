@@ -1,7 +1,7 @@
 {
-  "name": "Billar Tres Bandas Pro",
-  "short_name": "Billar 3B Pro",
-  "description": "Entrenador de billar tres bandas con física real, guías, video e imágenes de 149 jugadas.",
+  "name": "Entrenador de Carambola Guiada",
+  "short_name": "Entrenador",
+  "description": "Entrenador profesional de carambola guiada para billar a tres bandas con guía principal persistente, imán físico, práctica libre, modo pantalla completa, soporte móvil y TV.",
   "start_url": "./",
   "display": "standalone",
   "orientation": "any",

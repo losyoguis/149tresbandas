@@ -1,0 +1,12 @@
+{
+  "version": "v181-instrucciones-modal",
+  "estado": "ok",
+  "validaciones": {
+    "boton_instrucciones_debajo_subtitulo": true,
+    "modal_instrucciones_creado": true,
+    "texto_instrucciones_completo": true,
+    "cierre_con_x_entendido_click_fuera_escape": true,
+    "enter_no_dispara_mientras_modal_abierto": true,
+    "guia_principal_persistente_conservada": true
+  }
+}

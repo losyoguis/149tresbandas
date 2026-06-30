@@ -1,0 +1,14 @@
+{
+  "version": "v195-sistema-carambola-guiada",
+  "changes": [
+    "Nombre visible cambiado a Sistema de Carambola Guiada.",
+    "Manifest PWA actualizado con el nuevo nombre.",
+    "Cache del service worker actualizado a v195."
+  ],
+  "expected": {
+    "main_title": "Sistema de Carambola Guiada",
+    "manifest_name": "Sistema de Carambola Guiada",
+    "github_pages_ready": true,
+    "google_sites_iframe_ready": true
+  }
+}

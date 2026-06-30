@@ -1,0 +1,14 @@
+{
+  "version": "v200-efecto-interactivo-invisible",
+  "checks": [
+    "El punto de efecto se puede arrastrar con mouse o dedo.",
+    "La bola visual de efecto no interviene en la física ni en colisiones.",
+    "La mesa sigue recibiendo eventos normales fuera del control de efecto.",
+    "El arrastre del efecto continúa aunque el dedo salga del círculo visual."
+  ],
+  "expected": {
+    "effect_dot_draggable": true,
+    "effect_visual_physics_invisible": true,
+    "table_aim_unblocked_outside_effect": true
+  }
+}

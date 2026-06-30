@@ -1,0 +1,20 @@
+{
+  "version": "v180-guia-principal-persistente",
+  "objetivo": "Mantener la guia principal visible al seleccionar la jugada y durante la tacada.",
+  "cambios": [
+    "Se agrego keepPracticeMasterGuideVisible para redibujar la ruta maestra en modo practica.",
+    "updateGuidesSoon ya no abandona la guia principal cuando shotActive=true.",
+    "prepareShotState conserva masterGuideLine durante el ataque.",
+    "startPracticeVideoShot vuelve a fijar masterGuideLine con los puntos exactos de la ruta ejecutada.",
+    "La guia principal verde permanece como referencia aunque la linea amarilla muestre fisica libre."
+  ],
+  "validaciones": {
+    "node_check_js": true,
+    "manifest_json": true,
+    "jugadas_activas": 148,
+    "posicion_inicial_webp": 148,
+    "recorrido_guia_webp": 148,
+    "guia_referencia_png": 148,
+    "service_worker_cache": "v180"
+  }
+}

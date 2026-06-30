@@ -1,0 +1,12 @@
+{
+  "version": "v185-instrucciones-ajuste",
+  "change": "Se ajustó el punto 1 del modal de instrucciones eliminando 'o el sistema de tres bandas'.",
+  "expected_text": "Selecciona la jugada: Elige la carambola que deseas practicar.",
+  "preserves": [
+    "guía principal persistente",
+    "imán de carambola",
+    "botón Efecto",
+    "física profesional",
+    "148 jugadas"
+  ]
+}

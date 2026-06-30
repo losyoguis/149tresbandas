@@ -1,0 +1,26 @@
+{
+  "version": "v174",
+  "fecha": "2026-06-30",
+  "jugadas_activas": 148,
+  "jugada_080_excluida": true,
+  "assets_faltantes": [],
+  "mejoras": [
+    "Botonera móvil queda debajo de la mesa y no tapa la jugada.",
+    "Botón Tirar ejecuta siempre tiro físico real; no activa ruta calibrada.",
+    "Botón Demostración conserva la ruta modelo exacta para estudio.",
+    "CSS y JS separados en css/styles.css y js/app.js.",
+    "Física recalibrada: rebotes, fricción, efecto lateral, corrido/retroceso, transferencia y amortiguación de bandas."
+  ],
+  "validaciones": {
+    "index_ref_css": true,
+    "index_ref_js": true,
+    "no_inline_style": true,
+    "no_inline_script": true,
+    "node_check_static": true,
+    "shoot_no_guided_if": true,
+    "demo_guided_route": true,
+    "mobile_static_controls": true,
+    "physics_damping": true,
+    "sw_caches_css_js": true
+  }
+}

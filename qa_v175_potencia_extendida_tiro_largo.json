@@ -1,0 +1,19 @@
+{
+  "version": "v175",
+  "fecha_generacion": "2026-06-30 18:43:29",
+  "mejoras": [
+    "Potencia extendida hasta 160%",
+    "Modo automático de jugada larga",
+    "Reserva de potencia por halado adicional del taco",
+    "Fricción y bandas más vivas solo en tiros largos",
+    "Efecto lateral más sostenido para recorridos extensos",
+    "Aviso visual de tiro largo en la mesa"
+  ],
+  "reglas": {
+    "tirar": "Siempre física real",
+    "demostracion": "Ruta modelo exacta",
+    "max_potencia_normal": 100,
+    "max_potencia_extendida": 160
+  },
+  "jugadas": "Se conservan las 148 jugadas activas y la 080 excluida"
+}

@@ -1,0 +1,13 @@
+{
+  "version": "v192-iluminacion-carambola",
+  "changes": [
+    "Iluminación visual cuando se logra carambola válida.",
+    "Funciona con guía base, imán físico y jugada propia.",
+    "No altera la física del tiro; solo resalta el resultado."
+  ],
+  "expected": {
+    "success_line": true,
+    "ball_highlight": true,
+    "base_and_free_success": true
+  }
+}

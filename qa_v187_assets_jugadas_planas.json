@@ -1,0 +1,13 @@
+{
+  "version": "v187-assets-jugadas-planas",
+  "changes": [
+    "Se eliminaron las subcarpetas numeradas dentro de assets/jugadas.",
+    "Los archivos de cada jugada ahora terminan con el numero de jugada.",
+    "Se actualizaron las rutas internas para posicion_inicial_###.webp, recorrido_guia_###.webp y guia_referencia_###.png."
+  ],
+  "expected": {
+    "jugadas_subfolders": 0,
+    "root_jugada_files": 444,
+    "active_shots": 148
+  }
+}

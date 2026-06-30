@@ -1,0 +1,18 @@
+{
+  "version": "v177_guia_sincronizada",
+  "objetivo": "Corregir el desfase entre la guía dinámica amarilla y la trayectoria física real blanca.",
+  "cambios": [
+    "La simulación de la guía usa el mismo modo largo que el tiro real.",
+    "La guía y el tiro real comparten fricción de paño, restitución de banda, pérdida tangencial y spin throw.",
+    "El decaimiento de efecto en banda y en contacto con bola ahora coincide en predicción y tiro.",
+    "La corrección de solapamiento en choque entre bolas quedó igual en guía y tiro real.",
+    "La guía registra puntos con la misma distancia mínima visual que la ruta real del tiro.",
+    "La predicción se calcula con más pasos para no cortar rutas largas."
+  ],
+  "validaciones": [
+    "node --check js/app.js",
+    "manifest JSON válido",
+    "service worker actualizado a cache v177"
+  ],
+  "nota": "La guía amarilla representa la predicción del motor físico actual; la ruta blanca recorrida debe coincidir visualmente con esa predicción, salvo pequeñas diferencias propias de subpasos y renderizado."
+}

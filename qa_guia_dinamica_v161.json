@@ -1,0 +1,10 @@
+{
+  "version": "v161",
+  "regla": "Mostrar bola receptora solo si existe o si el taco apunta claramente a roja/amarilla. Si no hay receptora, no se muestra texto ni gráfico.",
+  "target_color_map": {
+    "red": "roja",
+    "yellow": "amarilla"
+  },
+  "shots_checked": 148,
+  "missing_images": []
+}

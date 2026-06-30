@@ -1,0 +1,13 @@
+{
+  "version": "v194-iluminacion-coincidencia-guias",
+  "changes": [
+    "La iluminación se activa por coincidencia de guía principal y guía de tacada.",
+    "Se retiró la iluminación automática al lograr la carambola.",
+    "La validación de punto se mantiene independiente de la iluminación visual."
+  ],
+  "expected": {
+    "illuminates_on_guide_match": true,
+    "illuminates_on_carom_result": false,
+    "main_guide_persistent": true
+  }
+}

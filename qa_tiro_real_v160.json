@@ -1,0 +1,21 @@
+{
+  "version": "v160",
+  "objetivo": "Tirar no fuerza carambola cuando la tacada esta mal; Demostracion conserva la ruta exacta.",
+  "jugadas_presentes": 149,
+  "imagenes_webp": 298,
+  "imagenes_png_en_jugadas": 0,
+  "controles": {
+    "tirar_fuerza_carambola_solo_por_seleccionar_jugada": false,
+    "tirar_permite_ejecucion_exacta_si_calculo_coincide": "guardado por currentPracticeCalculationStatus",
+    "tirar_fisica_normal_si_calculo_no_coincide": true,
+    "demostracion_modelo_exacto": "startPracticeVideoShot()",
+    "seguir_tacando_al_terminar": "shotActive=false y sin reinicio automatico de bolas"
+  },
+  "validaciones_codigo": {
+    "currentPracticeCalculationStatus": true,
+    "practiceBallsAtReferenceStart": true,
+    "demo_usa_startPracticeVideoShot": true,
+    "tirar_usa_guard_calcStatus": true,
+    "ruta_forzada_v159_eliminada": true
+  }
+}

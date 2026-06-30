@@ -1,0 +1,63 @@
+{
+  "version": "v161",
+  "descripcion": "Control de calidad: jugada 080 eliminada de la app jugable; video Drive sincronizado por jugada; guía dinámica solo muestra receptora real.",
+  "jugadas_jugables": 148,
+  "jugada_080_en_assets": false,
+  "jugada_080_en_selector": false,
+  "imagenes_webp": 296,
+  "faltantes": [],
+  "sync_especial": {
+    "115": {
+      "inicio": "1:34:12",
+      "recorrido": "1:34:58",
+      "bloqueado": true
+    },
+    "127": {
+      "inicio": "1:44:00",
+      "recorrido": "1:44:58",
+      "bloqueado": true
+    },
+    "132": {
+      "inicio": "1:48:12",
+      "recorrido": "1:48:58",
+      "bloqueado": true
+    },
+    "134": {
+      "inicio": "1:50:00",
+      "recorrido": "1:50:58",
+      "bloqueado": true
+    },
+    "135": {
+      "inicio": "1:51:00",
+      "recorrido": "1:51:58",
+      "bloqueado": true
+    },
+    "136": {
+      "inicio": "1:52:00",
+      "recorrido": "1:52:58",
+      "bloqueado": true
+    },
+    "140": {
+      "inicio": "1:56:00",
+      "recorrido": "1:56:43",
+      "bloqueado": true
+    },
+    "147": {
+      "inicio": "2:02:00",
+      "recorrido": "2:02:58",
+      "bloqueado": true
+    },
+    "149": {
+      "inicio": "2:04:00",
+      "recorrido": "2:04:25",
+      "bloqueado": true
+    }
+  },
+  "validaciones": [
+    "Jugada 080 excluida del selector y de navegación anterior/siguiente.",
+    "Las jugadas 115, 127, 132, 134, 135, 136, 140, 147 y 149 tienen inicio bloqueado.",
+    "El iframe de Drive se recarga con about:blank antes de cada salto para no conservar el tiempo anterior.",
+    "La mini-guía no inventa bola receptora: si no hay roja/amarilla activa, queda en blanco.",
+    "Cuando hay receptora, se usa el color real: roja o amarilla."
+  ]
+}

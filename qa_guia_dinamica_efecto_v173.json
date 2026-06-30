@@ -1,0 +1,9 @@
+{
+  "version": "v173",
+  "change": "guia dinamica sincronizada con efecto exacto de imagen/modal",
+  "updated_effect_overrides": [
+    "044",
+    "046"
+  ],
+  "behavior": "en Imagen jugada el punto azul se mantiene con el efecto de referencia y la mini-guia se mueve con el taco"
+}

@@ -1,0 +1,18 @@
+{
+  "version": "v179-guia-principal-seleccion",
+  "fecha": "2026-06-30",
+  "objetivo": "Al seleccionar una carambola, mostrar inmediatamente la guía principal como ruta maestra visible y sincronizada.",
+  "cambios": [
+    "Se añadió masterGuideLine como banda verde luminosa bajo la guía amarilla.",
+    "renderAimPreview dibuja la banda verde solo cuando la guía maestra está armada.",
+    "applyPracticeShot llama updateGuidesSoon siempre, incluso cuando la carga inicial no anuncia texto.",
+    "La ruta verde y la amarilla se dibujan desde el mismo arreglo de puntos buildPlayablePracticePath.",
+    "Al desactivar guía, disparar, repetir, entrar a ubicar bolas o usar física libre se limpia la banda verde."
+  ],
+  "validaciones": [
+    "node --check js/app.js",
+    "manifest.webmanifest JSON válido",
+    "148 jugadas conservadas",
+    "service worker cache v179"
+  ]
+}

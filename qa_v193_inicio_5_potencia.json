@@ -1,0 +1,13 @@
+{
+  "version": "v193-inicio-5-potencia",
+  "changes": [
+    "Toda jugada cargada inicia con 5% de potencia.",
+    "La potencia de referencia se reserva para Efecto/Alinear fácil, no para la carga inicial.",
+    "Se conserva la iluminación de carambola para guía base y sistemas propios."
+  ],
+  "expected": {
+    "initial_practice_power_pct": 5,
+    "carom_success_lighting_any_valid_route": true,
+    "guide_base_persistent": true
+  }
+}

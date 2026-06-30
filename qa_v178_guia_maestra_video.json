@@ -1,0 +1,17 @@
+{
+  "version": "v178-guia-maestra-video",
+  "objetivo": "Evitar el desfase entre la guía visible y la tacada real reportado en pantallazos del usuario.",
+  "cambios": [
+    "En modo Imagen jugada se elimina la superposición de dos rutas en la mesa principal.",
+    "La línea punteada principal usa el guidePath maestro del video cuando la jugada está armada.",
+    "El botón Tirar ejecuta ese mismo guidePath si taco, potencia, efecto y bolas no fueron modificados.",
+    "Si se detecta ajuste manual, la app abandona guía maestra y recalcula la línea con física libre profesional.",
+    "Demostración se mantiene sin puntaje; Tirar con guía maestra sí cuenta intento y punto."
+  ],
+  "validaciones": {
+    "sintaxis_js": "node --check js/app.js",
+    "cache": "CACHE_NAME actualizado a billar-tres-bandas-pro-v178-guia-maestra-video",
+    "regla_visual": "No se dibuja referenceGuideImage en la mesa principal cuando deflectionGuideMode es imagen.",
+    "regla_tiro": "exactVideoGuideArmedStatus controla cuándo Tirar usa startPracticeVideoShot con demoMode=false."
+  }
+}

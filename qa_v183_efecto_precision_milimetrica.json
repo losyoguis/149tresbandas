@@ -1,0 +1,13 @@
+{
+  "version": "v183-efecto-precision-milimetrica",
+  "changes": [
+    "El botón Efecto reposiciona automáticamente el taco con mayor precisión.",
+    "La alineación usa solape, separación relativa y lado de contacto de la imagen.",
+    "Se mantiene la sincronización del punto azul y la potencia de referencia."
+  ],
+  "expected": {
+    "auto_cue_reposition": true,
+    "image_based_micro_nudge": true,
+    "effect_button_label": "Efecto"
+  }
+}

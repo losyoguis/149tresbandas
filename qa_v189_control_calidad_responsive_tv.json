@@ -1,0 +1,16 @@
+{
+  "version": "v189-control-calidad-responsive-tv",
+  "quality_control": {
+    "github_pages": true,
+    "google_sites_embed": true,
+    "relative_paths": true,
+    "service_worker_versioned": true,
+    "flat_assets_folder": true,
+    "mobile_touch_table": true,
+    "css_fullscreen_fallback": true,
+    "tv_remote_keyboard_support": true,
+    "focus_visible_accessibility": true,
+    "responsive_breakpoints": [520, 620, 720, 860, 940, 1280, 1500]
+  },
+  "instructions_note": "Si no deseas practicar las 149 carambolas predefinidas, puedes utilizar los botones de Modo libre y Ubicar bolas para entrenar tu propio sistema."
+}

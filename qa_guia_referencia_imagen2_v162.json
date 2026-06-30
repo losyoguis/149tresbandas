@@ -1,0 +1,4537 @@
+{
+  "summary": {
+    "total": 148,
+    "lowMask": 0,
+    "lowCodes": [],
+    "blankedNoVisibleRoute": 2,
+    "blankedCodes": [
+      "046",
+      "079"
+    ]
+  },
+  "items": [
+    {
+      "code": "001",
+      "bbox": [
+        41,
+        172,
+        592,
+        472
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 9310,
+      "components": [
+        {
+          "area": 6784,
+          "bbox": [
+            141,
+            24,
+            389,
+            256
+          ],
+          "thrRatio": 0.852,
+          "avgRgb": [
+            60.7,
+            153.9,
+            115.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_001.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "002",
+      "bbox": [
+        42,
+        225,
+        827,
+        656
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 19965,
+      "components": [
+        {
+          "area": 15845,
+          "bbox": [
+            25,
+            37,
+            690,
+            367
+          ],
+          "thrRatio": 0.847,
+          "avgRgb": [
+            58.9,
+            154.5,
+            115.9
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_002.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "003",
+      "bbox": [
+        16,
+        173,
+        564,
+        473
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 10418,
+      "components": [
+        {
+          "area": 7564,
+          "bbox": [
+            21,
+            23,
+            482,
+            257
+          ],
+          "thrRatio": 0.858,
+          "avgRgb": [
+            59.7,
+            154.3,
+            115.4
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_003.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "004",
+      "bbox": [
+        26,
+        168,
+        579,
+        467
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 9784,
+      "components": [
+        {
+          "area": 6932,
+          "bbox": [
+            25,
+            25,
+            483,
+            255
+          ],
+          "thrRatio": 0.89,
+          "avgRgb": [
+            57.1,
+            147.1,
+            107.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_004.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "005",
+      "bbox": [
+        30,
+        168,
+        579,
+        464
+      ],
+      "method": "diff",
+      "maskPixels": 8753,
+      "components": [
+        {
+          "area": 5741,
+          "bbox": [
+            14,
+            16,
+            513,
+            259
+          ],
+          "thrRatio": 0.991,
+          "avgRgb": [
+            121.9,
+            203.4,
+            171.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_005.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "006",
+      "bbox": [
+        21,
+        180,
+        573,
+        479
+      ],
+      "method": "diff",
+      "maskPixels": 12799,
+      "components": [
+        {
+          "area": 10088,
+          "bbox": [
+            31,
+            15,
+            513,
+            283
+          ],
+          "thrRatio": 0.917,
+          "avgRgb": [
+            77.5,
+            154.0,
+            115.8
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_006.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "007",
+      "bbox": [
+        29,
+        184,
+        581,
+        483
+      ],
+      "method": "diff",
+      "maskPixels": 12719,
+      "components": [
+        {
+          "area": 9867,
+          "bbox": [
+            12,
+            7,
+            516,
+            275
+          ],
+          "thrRatio": 0.847,
+          "avgRgb": [
+            97.5,
+            185.8,
+            154.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_007.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "008",
+      "bbox": [
+        26,
+        171,
+        576,
+        471
+      ],
+      "method": "diff",
+      "maskPixels": 12312,
+      "components": [
+        {
+          "area": 9358,
+          "bbox": [
+            22,
+            18,
+            506,
+            273
+          ],
+          "thrRatio": 0.997,
+          "avgRgb": [
+            151.0,
+            224.3,
+            190.1
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_008.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "009",
+      "bbox": [
+        24,
+        162,
+        571,
+        462
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 9586,
+      "components": [
+        {
+          "area": 6934,
+          "bbox": [
+            14,
+            23,
+            511,
+            245
+          ],
+          "thrRatio": 0.86,
+          "avgRgb": [
+            56.5,
+            151.0,
+            110.4
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_009.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "010",
+      "bbox": [
+        26,
+        161,
+        573,
+        461
+      ],
+      "method": "diff",
+      "maskPixels": 11815,
+      "components": [
+        {
+          "area": 8883,
+          "bbox": [
+            16,
+            25,
+            520,
+            250
+          ],
+          "thrRatio": 0.885,
+          "avgRgb": [
+            68.4,
+            155.0,
+            116.4
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_010.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "011",
+      "bbox": [
+        26,
+        154,
+        572,
+        454
+      ],
+      "method": "diff",
+      "maskPixels": 11519,
+      "components": [
+        {
+          "area": 8859,
+          "bbox": [
+            15,
+            32,
+            508,
+            245
+          ],
+          "thrRatio": 0.995,
+          "avgRgb": [
+            181.5,
+            236.8,
+            212.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_011.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "012",
+      "bbox": [
+        35,
+        176,
+        580,
+        476
+      ],
+      "method": "diff",
+      "maskPixels": 8247,
+      "components": [
+        {
+          "area": 5435,
+          "bbox": [
+            15,
+            13,
+            502,
+            266
+          ],
+          "thrRatio": 0.992,
+          "avgRgb": [
+            120.9,
+            203.2,
+            165.7
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_012.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "013",
+      "bbox": [
+        30,
+        161,
+        579,
+        460
+      ],
+      "method": "diff",
+      "maskPixels": 5016,
+      "components": [
+        {
+          "area": 3374,
+          "bbox": [
+            16,
+            35,
+            267,
+            237
+          ],
+          "thrRatio": 0.957,
+          "avgRgb": [
+            119.6,
+            215.9,
+            175.8
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_013.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "014",
+      "bbox": [
+        18,
+        169,
+        565,
+        469
+      ],
+      "method": "diff",
+      "maskPixels": 4398,
+      "components": [
+        {
+          "area": 2716,
+          "bbox": [
+            26,
+            21,
+            252,
+            248
+          ],
+          "thrRatio": 0.993,
+          "avgRgb": [
+            138.3,
+            221.2,
+            183.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_014.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "015",
+      "bbox": [
+        20,
+        176,
+        571,
+        475
+      ],
+      "method": "diff",
+      "maskPixels": 11380,
+      "components": [
+        {
+          "area": 8862,
+          "bbox": [
+            27,
+            34,
+            393,
+            239
+          ],
+          "thrRatio": 0.922,
+          "avgRgb": [
+            79.8,
+            166.7,
+            133.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_015.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "016",
+      "bbox": [
+        26,
+        160,
+        573,
+        460
+      ],
+      "method": "diff",
+      "maskPixels": 9403,
+      "components": [
+        {
+          "area": 6843,
+          "bbox": [
+            23,
+            29,
+            489,
+            259
+          ],
+          "thrRatio": 0.994,
+          "avgRgb": [
+            123.9,
+            210.6,
+            174.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_016.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "017",
+      "bbox": [
+        26,
+        175,
+        578,
+        475
+      ],
+      "method": "diff",
+      "maskPixels": 9934,
+      "components": [
+        {
+          "area": 7441,
+          "bbox": [
+            15,
+            5,
+            364,
+            272
+          ],
+          "thrRatio": 0.992,
+          "avgRgb": [
+            151.8,
+            228.8,
+            197.1
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_017.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "018",
+      "bbox": [
+        35,
+        182,
+        580,
+        478
+      ],
+      "method": "diff",
+      "maskPixels": 13867,
+      "components": [
+        {
+          "area": 11227,
+          "bbox": [
+            9,
+            18,
+            482,
+            256
+          ],
+          "thrRatio": 0.988,
+          "avgRgb": [
+            75.5,
+            185.4,
+            131.9
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_018.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "019",
+      "bbox": [
+        28,
+        176,
+        576,
+        472
+      ],
+      "method": "diff",
+      "maskPixels": 12678,
+      "components": [
+        {
+          "area": 10290,
+          "bbox": [
+            16,
+            12,
+            512,
+            261
+          ],
+          "thrRatio": 0.987,
+          "avgRgb": [
+            130.1,
+            250.5,
+            194.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_019.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "020",
+      "bbox": [
+        27,
+        165,
+        574,
+        465
+      ],
+      "method": "diff",
+      "maskPixels": 6613,
+      "components": [
+        {
+          "area": 4559,
+          "bbox": [
+            50,
+            26,
+            475,
+            247
+          ],
+          "thrRatio": 0.863,
+          "avgRgb": [
+            143.0,
+            209.5,
+            173.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_020.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "021",
+      "bbox": [
+        26,
+        192,
+        574,
+        491
+      ],
+      "method": "diff",
+      "maskPixels": 7375,
+      "components": [
+        {
+          "area": 5339,
+          "bbox": [
+            26,
+            5,
+            510,
+            262
+          ],
+          "thrRatio": 0.739,
+          "avgRgb": [
+            117.5,
+            190.2,
+            151.8
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_021.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "022",
+      "bbox": [
+        22,
+        169,
+        569,
+        469
+      ],
+      "method": "diff",
+      "maskPixels": 21894,
+      "components": [
+        {
+          "area": 17882,
+          "bbox": [
+            18,
+            20,
+            530,
+            264
+          ],
+          "thrRatio": 0.793,
+          "avgRgb": [
+            77.6,
+            166.5,
+            126.4
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_022.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "023",
+      "bbox": [
+        22,
+        176,
+        575,
+        475
+      ],
+      "method": "diff",
+      "maskPixels": 13197,
+      "components": [
+        {
+          "area": 10169,
+          "bbox": [
+            27,
+            16,
+            518,
+            264
+          ],
+          "thrRatio": 0.995,
+          "avgRgb": [
+            102.2,
+            194.8,
+            151.4
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_023.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "024",
+      "bbox": [
+        26,
+        170,
+        573,
+        467
+      ],
+      "method": "diff",
+      "maskPixels": 18248,
+      "components": [
+        {
+          "area": 14250,
+          "bbox": [
+            22,
+            19,
+            510,
+            265
+          ],
+          "thrRatio": 0.864,
+          "avgRgb": [
+            82.7,
+            178.9,
+            139.1
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_024.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "025",
+      "bbox": [
+        35,
+        176,
+        581,
+        471
+      ],
+      "method": "diff",
+      "maskPixels": 17130,
+      "components": [
+        {
+          "area": 13548,
+          "bbox": [
+            9,
+            21,
+            498,
+            258
+          ],
+          "thrRatio": 0.978,
+          "avgRgb": [
+            79.3,
+            173.2,
+            127.9
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_025.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "026",
+      "bbox": [
+        65,
+        142,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 6192,
+      "components": [
+        {
+          "area": 3734,
+          "bbox": [
+            11,
+            11,
+            292,
+            147
+          ],
+          "thrRatio": 0.843,
+          "avgRgb": [
+            59.4,
+            159.1,
+            120.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_026.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "027",
+      "bbox": [
+        66,
+        144,
+        380,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 6293,
+      "components": [
+        {
+          "area": 3817,
+          "bbox": [
+            10,
+            7,
+            293,
+            149
+          ],
+          "thrRatio": 0.835,
+          "avgRgb": [
+            58.9,
+            156.6,
+            117.9
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_027.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "028",
+      "bbox": [
+        65,
+        142,
+        381,
+        313
+      ],
+      "method": "diff",
+      "maskPixels": 6520,
+      "components": [
+        {
+          "area": 3850,
+          "bbox": [
+            11,
+            11,
+            294,
+            148
+          ],
+          "thrRatio": 0.852,
+          "avgRgb": [
+            60.1,
+            154.6,
+            114.3
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_028.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "029",
+      "bbox": [
+        64,
+        142,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 5629,
+      "components": [
+        {
+          "area": 3357,
+          "bbox": [
+            12,
+            11,
+            293,
+            147
+          ],
+          "thrRatio": 0.85,
+          "avgRgb": [
+            59.9,
+            158.8,
+            119.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_029.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "030",
+      "bbox": [
+        64,
+        145,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 5255,
+      "components": [
+        {
+          "area": 3191,
+          "bbox": [
+            11,
+            6,
+            295,
+            151
+          ],
+          "thrRatio": 0.834,
+          "avgRgb": [
+            56.9,
+            155.8,
+            116.8
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_030.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "031",
+      "bbox": [
+        64,
+        144,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 6162,
+      "components": [
+        {
+          "area": 3680,
+          "bbox": [
+            12,
+            9,
+            293,
+            147
+          ],
+          "thrRatio": 0.853,
+          "avgRgb": [
+            60.4,
+            159.0,
+            119.7
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_031.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "032",
+      "bbox": [
+        65,
+        143,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 5921,
+      "components": [
+        {
+          "area": 3491,
+          "bbox": [
+            11,
+            10,
+            292,
+            147
+          ],
+          "thrRatio": 0.865,
+          "avgRgb": [
+            59.1,
+            155.7,
+            117.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_032.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "033",
+      "bbox": [
+        62,
+        140,
+        383,
+        314
+      ],
+      "method": "diff",
+      "maskPixels": 5072,
+      "components": [
+        {
+          "area": 3180,
+          "bbox": [
+            14,
+            13,
+            293,
+            145
+          ],
+          "thrRatio": 0.718,
+          "avgRgb": [
+            48.3,
+            155.6,
+            115.8
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_033.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "034",
+      "bbox": [
+        66,
+        142,
+        380,
+        311
+      ],
+      "method": "diff",
+      "maskPixels": 6530,
+      "components": [
+        {
+          "area": 4128,
+          "bbox": [
+            9,
+            10,
+            294,
+            148
+          ],
+          "thrRatio": 0.748,
+          "avgRgb": [
+            54.3,
+            152.6,
+            113.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_034.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "035",
+      "bbox": [
+        65,
+        142,
+        381,
+        313
+      ],
+      "method": "diff",
+      "maskPixels": 5976,
+      "components": [
+        {
+          "area": 3578,
+          "bbox": [
+            11,
+            10,
+            294,
+            148
+          ],
+          "thrRatio": 0.85,
+          "avgRgb": [
+            60.4,
+            156.6,
+            118.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_035.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "036",
+      "bbox": [
+        65,
+        142,
+        381,
+        313
+      ],
+      "method": "diff",
+      "maskPixels": 2790,
+      "components": [
+        {
+          "area": 1642,
+          "bbox": [
+            11,
+            10,
+            246,
+            117
+          ],
+          "thrRatio": 0.859,
+          "avgRgb": [
+            59.8,
+            154.6,
+            113.3
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_036.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "037",
+      "bbox": [
+        64,
+        142,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 4944,
+      "components": [
+        {
+          "area": 2938,
+          "bbox": [
+            13,
+            11,
+            293,
+            147
+          ],
+          "thrRatio": 0.803,
+          "avgRgb": [
+            53.6,
+            147.2,
+            106.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_037.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "038",
+      "bbox": [
+        63,
+        144,
+        381,
+        313
+      ],
+      "method": "diff",
+      "maskPixels": 5171,
+      "components": [
+        {
+          "area": 3009,
+          "bbox": [
+            12,
+            9,
+            294,
+            148
+          ],
+          "thrRatio": 0.866,
+          "avgRgb": [
+            58.9,
+            156.2,
+            115.4
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_038.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "039",
+      "bbox": [
+        64,
+        142,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 4810,
+      "components": [
+        {
+          "area": 2916,
+          "bbox": [
+            12,
+            11,
+            293,
+            147
+          ],
+          "thrRatio": 0.834,
+          "avgRgb": [
+            58.6,
+            156.0,
+            117.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_039.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "040",
+      "bbox": [
+        65,
+        142,
+        381,
+        313
+      ],
+      "method": "diff",
+      "maskPixels": 5477,
+      "components": [
+        {
+          "area": 3439,
+          "bbox": [
+            11,
+            10,
+            293,
+            148
+          ],
+          "thrRatio": 0.826,
+          "avgRgb": [
+            58.9,
+            155.5,
+            117.1
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_040.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "041",
+      "bbox": [
+        66,
+        143,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 4161,
+      "components": [
+        {
+          "area": 2499,
+          "bbox": [
+            31,
+            9,
+            272,
+            148
+          ],
+          "thrRatio": 0.84,
+          "avgRgb": [
+            60.1,
+            157.1,
+            117.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_041.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "042",
+      "bbox": [
+        64,
+        142,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 4803,
+      "components": [
+        {
+          "area": 2953,
+          "bbox": [
+            12,
+            11,
+            292,
+            148
+          ],
+          "thrRatio": 0.805,
+          "avgRgb": [
+            57.3,
+            153.9,
+            114.7
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_042.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "043",
+      "bbox": [
+        66,
+        142,
+        381,
+        313
+      ],
+      "method": "diff",
+      "maskPixels": 3696,
+      "components": [
+        {
+          "area": 2330,
+          "bbox": [
+            14,
+            10,
+            289,
+            148
+          ],
+          "thrRatio": 0.83,
+          "avgRgb": [
+            59.4,
+            156.7,
+            119.1
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_043.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "044",
+      "bbox": [
+        64,
+        144,
+        381,
+        313
+      ],
+      "method": "diff",
+      "maskPixels": 5864,
+      "components": [
+        {
+          "area": 4048,
+          "bbox": [
+            11,
+            8,
+            294,
+            149
+          ],
+          "thrRatio": 0.564,
+          "avgRgb": [
+            41.0,
+            136.1,
+            95.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_044.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "045",
+      "bbox": [
+        65,
+        141,
+        380,
+        313
+      ],
+      "method": "diff",
+      "maskPixels": 5288,
+      "components": [
+        {
+          "area": 3234,
+          "bbox": [
+            11,
+            12,
+            275,
+            148
+          ],
+          "thrRatio": 0.786,
+          "avgRgb": [
+            56.1,
+            155.6,
+            117.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_045.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "046",
+      "bbox": [
+        64,
+        142,
+        380,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 212,
+      "components": [
+        {
+          "area": 87,
+          "bbox": [
+            27,
+            77,
+            10,
+            10
+          ],
+          "fallback": true
+        },
+        {
+          "area": 47,
+          "bbox": [
+            59,
+            138,
+            7,
+            8
+          ],
+          "fallback": true
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_046.png",
+      "blankedNoVisibleRoute": true,
+      "note": "Imagen 2 sin recorrido visible suficiente; se deja la guía de referencia vacía para no inventar ruta."
+    },
+    {
+      "code": "047",
+      "bbox": [
+        64,
+        142,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 1638,
+      "components": [
+        {
+          "area": 1008,
+          "bbox": [
+            12,
+            11,
+            45,
+            149
+          ],
+          "thrRatio": 0.865,
+          "avgRgb": [
+            66.3,
+            159.7,
+            122.1
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_047.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "048",
+      "bbox": [
+        64,
+        142,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 1631,
+      "components": [
+        {
+          "area": 1019,
+          "bbox": [
+            13,
+            11,
+            45,
+            147
+          ],
+          "thrRatio": 0.833,
+          "avgRgb": [
+            60.5,
+            151.1,
+            112.9
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_048.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "049",
+      "bbox": [
+        67,
+        142,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 1878,
+      "components": [
+        {
+          "area": 1134,
+          "bbox": [
+            9,
+            10,
+            100,
+            148
+          ],
+          "thrRatio": 0.857,
+          "avgRgb": [
+            62.9,
+            152.6,
+            112.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_049.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "050",
+      "bbox": [
+        66,
+        143,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 1714,
+      "components": [
+        {
+          "area": 1036,
+          "bbox": [
+            10,
+            9,
+            93,
+            148
+          ],
+          "thrRatio": 0.854,
+          "avgRgb": [
+            62.6,
+            159.5,
+            118.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_050.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "051",
+      "bbox": [
+        66,
+        143,
+        381,
+        313
+      ],
+      "method": "diff",
+      "maskPixels": 2182,
+      "components": [
+        {
+          "area": 1294,
+          "bbox": [
+            11,
+            9,
+            113,
+            149
+          ],
+          "thrRatio": 0.834,
+          "avgRgb": [
+            62.0,
+            156.3,
+            115.4
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_051.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "052",
+      "bbox": [
+        65,
+        143,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 2052,
+      "components": [
+        {
+          "area": 1280,
+          "bbox": [
+            8,
+            10,
+            100,
+            147
+          ],
+          "thrRatio": 0.795,
+          "avgRgb": [
+            62.2,
+            158.3,
+            118.1
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_052.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "053",
+      "bbox": [
+        65,
+        143,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 2480,
+      "components": [
+        {
+          "area": 1538,
+          "bbox": [
+            10,
+            10,
+            111,
+            147
+          ],
+          "thrRatio": 0.843,
+          "avgRgb": [
+            65.1,
+            158.0,
+            118.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_053.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "054",
+      "bbox": [
+        64,
+        143,
+        381,
+        311
+      ],
+      "method": "diff",
+      "maskPixels": 1709,
+      "components": [
+        {
+          "area": 1073,
+          "bbox": [
+            12,
+            11,
+            83,
+            146
+          ],
+          "thrRatio": 0.801,
+          "avgRgb": [
+            64.2,
+            155.7,
+            115.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_054.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "055",
+      "bbox": [
+        64,
+        143,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 1963,
+      "components": [
+        {
+          "area": 1243,
+          "bbox": [
+            11,
+            10,
+            69,
+            147
+          ],
+          "thrRatio": 0.841,
+          "avgRgb": [
+            65.9,
+            158.5,
+            120.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_055.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "056",
+      "bbox": [
+        64,
+        142,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 2511,
+      "components": [
+        {
+          "area": 1491,
+          "bbox": [
+            12,
+            10,
+            188,
+            119
+          ],
+          "thrRatio": 0.875,
+          "avgRgb": [
+            59.1,
+            150.8,
+            108.9
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_056.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "057",
+      "bbox": [
+        64,
+        142,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 4023,
+      "components": [
+        {
+          "area": 2335,
+          "bbox": [
+            16,
+            11,
+            288,
+            147
+          ],
+          "thrRatio": 0.883,
+          "avgRgb": [
+            58.8,
+            150.9,
+            108.4
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_057.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "058",
+      "bbox": [
+        67,
+        142,
+        381,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 4642,
+      "components": [
+        {
+          "area": 2888,
+          "bbox": [
+            8,
+            11,
+            293,
+            146
+          ],
+          "thrRatio": 0.813,
+          "avgRgb": [
+            57.6,
+            155.1,
+            116.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_058.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "059",
+      "bbox": [
+        64,
+        143,
+        381,
+        313
+      ],
+      "method": "diff",
+      "maskPixels": 3637,
+      "components": [
+        {
+          "area": 2197,
+          "bbox": [
+            12,
+            13,
+            293,
+            144
+          ],
+          "thrRatio": 0.847,
+          "avgRgb": [
+            59.8,
+            157.8,
+            118.9
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_059.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "060",
+      "bbox": [
+        64,
+        141,
+        382,
+        312
+      ],
+      "method": "diff",
+      "maskPixels": 1384,
+      "components": [
+        {
+          "area": 816,
+          "bbox": [
+            13,
+            13,
+            77,
+            147
+          ],
+          "thrRatio": 0.789,
+          "avgRgb": [
+            53.6,
+            139.8,
+            100.8
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_060.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "061",
+      "bbox": [
+        23,
+        156,
+        569,
+        454
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 4583,
+      "components": [
+        {
+          "area": 3257,
+          "bbox": [
+            16,
+            19,
+            170,
+            253
+          ],
+          "thrRatio": 0.862,
+          "avgRgb": [
+            64.5,
+            159.7,
+            120.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_061.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "062",
+      "bbox": [
+        36,
+        178,
+        588,
+        476
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 5059,
+      "components": [
+        {
+          "area": 3815,
+          "bbox": [
+            19,
+            20,
+            83,
+            257
+          ],
+          "thrRatio": 0.819,
+          "avgRgb": [
+            67.4,
+            159.8,
+            121.7
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_062.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "063",
+      "bbox": [
+        32,
+        162,
+        576,
+        457
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 7776,
+      "components": [
+        {
+          "area": 5758,
+          "bbox": [
+            15,
+            188,
+            468,
+            86
+          ],
+          "thrRatio": 0.912,
+          "avgRgb": [
+            58.8,
+            149.8,
+            110.9
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_063.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "064",
+      "bbox": [
+        26,
+        184,
+        579,
+        484
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 6430,
+      "components": [
+        {
+          "area": 5116,
+          "bbox": [
+            20,
+            209,
+            440,
+            71
+          ],
+          "thrRatio": 0.788,
+          "avgRgb": [
+            66.1,
+            158.2,
+            119.4
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_064.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "065",
+      "bbox": [
+        23,
+        177,
+        570,
+        477
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 7631,
+      "components": [
+        {
+          "area": 6061,
+          "bbox": [
+            14,
+            209,
+            506,
+            73
+          ],
+          "thrRatio": 0.84,
+          "avgRgb": [
+            67.7,
+            158.0,
+            121.7
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_065.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "066",
+      "bbox": [
+        31,
+        173,
+        578,
+        471
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 4848,
+      "components": [
+        {
+          "area": 3770,
+          "bbox": [
+            13,
+            223,
+            413,
+            55
+          ],
+          "thrRatio": 0.862,
+          "avgRgb": [
+            65.4,
+            158.9,
+            120.7
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_066.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "067",
+      "bbox": [
+        25,
+        157,
+        573,
+        455
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 4580,
+      "components": [
+        {
+          "area": 3518,
+          "bbox": [
+            15,
+            223,
+            294,
+            56
+          ],
+          "thrRatio": 0.848,
+          "avgRgb": [
+            64.2,
+            160.5,
+            121.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_067.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "068",
+      "bbox": [
+        23,
+        173,
+        577,
+        471
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 3856,
+      "components": [
+        {
+          "area": 2976,
+          "bbox": [
+            22,
+            222,
+            276,
+            54
+          ],
+          "thrRatio": 0.874,
+          "avgRgb": [
+            64.3,
+            156.2,
+            118.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_068.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "069",
+      "bbox": [
+        26,
+        155,
+        575,
+        454
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 2782,
+      "components": [
+        {
+          "area": 2154,
+          "bbox": [
+            16,
+            19,
+            45,
+            158
+          ],
+          "thrRatio": 0.841,
+          "avgRgb": [
+            75.5,
+            161.0,
+            122.8
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_069.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "070",
+      "bbox": [
+        31,
+        172,
+        578,
+        470
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 2411,
+      "components": [
+        {
+          "area": 1857,
+          "bbox": [
+            13,
+            18,
+            135,
+            58
+          ],
+          "thrRatio": 0.854,
+          "avgRgb": [
+            68.7,
+            159.7,
+            119.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_070.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "071",
+      "bbox": [
+        22,
+        152,
+        569,
+        451
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 2607,
+      "components": [
+        {
+          "area": 1955,
+          "bbox": [
+            18,
+            162,
+            137,
+            117
+          ],
+          "thrRatio": 0.874,
+          "avgRgb": [
+            69.0,
+            151.7,
+            110.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_071.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "072",
+      "bbox": [
+        26,
+        175,
+        576,
+        473
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 2571,
+      "components": [
+        {
+          "area": 2007,
+          "bbox": [
+            17,
+            178,
+            140,
+            99
+          ],
+          "thrRatio": 0.833,
+          "avgRgb": [
+            68.8,
+            155.7,
+            109.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_072.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "073",
+      "bbox": [
+        25,
+        170,
+        575,
+        468
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 2793,
+      "components": [
+        {
+          "area": 2207,
+          "bbox": [
+            18,
+            177,
+            141,
+            100
+          ],
+          "thrRatio": 0.814,
+          "avgRgb": [
+            67.3,
+            153.0,
+            110.7
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_073.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "074",
+      "bbox": [
+        32,
+        176,
+        581,
+        475
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 4360,
+      "components": [
+        {
+          "area": 3412,
+          "bbox": [
+            17,
+            19,
+            67,
+            258
+          ],
+          "thrRatio": 0.804,
+          "avgRgb": [
+            72.3,
+            155.0,
+            118.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_074.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "075",
+      "bbox": [
+        34,
+        176,
+        581,
+        471
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 5717,
+      "components": [
+        {
+          "area": 4337,
+          "bbox": [
+            18,
+            16,
+            90,
+            257
+          ],
+          "thrRatio": 0.85,
+          "avgRgb": [
+            67.7,
+            154.7,
+            118.3
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_075.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "076",
+      "bbox": [
+        26,
+        171,
+        576,
+        469
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 4805,
+      "components": [
+        {
+          "area": 3661,
+          "bbox": [
+            20,
+            20,
+            162,
+            257
+          ],
+          "thrRatio": 0.896,
+          "avgRgb": [
+            70.4,
+            155.0,
+            116.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_076.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "077",
+      "bbox": [
+        28,
+        159,
+        577,
+        457
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 5282,
+      "components": [
+        {
+          "area": 3930,
+          "bbox": [
+            19,
+            20,
+            169,
+            257
+          ],
+          "thrRatio": 0.881,
+          "avgRgb": [
+            63.7,
+            151.9,
+            113.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_077.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "078",
+      "bbox": [
+        31,
+        153,
+        576,
+        452
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 3839,
+      "components": [
+        {
+          "area": 2937,
+          "bbox": [
+            12,
+            37,
+            79,
+            240
+          ],
+          "thrRatio": 0.81,
+          "avgRgb": [
+            68.1,
+            159.3,
+            120.7
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_078.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "079",
+      "bbox": [
+        25,
+        159,
+        573,
+        458
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 189,
+      "components": [
+        {
+          "area": 75,
+          "bbox": [
+            443,
+            97,
+            15,
+            10
+          ],
+          "fallback": true
+        },
+        {
+          "area": 40,
+          "bbox": [
+            145,
+            290,
+            6,
+            7
+          ],
+          "fallback": true
+        },
+        {
+          "area": 38,
+          "bbox": [
+            461,
+            290,
+            6,
+            7
+          ],
+          "fallback": true
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_079.png",
+      "blankedNoVisibleRoute": true,
+      "note": "Imagen 2 sin recorrido visible suficiente; se deja la guía de referencia vacía para no inventar ruta."
+    },
+    {
+      "code": "081",
+      "bbox": [
+        26,
+        162,
+        572,
+        462
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 11307,
+      "components": [
+        {
+          "area": 8373,
+          "bbox": [
+            15,
+            20,
+            493,
+            257
+          ],
+          "thrRatio": 0.843,
+          "avgRgb": [
+            66.8,
+            166.8,
+            128.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_081.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "082",
+      "bbox": [
+        26,
+        157,
+        577,
+        455
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 11415,
+      "components": [
+        {
+          "area": 8031,
+          "bbox": [
+            19,
+            20,
+            506,
+            257
+          ],
+          "thrRatio": 0.926,
+          "avgRgb": [
+            66.4,
+            161.8,
+            121.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_082.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "083",
+      "bbox": [
+        31,
+        171,
+        575,
+        466
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 11057,
+      "components": [
+        {
+          "area": 8209,
+          "bbox": [
+            14,
+            17,
+            479,
+            258
+          ],
+          "thrRatio": 0.846,
+          "avgRgb": [
+            65.3,
+            167.6,
+            128.8
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_083.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "084",
+      "bbox": [
+        31,
+        169,
+        576,
+        465
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 10161,
+      "components": [
+        {
+          "area": 7397,
+          "bbox": [
+            15,
+            15,
+            479,
+            258
+          ],
+          "thrRatio": 0.872,
+          "avgRgb": [
+            63.5,
+            167.2,
+            127.9
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_084.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "085",
+      "bbox": [
+        24,
+        169,
+        573,
+        469
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 6225,
+      "components": [
+        {
+          "area": 4785,
+          "bbox": [
+            16,
+            94,
+            463,
+            188
+          ],
+          "thrRatio": 0.76,
+          "avgRgb": [
+            61.0,
+            163.4,
+            124.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_085.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "086",
+      "bbox": [
+        23,
+        164,
+        572,
+        463
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 6277,
+      "components": [
+        {
+          "area": 4777,
+          "bbox": [
+            17,
+            92,
+            464,
+            186
+          ],
+          "thrRatio": 0.771,
+          "avgRgb": [
+            62.2,
+            162.4,
+            124.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_086.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "087",
+      "bbox": [
+        26,
+        161,
+        572,
+        456
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 5403,
+      "components": [
+        {
+          "area": 3883,
+          "bbox": [
+            15,
+            15,
+            246,
+            251
+          ],
+          "thrRatio": 0.906,
+          "avgRgb": [
+            69.6,
+            169.3,
+            128.4
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_087.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "088",
+      "bbox": [
+        24,
+        163,
+        572,
+        459
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 9101,
+      "components": [
+        {
+          "area": 6721,
+          "bbox": [
+            16,
+            16,
+            510,
+            250
+          ],
+          "thrRatio": 0.859,
+          "avgRgb": [
+            63.6,
+            165.0,
+            124.9
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_088.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "089",
+      "bbox": [
+        32,
+        169,
+        578,
+        467
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 7359,
+      "components": [
+        {
+          "area": 5291,
+          "bbox": [
+            14,
+            20,
+            502,
+            256
+          ],
+          "thrRatio": 0.845,
+          "avgRgb": [
+            60.5,
+            153.8,
+            112.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_089.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "090",
+      "bbox": [
+        23,
+        163,
+        568,
+        461
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 7787,
+      "components": [
+        {
+          "area": 5655,
+          "bbox": [
+            15,
+            19,
+            456,
+            257
+          ],
+          "thrRatio": 0.866,
+          "avgRgb": [
+            63.0,
+            161.8,
+            122.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_090.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "091",
+      "bbox": [
+        27,
+        163,
+        572,
+        452
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 8245,
+      "components": [
+        {
+          "area": 6293,
+          "bbox": [
+            13,
+            12,
+            457,
+            260
+          ],
+          "thrRatio": 0.737,
+          "avgRgb": [
+            68.1,
+            166.8,
+            135.7
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_091.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "092",
+      "bbox": [
+        32,
+        167,
+        575,
+        457
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 7706,
+      "components": [
+        {
+          "area": 5606,
+          "bbox": [
+            8,
+            13,
+            456,
+            260
+          ],
+          "thrRatio": 0.829,
+          "avgRgb": [
+            71.9,
+            172.4,
+            142.8
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_092.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "093",
+      "bbox": [
+        32,
+        162,
+        575,
+        455
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 7652,
+      "components": [
+        {
+          "area": 5602,
+          "bbox": [
+            14,
+            13,
+            461,
+            258
+          ],
+          "thrRatio": 0.817,
+          "avgRgb": [
+            73.0,
+            171.5,
+            141.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_093.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "094",
+      "bbox": [
+        28,
+        171,
+        572,
+        461
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 5034,
+      "components": [
+        {
+          "area": 3786,
+          "bbox": [
+            13,
+            13,
+            93,
+            259
+          ],
+          "thrRatio": 0.886,
+          "avgRgb": [
+            83.2,
+            172.6,
+            145.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_094.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "095",
+      "bbox": [
+        27,
+        180,
+        571,
+        469
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 5165,
+      "components": [
+        {
+          "area": 3857,
+          "bbox": [
+            14,
+            14,
+            104,
+            258
+          ],
+          "thrRatio": 0.824,
+          "avgRgb": [
+            83.1,
+            173.9,
+            146.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_095.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "096",
+      "bbox": [
+        33,
+        176,
+        578,
+        464
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 5301,
+      "components": [
+        {
+          "area": 3917,
+          "bbox": [
+            14,
+            12,
+            123,
+            259
+          ],
+          "thrRatio": 0.88,
+          "avgRgb": [
+            81.9,
+            171.8,
+            143.3
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_096.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "097",
+      "bbox": [
+        36,
+        168,
+        582,
+        460
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 5366,
+      "components": [
+        {
+          "area": 4142,
+          "bbox": [
+            15,
+            12,
+            128,
+            258
+          ],
+          "thrRatio": 0.812,
+          "avgRgb": [
+            82.5,
+            175.1,
+            147.9
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_097.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "098",
+      "bbox": [
+        35,
+        167,
+        582,
+        457
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 5579,
+      "components": [
+        {
+          "area": 4155,
+          "bbox": [
+            15,
+            13,
+            102,
+            258
+          ],
+          "thrRatio": 0.822,
+          "avgRgb": [
+            81.0,
+            173.1,
+            145.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_098.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "099",
+      "bbox": [
+        36,
+        172,
+        583,
+        463
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 3133,
+      "components": [
+        {
+          "area": 2319,
+          "bbox": [
+            13,
+            37,
+            55,
+            235
+          ],
+          "thrRatio": 0.831,
+          "avgRgb": [
+            80.5,
+            173.7,
+            144.9
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_099.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "100",
+      "bbox": [
+        27,
+        168,
+        571,
+        460
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 2181,
+      "components": [
+        {
+          "area": 1633,
+          "bbox": [
+            13,
+            131,
+            43,
+            141
+          ],
+          "thrRatio": 0.843,
+          "avgRgb": [
+            81.0,
+            164.8,
+            137.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_100.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "101",
+      "bbox": [
+        37,
+        169,
+        583,
+        463
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 3330,
+      "components": [
+        {
+          "area": 2496,
+          "bbox": [
+            11,
+            14,
+            140,
+            107
+          ],
+          "thrRatio": 0.796,
+          "avgRgb": [
+            75.1,
+            171.2,
+            138.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_101.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "102",
+      "bbox": [
+        34,
+        176,
+        581,
+        468
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 2773,
+      "components": [
+        {
+          "area": 2043,
+          "bbox": [
+            14,
+            86,
+            81,
+            184
+          ],
+          "thrRatio": 0.855,
+          "avgRgb": [
+            76.1,
+            164.9,
+            136.3
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_102.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "103",
+      "bbox": [
+        31,
+        163,
+        577,
+        457
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 3190,
+      "components": [
+        {
+          "area": 2426,
+          "bbox": [
+            9,
+            105,
+            62,
+            169
+          ],
+          "thrRatio": 0.828,
+          "avgRgb": [
+            83.2,
+            175.7,
+            143.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_103.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "104",
+      "bbox": [
+        36,
+        169,
+        580,
+        462
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 2686,
+      "components": [
+        {
+          "area": 2080,
+          "bbox": [
+            14,
+            119,
+            48,
+            153
+          ],
+          "thrRatio": 0.848,
+          "avgRgb": [
+            91.6,
+            175.3,
+            145.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_104.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "105",
+      "bbox": [
+        39,
+        172,
+        582,
+        465
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 2829,
+      "components": [
+        {
+          "area": 2249,
+          "bbox": [
+            12,
+            102,
+            50,
+            173
+          ],
+          "thrRatio": 0.851,
+          "avgRgb": [
+            92.1,
+            172.2,
+            141.8
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_105.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "106",
+      "bbox": [
+        35,
+        178,
+        580,
+        469
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 2689,
+      "components": [
+        {
+          "area": 2045,
+          "bbox": [
+            13,
+            14,
+            147,
+            117
+          ],
+          "thrRatio": 0.833,
+          "avgRgb": [
+            82.4,
+            172.2,
+            143.7
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_106.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "107",
+      "bbox": [
+        32,
+        185,
+        574,
+        472
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 2327,
+      "components": [
+        {
+          "area": 1743,
+          "bbox": [
+            11,
+            207,
+            197,
+            64
+          ],
+          "thrRatio": 0.861,
+          "avgRgb": [
+            74.0,
+            161.9,
+            131.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_107.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "108",
+      "bbox": [
+        39,
+        175,
+        583,
+        463
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 2549,
+      "components": [
+        {
+          "area": 1967,
+          "bbox": [
+            12,
+            207,
+            174,
+            64
+          ],
+          "thrRatio": 0.823,
+          "avgRgb": [
+            82.1,
+            171.0,
+            138.1
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_108.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "109",
+      "bbox": [
+        38,
+        170,
+        581,
+        461
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 9379,
+      "components": [
+        {
+          "area": 7081,
+          "bbox": [
+            14,
+            14,
+            437,
+            260
+          ],
+          "thrRatio": 0.788,
+          "avgRgb": [
+            68.9,
+            166.6,
+            138.1
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_109.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "110",
+      "bbox": [
+        28,
+        164,
+        573,
+        455
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 9638,
+      "components": [
+        {
+          "area": 6568,
+          "bbox": [
+            44,
+            15,
+            481,
+            254
+          ],
+          "thrRatio": 0.759,
+          "avgRgb": [
+            39.4,
+            147.5,
+            115.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_110.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "111",
+      "bbox": [
+        34,
+        173,
+        578,
+        467
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 12545,
+      "components": [
+        {
+          "area": 9405,
+          "bbox": [
+            42,
+            15,
+            481,
+            260
+          ],
+          "thrRatio": 0.784,
+          "avgRgb": [
+            66.9,
+            168.7,
+            139.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_111.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "112",
+      "bbox": [
+        34,
+        188,
+        575,
+        479
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 11198,
+      "components": [
+        {
+          "area": 8212,
+          "bbox": [
+            44,
+            15,
+            481,
+            257
+          ],
+          "thrRatio": 0.842,
+          "avgRgb": [
+            70.7,
+            169.2,
+            141.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_112.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "113",
+      "bbox": [
+        32,
+        168,
+        575,
+        459
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 18081,
+      "components": [
+        {
+          "area": 13373,
+          "bbox": [
+            12,
+            12,
+            512,
+            259
+          ],
+          "thrRatio": 0.823,
+          "avgRgb": [
+            70.2,
+            170.7,
+            141.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_113.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "114",
+      "bbox": [
+        35,
+        170,
+        579,
+        462
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 7812,
+      "components": [
+        {
+          "area": 6248,
+          "bbox": [
+            35,
+            15,
+            120,
+            260
+          ],
+          "thrRatio": 0.845,
+          "avgRgb": [
+            89.6,
+            170.5,
+            146.4
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_114.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "115",
+      "bbox": [
+        33,
+        184,
+        579,
+        476
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 6022,
+      "components": [
+        {
+          "area": 4950,
+          "bbox": [
+            83,
+            11,
+            52,
+            258
+          ],
+          "thrRatio": 0.814,
+          "avgRgb": [
+            95.7,
+            172.7,
+            147.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_115.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "116",
+      "bbox": [
+        33,
+        168,
+        575,
+        458
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 6407,
+      "components": [
+        {
+          "area": 5067,
+          "bbox": [
+            45,
+            16,
+            72,
+            258
+          ],
+          "thrRatio": 0.828,
+          "avgRgb": [
+            93.8,
+            174.0,
+            147.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_116.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "117",
+      "bbox": [
+        40,
+        169,
+        585,
+        460
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 8165,
+      "components": [
+        {
+          "area": 6635,
+          "bbox": [
+            40,
+            13,
+            83,
+            258
+          ],
+          "thrRatio": 0.827,
+          "avgRgb": [
+            93.3,
+            171.2,
+            146.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_117.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "118",
+      "bbox": [
+        25,
+        173,
+        568,
+        463
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 6849,
+      "components": [
+        {
+          "area": 5331,
+          "bbox": [
+            31,
+            13,
+            95,
+            259
+          ],
+          "thrRatio": 0.829,
+          "avgRgb": [
+            86.7,
+            172.0,
+            147.4
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_118.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "119",
+      "bbox": [
+        34,
+        174,
+        576,
+        463
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 6270,
+      "components": [
+        {
+          "area": 5334,
+          "bbox": [
+            38,
+            13,
+            64,
+            257
+          ],
+          "thrRatio": 0.8,
+          "avgRgb": [
+            97.7,
+            170.7,
+            146.8
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_119.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "120",
+      "bbox": [
+        40,
+        168,
+        582,
+        461
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 7896,
+      "components": [
+        {
+          "area": 6112,
+          "bbox": [
+            17,
+            13,
+            160,
+            259
+          ],
+          "thrRatio": 0.818,
+          "avgRgb": [
+            85.8,
+            173.2,
+            144.3
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_120.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "121",
+      "bbox": [
+        30,
+        162,
+        573,
+        452
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 5839,
+      "components": [
+        {
+          "area": 4581,
+          "bbox": [
+            14,
+            14,
+            51,
+            257
+          ],
+          "thrRatio": 0.867,
+          "avgRgb": [
+            90.0,
+            170.7,
+            145.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_121.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "122",
+      "bbox": [
+        32,
+        164,
+        576,
+        455
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 8821,
+      "components": [
+        {
+          "area": 6393,
+          "bbox": [
+            22,
+            13,
+            478,
+            259
+          ],
+          "thrRatio": 0.841,
+          "avgRgb": [
+            71.3,
+            170.2,
+            140.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_122.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "123",
+      "bbox": [
+        49,
+        185,
+        593,
+        476
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 9390,
+      "components": [
+        {
+          "area": 6904,
+          "bbox": [
+            14,
+            11,
+            416,
+            259
+          ],
+          "thrRatio": 0.848,
+          "avgRgb": [
+            75.5,
+            170.3,
+            140.7
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_123.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "124",
+      "bbox": [
+        26,
+        175,
+        571,
+        466
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 11400,
+      "components": [
+        {
+          "area": 8720,
+          "bbox": [
+            14,
+            101,
+            511,
+            171
+          ],
+          "thrRatio": 0.845,
+          "avgRgb": [
+            71.8,
+            164.8,
+            138.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_124.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "125",
+      "bbox": [
+        41,
+        184,
+        585,
+        472
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 10988,
+      "components": [
+        {
+          "area": 8360,
+          "bbox": [
+            13,
+            99,
+            513,
+            174
+          ],
+          "thrRatio": 0.875,
+          "avgRgb": [
+            70.9,
+            163.0,
+            136.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_125.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "126",
+      "bbox": [
+        24,
+        180,
+        568,
+        472
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 12940,
+      "components": [
+        {
+          "area": 9928,
+          "bbox": [
+            16,
+            12,
+            510,
+            261
+          ],
+          "thrRatio": 0.808,
+          "avgRgb": [
+            68.0,
+            165.6,
+            137.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_126.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "127",
+      "bbox": [
+        32,
+        172,
+        575,
+        461
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 16379,
+      "components": [
+        {
+          "area": 11937,
+          "bbox": [
+            12,
+            13,
+            512,
+            258
+          ],
+          "thrRatio": 0.83,
+          "avgRgb": [
+            69.4,
+            168.7,
+            140.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_127.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "128",
+      "bbox": [
+        35,
+        170,
+        579,
+        461
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 23542,
+      "components": [
+        {
+          "area": 17830,
+          "bbox": [
+            13,
+            13,
+            512,
+            259
+          ],
+          "thrRatio": 0.746,
+          "avgRgb": [
+            64.4,
+            163.2,
+            133.8
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_128.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "129",
+      "bbox": [
+        33,
+        181,
+        579,
+        473
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 13447,
+      "components": [
+        {
+          "area": 9881,
+          "bbox": [
+            15,
+            12,
+            483,
+            261
+          ],
+          "thrRatio": 0.843,
+          "avgRgb": [
+            73.6,
+            169.7,
+            140.3
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_129.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "130",
+      "bbox": [
+        42,
+        162,
+        588,
+        451
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 13576,
+      "components": [
+        {
+          "area": 10066,
+          "bbox": [
+            16,
+            13,
+            510,
+            257
+          ],
+          "thrRatio": 0.8,
+          "avgRgb": [
+            67.9,
+            168.9,
+            139.1
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_130.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "131",
+      "bbox": [
+        30,
+        171,
+        573,
+        464
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 12528,
+      "components": [
+        {
+          "area": 9054,
+          "bbox": [
+            15,
+            17,
+            505,
+            259
+          ],
+          "thrRatio": 0.902,
+          "avgRgb": [
+            73.2,
+            162.7,
+            134.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_131.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "132",
+      "bbox": [
+        29,
+        187,
+        572,
+        480
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 15101,
+      "components": [
+        {
+          "area": 11055,
+          "bbox": [
+            15,
+            13,
+            512,
+            260
+          ],
+          "thrRatio": 0.803,
+          "avgRgb": [
+            69.3,
+            167.2,
+            137.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_132.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "133",
+      "bbox": [
+        24,
+        170,
+        567,
+        460
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 11896,
+      "components": [
+        {
+          "area": 8896,
+          "bbox": [
+            14,
+            14,
+            511,
+            259
+          ],
+          "thrRatio": 0.845,
+          "avgRgb": [
+            73.1,
+            168.9,
+            139.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_133.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "134",
+      "bbox": [
+        53,
+        178,
+        599,
+        470
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 14229,
+      "components": [
+        {
+          "area": 11079,
+          "bbox": [
+            16,
+            13,
+            510,
+            258
+          ],
+          "thrRatio": 0.798,
+          "avgRgb": [
+            77.2,
+            167.8,
+            140.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_134.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "135",
+      "bbox": [
+        30,
+        169,
+        574,
+        463
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 11317,
+      "components": [
+        {
+          "area": 8573,
+          "bbox": [
+            14,
+            14,
+            511,
+            244
+          ],
+          "thrRatio": 0.845,
+          "avgRgb": [
+            76.2,
+            165.7,
+            138.1
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_135.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "136",
+      "bbox": [
+        38,
+        166,
+        584,
+        461
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 12482,
+      "components": [
+        {
+          "area": 8191,
+          "bbox": [
+            15,
+            17,
+            509,
+            256
+          ],
+          "thrRatio": 0.925,
+          "avgRgb": [
+            72.2,
+            162.6,
+            132.9
+          ]
+        },
+        {
+          "area": 89,
+          "bbox": [
+            11,
+            196,
+            5,
+            28
+          ],
+          "thrRatio": 0.539,
+          "avgRgb": [
+            31.3,
+            126.3,
+            88.6
+          ]
+        },
+        {
+          "area": 482,
+          "bbox": [
+            28,
+            238,
+            49,
+            34
+          ],
+          "thrRatio": 0.562,
+          "avgRgb": [
+            76.8,
+            162.3,
+            84.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_136.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "137",
+      "bbox": [
+        42,
+        172,
+        588,
+        463
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 14966,
+      "components": [
+        {
+          "area": 11724,
+          "bbox": [
+            16,
+            14,
+            510,
+            182
+          ],
+          "thrRatio": 0.818,
+          "avgRgb": [
+            77.5,
+            167.5,
+            141.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_137.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "138",
+      "bbox": [
+        29,
+        168,
+        572,
+        460
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 13402,
+      "components": [
+        {
+          "area": 10540,
+          "bbox": [
+            15,
+            12,
+            512,
+            176
+          ],
+          "thrRatio": 0.832,
+          "avgRgb": [
+            76.6,
+            170.2,
+            142.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_138.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "139",
+      "bbox": [
+        28,
+        170,
+        572,
+        462
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 9517,
+      "components": [
+        {
+          "area": 7247,
+          "bbox": [
+            13,
+            12,
+            472,
+            184
+          ],
+          "thrRatio": 0.848,
+          "avgRgb": [
+            73.3,
+            169.5,
+            139.1
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_139.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "140",
+      "bbox": [
+        35,
+        158,
+        579,
+        448
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 10275,
+      "components": [
+        {
+          "area": 7763,
+          "bbox": [
+            13,
+            15,
+            483,
+            257
+          ],
+          "thrRatio": 0.837,
+          "avgRgb": [
+            70.6,
+            170.0,
+            138.9
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_140.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "141",
+      "bbox": [
+        28,
+        168,
+        573,
+        460
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 6812,
+      "components": [
+        {
+          "area": 5254,
+          "bbox": [
+            15,
+            115,
+            511,
+            158
+          ],
+          "thrRatio": 0.818,
+          "avgRgb": [
+            74.9,
+            169.5,
+            139.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_141.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "142",
+      "bbox": [
+        33,
+        176,
+        575,
+        467
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 5062,
+      "components": [
+        {
+          "area": 3940,
+          "bbox": [
+            55,
+            233,
+            468,
+            39
+          ],
+          "thrRatio": 0.802,
+          "avgRgb": [
+            71.8,
+            168.7,
+            139.5
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_142.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "143",
+      "bbox": [
+        35,
+        192,
+        580,
+        483
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 5639,
+      "components": [
+        {
+          "area": 4389,
+          "bbox": [
+            14,
+            12,
+            364,
+            219
+          ],
+          "thrRatio": 0.861,
+          "avgRgb": [
+            79.1,
+            170.3,
+            140.4
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_143.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "144",
+      "bbox": [
+        31,
+        179,
+        576,
+        474
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 8961,
+      "components": [
+        {
+          "area": 6697,
+          "bbox": [
+            25,
+            16,
+            408,
+            258
+          ],
+          "thrRatio": 0.829,
+          "avgRgb": [
+            79.0,
+            171.7,
+            142.3
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_144.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "145",
+      "bbox": [
+        48,
+        200,
+        591,
+        492
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 5812,
+      "components": [
+        {
+          "area": 4538,
+          "bbox": [
+            12,
+            11,
+            123,
+            259
+          ],
+          "thrRatio": 0.821,
+          "avgRgb": [
+            86.2,
+            173.7,
+            146.2
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_145.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "146",
+      "bbox": [
+        34,
+        177,
+        579,
+        467
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 4236,
+      "components": [
+        {
+          "area": 3210,
+          "bbox": [
+            14,
+            21,
+            72,
+            248
+          ],
+          "thrRatio": 0.844,
+          "avgRgb": [
+            84.0,
+            173.5,
+            145.6
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_146.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "147",
+      "bbox": [
+        67,
+        290,
+        973,
+        769
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 3779,
+      "components": [
+        {
+          "area": 2897,
+          "bbox": [
+            18,
+            330,
+            66,
+            123
+          ],
+          "thrRatio": 0.961,
+          "avgRgb": [
+            123.9,
+            174.7,
+            147.0
+          ]
+        },
+        {
+          "area": 262,
+          "bbox": [
+            85,
+            398,
+            18,
+            19
+          ],
+          "thrRatio": 0.828,
+          "avgRgb": [
+            137.3,
+            180.9,
+            90.0
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_147.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "148",
+      "bbox": [
+        69,
+        291,
+        978,
+        771
+      ],
+      "method": "aligned-diff",
+      "maskPixels": 14184,
+      "components": [
+        {
+          "area": 12163,
+          "bbox": [
+            20,
+            17,
+            111,
+            437
+          ],
+          "thrRatio": 0.988,
+          "avgRgb": [
+            133.0,
+            177.0,
+            153.9
+          ]
+        },
+        {
+          "area": 127,
+          "bbox": [
+            20,
+            317,
+            7,
+            29
+          ],
+          "thrRatio": 0.78,
+          "avgRgb": [
+            80.7,
+            128.8,
+            98.8
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_148.png",
+      "blankedNoVisibleRoute": false
+    },
+    {
+      "code": "149",
+      "bbox": [
+        92,
+        380,
+        1468,
+        1105
+      ],
+      "method": "diff",
+      "maskPixels": 55777,
+      "components": [
+        {
+          "area": 49108,
+          "bbox": [
+            18,
+            0,
+            1315,
+            672
+          ],
+          "thrRatio": 0.994,
+          "avgRgb": [
+            181.8,
+            203.2,
+            192.4
+          ]
+        }
+      ],
+      "file": "assets/jugadas/guia_referencia_149.png",
+      "blankedNoVisibleRoute": false
+    }
+  ],
+  "lowItems": []
+}

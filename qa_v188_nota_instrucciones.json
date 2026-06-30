@@ -1,0 +1,11 @@
+{
+  "version": "v188-nota-instrucciones",
+  "changes": [
+    "Nota agregada al modal de Instrucciones.",
+    "Se mencionan los botones Modo libre y Ubicar bolas para practicar el sistema propio."
+  ],
+  "expected": {
+    "instructions_note_present": true,
+    "mentions_free_and_place": true
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version": "v197-entrenador-carambola-guiada",
+  "changes": [
+    "Título visible actualizado a Entrenador de Carambola Guiada.",
+    "Título HTML y manifest PWA actualizados.",
+    "Service worker actualizado para evitar caché viejo."
+  ],
+  "expected": {
+    "visible_title": "Entrenador de Carambola Guiada",
+    "pwa_name": "Entrenador de Carambola Guiada",
+    "cache_version": "v197"
+  }
+}

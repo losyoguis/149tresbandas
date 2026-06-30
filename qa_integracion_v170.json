@@ -1,0 +1,13 @@
+{
+  "version": "v170",
+  "shots_active": 148,
+  "updated_shots": [
+    "042",
+    "044",
+    "045",
+    "046",
+    "058"
+  ],
+  "all_required_assets_present": true,
+  "missing": []
+}

@@ -1,0 +1,15 @@
+{
+  "version": "v190-iman-fisico-realista",
+  "changes": [
+    "Cuando la guía de tacada se acerca a la guía principal, el imán ya no ejecuta una ruta lineal automática.",
+    "El imán corrige suavemente dirección, potencia y efecto, pero la tacada se resuelve con el motor físico real.",
+    "La bola blanca, la primera bola y la segunda bola se mueven por física: choques, bandas, fricción y efecto.",
+    "La demostración conserva la ruta maestra como referencia de estudio."
+  ],
+  "expected": {
+    "magnet_shot_uses_physics": true,
+    "linear_auto_route_removed_from_shoot": true,
+    "demo_route_still_available": true,
+    "all_balls_physics_motion": true
+  }
+}

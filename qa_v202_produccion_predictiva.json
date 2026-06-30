@@ -1,0 +1,59 @@
+{
+  "version": "v202-produccion-predictiva",
+  "date": "2026-06-30",
+  "checks": {
+    "active_playable_shots": 148,
+    "excluded_shots": [
+      "080"
+    ],
+    "index_subtitle": "148 jugadas activas",
+    "syntax_check": "node --check js/app.js OK",
+    "obsolete_button_text_removed": true,
+    "service_worker_cache": "entrenador-carambola-guiada-v202-produccion-predictiva",
+    "prediction_final_illumination": "prepareShotState stores predictiveGuide; finishShot restores it if prediction anticipated 3+ bands"
+  },
+  "shot_001": {
+    "reviewed": true,
+    "first": "red",
+    "second": "yellow",
+    "guide_path": [
+      {
+        "x": 275,
+        "y": 348
+      },
+      {
+        "x": 708,
+        "y": 286
+      },
+      {
+        "x": 925,
+        "y": 78
+      },
+      {
+        "x": 515,
+        "y": 500
+      },
+      {
+        "x": 54,
+        "y": 315
+      },
+      {
+        "x": 275,
+        "y": 286
+      }
+    ],
+    "rails_before_second": 3,
+    "rails_detected": [
+      "derecha:925:78",
+      "inferior:515:500",
+      "izquierda:54:315"
+    ],
+    "status": "OK",
+    "note": "Guía revisada para que la trayectoria cierre en amarilla después de tres bandas: superior/derecha, inferior e izquierda."
+  },
+  "production_notes": [
+    "La interfaz ya no promete 149 carambolas jugables; muestra 148 jugadas activas.",
+    "La jugada 080 continúa excluida porque faltan sus assets locales.",
+    "La iluminación final depende de la predicción previa de la guía, no de la celebración del resultado real."
+  ]
+}

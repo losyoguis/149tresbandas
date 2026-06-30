@@ -1,0 +1,14 @@
+{
+  "version": "v198-iluminacion-guia-predictiva",
+  "changes": [
+    "La iluminacion se activa por guia predictiva de 3 o mas bandas, no por resultado final.",
+    "Modo libre ilumina la guia si la prediccion hace carambola de 3+ bandas.",
+    "Jugada seleccionada ilumina por coincidencia con guia base o por carambola alternativa anticipada.",
+    "La iluminacion predictiva se conserva al tacar mientras el tiro se resuelve con fisica real."
+  ],
+  "expected": {
+    "illumination_trigger": "guide_prediction",
+    "score_result_does_not_trigger_illumination": true,
+    "free_mode_supported": true
+  }
+}

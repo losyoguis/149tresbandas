@@ -1,0 +1,13 @@
+{
+  "version": "v191-videotutorial",
+  "changes": [
+    "Botón Video guía renombrado a Videotutorial.",
+    "Título del modal y textos relacionados actualizados a Videotutorial.",
+    "Service worker actualizado para evitar caché antiguo."
+  ],
+  "expected": {
+    "button_label": "Videotutorial",
+    "cache_version": "v191-videotutorial",
+    "previous_features_preserved": true
+  }
+}

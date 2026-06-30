@@ -1,0 +1,15 @@
+{
+  "version": "v196-iluminacion-carambola-real",
+  "changes": [
+    "La iluminación aparece al marcar carambola real en modo libre.",
+    "La iluminación aparece al marcar carambola real con jugada seleccionada.",
+    "La iluminación por coincidencia de guías se conserva.",
+    "La carambola alternativa física también se ilumina."
+  ],
+  "expected": {
+    "free_mode_carom_lights": true,
+    "practice_mode_carom_lights": true,
+    "guide_coincidence_lights": true,
+    "alternative_carom_lights": true
+  }
+}

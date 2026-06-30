@@ -1,0 +1,13 @@
+{
+  "version": "v182-efecto-sincronizado",
+  "changes": [
+    "Botón Imagen jugada renombrado a Efecto en la guía dinámica.",
+    "Sincronización unificada del punto azul entre imagen de jugada, bola tacadora y mini-guía.",
+    "Escala visual del punto de efecto unificada en control principal, guía dinámica y visores auxiliares."
+  ],
+  "expected": {
+    "button_label": "Efecto",
+    "main_guide_persistent": true,
+    "effect_point_consistent": true
+  }
+}

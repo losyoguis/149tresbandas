@@ -1,0 +1,15 @@
+{
+  "version": "v186-guia-seleccion-libre",
+  "changes": [
+    "Al seleccionar una jugada no se arma automáticamente la carambola perfecta.",
+    "La guía principal verde permanece como referencia visible.",
+    "La guía de tacada inicia separada y el imán solo se activa después de un ajuste del jugador.",
+    "El botón Efecto y Alinear fácil conservan la sincronización exacta bajo demanda."
+  ],
+  "expected": {
+    "master_guide_visible_on_selection": true,
+    "auto_perfect_shot_on_selection": false,
+    "magnet_requires_player_adjustment": true,
+    "effect_button_can_precisely_align": true
+  }
+}

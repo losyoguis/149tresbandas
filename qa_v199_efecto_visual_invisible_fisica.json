@@ -1,0 +1,15 @@
+{
+  "version": "v199-efecto-visual-invisible-fisica",
+  "checks": [
+    "El contenedor visual del efecto usa pointer-events none.",
+    "La bola blanca visual de efecto usa pointer-events none.",
+    "Solo el punto de efecto recibe interacción para modificar el efecto.",
+    "La mesa recibe los toques/arrastres aunque visualmente haya una bola de efecto encima.",
+    "La física y la guía predictiva no incorporan el control visual como bola del juego."
+  ],
+  "expected": {
+    "effect_control_blocks_table": false,
+    "effect_dot_interactive": true,
+    "physics_ignore_effect_ui": true
+  }
+}

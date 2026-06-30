@@ -1,0 +1,19 @@
+{
+  "version": "v184-iman-guia-carambola",
+  "changes": [
+    "Se agrega imán inteligente entre guía principal y guía de tacada.",
+    "Cuando la trayectoria física está cerca de la ruta maestra, la previsualización se engancha visualmente a la guía principal.",
+    "Al tirar con imán activo se ejecuta la ruta maestra sincronizada para completar la carambola.",
+    "Si la guía de tacada está lejos, se conserva la física libre profesional."
+  ],
+  "thresholds": {
+    "avg_distance_px": 38,
+    "max_distance_px": 82,
+    "angle_degrees": 16
+  },
+  "expected": {
+    "main_guide_persistent": true,
+    "magnet_only_when_near": true,
+    "free_physics_when_far": true
+  }
+}
