@@ -1,0 +1,20 @@
+{
+  "version": "v204_video_movil_ios_android",
+  "fecha": "2026-06-30",
+  "estado": "produccion",
+  "cambios": [
+    "Modal de video optimizado para Android e iOS",
+    "Reproductor YouTube-nocookie en pantallas moviles/tactiles para evitar recorte oscuro de Google Drive",
+    "Google Drive se conserva para escritorio",
+    "Video 16:9 con safe-area y altura dvh",
+    "Panel de imagenes oculto en movil para priorizar video y controles",
+    "Service worker actualizado para limpiar cache vieja"
+  ],
+  "validaciones": {
+    "js_syntax": "ok",
+    "sw_syntax": "ok",
+    "zip_integrity": "ok",
+    "mobile_player": "YouTube-nocookie para Android/iOS y pantallas tactiles",
+    "desktop_player": "Google Drive preview conservado para escritorio"
+  }
+}

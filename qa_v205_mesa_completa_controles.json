@@ -1,0 +1,20 @@
+{
+  "version": "v205_mesa_completa_controles_laterales",
+  "fecha": "2026-06-30",
+  "estado": "produccion",
+  "cambios": [
+    "Mesa completa con panel lateral compacto",
+    "Selector de carambolas visible en modo mesa completa",
+    "Botones laterales: Tirar, Repetir, Replay, Guia, Modo libre, Ubicar, Nueva y Salir",
+    "Panel optimizado para Android, iOS, escritorio y TV",
+    "Mesa conserva espacio amplio y reserva lateral en pantallas anchas"
+  ],
+  "validaciones": {
+    "selector_en_mesa_completa": true,
+    "botones_laterales_compactos": true,
+    "boton_tirar_visible": true,
+    "modo_movil_compatible": true,
+    "modo_ios_android_compatible": true,
+    "service_worker_actualizado": true
+  }
+}

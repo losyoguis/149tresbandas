@@ -1,0 +1,19 @@
+{
+  "version": "v203_movil_mesa_completa",
+  "fecha": "2026-06-30",
+  "estado": "OK producción",
+  "cambios": [
+    "Aviso flotante de Control remoto oculto en móvil y pantallas táctiles.",
+    "Aviso de Control remoto oculto en vista normal; solo visible en Mesa completa para escritorio/TV.",
+    "Fullscreen nativo ahora apunta al contenedor .app para incluir mesa y barra inferior de acciones.",
+    "Botón Tirar reforzado por CSS para verse en Mesa completa en móvil, tablet, escritorio y TV.",
+    "Service worker actualizado para evitar caché vieja."
+  ],
+  "validaciones": [
+    "node --check js/app.js OK",
+    "node --check sw.js OK",
+    "CSS incluye media queries para ocultar tvRemoteHint en móvil/pointer coarse.",
+    "CSS incluye reglas body.table-fullscreen-mode para mostrar bottom-table-actions y shootBtn.",
+    "app.js usa document.querySelector('.app') como objetivo fullscreen para conservar controles."
+  ]
+}

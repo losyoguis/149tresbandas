@@ -343,3 +343,26 @@ Corrección solicitada:
 - La iluminación final queda basada en la **predicción previa** de la guía cuando anticipa carambola de 3 o más bandas; no depende de una celebración posterior del resultado.
 - Service worker actualizado a **v202** para evitar caché vieja en producción.
 - Archivo QA agregado: `qa_v202_produccion_predictiva.json`.
+
+
+## v203 - Móvil limpio y Mesa completa
+
+- Se ocultó el aviso flotante de **Control remoto** en modo móvil y pantallas táctiles para no tapar la mesa ni generar distracciones.
+- En vista normal el aviso de control remoto permanece oculto; solo puede aparecer en Mesa completa de escritorio/TV.
+- Se corrigió el modo **Mesa completa** para que el fullscreen nativo incluya también la barra inferior de acciones.
+- El botón **Tirar** queda visible en Mesa completa para móviles, tablets, escritorio y TV.
+- Se reforzó por CSS la visibilidad de la barra inferior y del botón **Tirar** en todos los tamaños de pantalla.
+
+
+## v204 - Video móvil Android/iOS
+- El modal de videotutorial detecta pantallas táctiles/móviles y usa reproductor YouTube móvil compatible con Android/iOS.
+- Se conserva Google Drive para escritorio, pero en celular se evita el recorte oscuro del iframe de Drive.
+- El video queda en proporción 16:9, con alto controlado por `dvh` y safe-area para navegadores móviles.
+- En móvil se oculta el panel lateral de imágenes dentro del modal para priorizar el video y los controles.
+- Se actualizó caché del service worker para evitar que cargue la versión anterior.
+
+## v205 - Mesa completa con controles laterales compactos
+- En modo Mesa completa se muestra un panel lateral compacto.
+- El selector de carambolas queda visible a un lado sin ocupar el HUD completo.
+- Los botones principales quedan disponibles en el lateral: Tirar, Repetir, Replay, Guía, Libre, Ubicar, Nueva y Salir.
+- En pantallas anchas se reserva espacio para que los controles no tapen la mesa; en móviles se usa un lateral compacto para conservar área de juego.
