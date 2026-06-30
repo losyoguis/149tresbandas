@@ -2640,3 +2640,582 @@ body.table-fullscreen-mode .tv-remote-hint {
     inset -5px -6px 9px rgba(0,0,0,.24),
     inset 4px 4px 7px rgba(255,255,255,.72);
 }
+
+
+/* v203 · móvil limpio y Mesa completa con botón Tirar visible en todas las pantallas */
+/* El aviso de control remoto no se muestra en móvil; en producción se prioriza el botón Tirar. */
+@media (max-width: 860px), (pointer: coarse) {
+  .tv-remote-hint,
+  body.table-fullscreen-mode .tv-remote-hint,
+  body.tv-remote-active .tv-remote-hint {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+}
+
+/* En escritorio/TV el aviso solo aparece dentro de Mesa completa, nunca en la vista normal. */
+body:not(.table-fullscreen-mode) .tv-remote-hint {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+body.table-fullscreen-mode .tv-remote-hint {
+  display: block;
+}
+
+/* La barra de acciones y Tirar deben permanecer dentro del fullscreen nativo y del fullscreen por CSS. */
+body.table-fullscreen-mode .bottom-table-actions {
+  display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+body.table-fullscreen-mode #shootBtn.primary-action {
+  display: inline-flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  order: -1 !important;
+  grid-column: span 2 !important;
+}
+
+@media (max-width: 620px) {
+  body.table-fullscreen-mode #shootBtn.primary-action {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+@media (max-width: 940px) and (orientation: landscape) {
+  body.table-fullscreen-mode #shootBtn.primary-action {
+    grid-column: span 2 !important;
+  }
+}
+
+
+
+/* v204: video móvil optimizado para Android/iOS.
+   En pantallas táctiles se prioriza el reproductor 16:9 y se evita que Google Drive quede recortado u oscuro. */
+.video-frame-wrap[data-video-provider="youtube-mobile"] {
+  background: #000;
+}
+.video-frame-wrap[data-video-provider="youtube-mobile"] iframe,
+.video-frame-wrap[data-video-provider="drive-desktop"] iframe {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: contain;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+@media (max-width: 860px), (pointer: coarse) {
+  #videoModal.video-modal {
+    padding: 0 !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    background: rgba(0, 0, 0, .92) !important;
+  }
+  #videoModal .video-card {
+    width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  #videoModal .video-head {
+    align-items: center !important;
+    gap: 10px !important;
+    margin-bottom: 8px !important;
+    flex: 0 0 auto;
+  }
+  #videoModal .video-head h2 {
+    font-size: clamp(18px, 5.2vw, 24px) !important;
+    line-height: 1.08 !important;
+    overflow-wrap: anywhere;
+  }
+  #videoModal .close-video {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    font-size: 26px !important;
+  }
+  #videoModal .video-study-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+  }
+  #videoModal .video-source-block {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+  }
+  #videoModal .video-frame-wrap {
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+    min-height: 190px !important;
+    max-height: min(42dvh, 360px) !important;
+    flex: 0 0 auto !important;
+    border-radius: 16px !important;
+    background: #000 !important;
+  }
+  #videoModal #videoFrame {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    border-radius: 0 !important;
+    background: #000 !important;
+  }
+  #videoModal .video-images-panel {
+    display: none !important;
+  }
+  #videoModal .video-observation {
+    margin: 6px 0 8px !important;
+    padding: 12px !important;
+    border-radius: 14px !important;
+    font-size: 13.5px !important;
+    line-height: 1.34 !important;
+    max-height: 24dvh !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  #videoModal .video-observation h3 {
+    font-size: 17px !important;
+  }
+  #videoModal .video-observation h4 {
+    font-size: 14px !important;
+  }
+  #videoModal .video-modal-controls {
+    position: sticky !important;
+    bottom: 0 !important;
+    z-index: 20 !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    margin: auto 0 0 !important;
+    padding: 8px 0 0 !important;
+    background: linear-gradient(180deg, rgba(6,17,13,0), rgba(6,17,13,.96) 18%, rgba(6,17,13,1)) !important;
+  }
+  #videoModal .video-modal-controls #closeVideoBtn {
+    grid-column: 1 / -1 !important;
+  }
+  #videoModal .video-modal-controls button {
+    min-height: 46px !important;
+    font-size: 14px !important;
+  }
+  #videoModal .video-copyright {
+    display: none !important;
+  }
+}
+
+@media (max-width: 860px) and (orientation: landscape), (pointer: coarse) and (orientation: landscape) {
+  #videoModal .video-card {
+    overflow: hidden !important;
+  }
+  #videoModal .video-study-layout {
+    display: grid !important;
+    grid-template-columns: minmax(300px, 1.35fr) minmax(220px, .65fr) !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+  #videoModal .video-source-block {
+    min-height: 0 !important;
+  }
+  #videoModal .video-frame-wrap {
+    max-height: calc(100dvh - 94px) !important;
+    min-height: 0 !important;
+  }
+  #videoModal .video-observation {
+    max-height: calc(100dvh - 142px) !important;
+    margin: 0 !important;
+  }
+  #videoModal .video-modal-controls {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+/* v205 · Mesa completa con panel lateral compacto.
+   En fullscreen se muestran al lado el selector de carambolas y los controles principales
+   sin ocupar toda la parte inferior de la pantalla. */
+body.table-fullscreen-mode {
+  --fs-side: clamp(112px, 14vw, 184px);
+  --fs-gap: max(8px, env(safe-area-inset-right));
+  --fs-top: max(8px, env(safe-area-inset-top));
+  --fs-bottom: max(8px, env(safe-area-inset-bottom));
+}
+
+body.table-fullscreen-mode .app {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  max-width: none !important;
+  height: 100dvh !important;
+  overflow: hidden !important;
+  background: #020604 !important;
+}
+
+/* El HUD vuelve solo para alojar el selector compacto. */
+body.table-fullscreen-mode .hud {
+  display: block !important;
+  position: fixed !important;
+  top: var(--fs-top) !important;
+  right: var(--fs-gap) !important;
+  left: auto !important;
+  bottom: auto !important;
+  z-index: 10035 !important;
+  width: var(--fs-side) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}
+
+body.table-fullscreen-mode .hud-row,
+body.table-fullscreen-mode .hud > #guide,
+body.table-fullscreen-mode .deflection-guide-panel,
+body.table-fullscreen-mode #ballViewerPanel,
+body.table-fullscreen-mode .contact-viewer-panel,
+body.table-fullscreen-mode .subtitle-actions {
+  display: none !important;
+}
+
+body.table-fullscreen-mode #practicePanel {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 6px !important;
+  border-radius: 13px !important;
+  pointer-events: auto !important;
+  background: linear-gradient(180deg, rgba(10, 45, 34, .92), rgba(1, 12, 8, .96)) !important;
+  border: 1px solid rgba(255, 213, 106, .30) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35) !important;
+  backdrop-filter: blur(10px);
+}
+
+body.table-fullscreen-mode #practicePanel .practice-top,
+body.table-fullscreen-mode #practicePanel .practice-controls {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 5px !important;
+  width: 100% !important;
+}
+
+body.table-fullscreen-mode #practiceSelect {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  min-height: 34px !important;
+  height: 34px !important;
+  padding: 0 6px !important;
+  border-radius: 10px !important;
+  font-size: clamp(10px, 1.05vw, 12px) !important;
+  line-height: 1.05 !important;
+  background: rgba(0,0,0,.44) !important;
+}
+
+body.table-fullscreen-mode #videoBtn {
+  display: none !important;
+}
+
+/* Panel lateral de botones. */
+body.table-fullscreen-mode .bottom-table-actions {
+  position: fixed !important;
+  top: calc(var(--fs-top) + 48px) !important;
+  right: var(--fs-gap) !important;
+  left: auto !important;
+  bottom: auto !important;
+  z-index: 10030 !important;
+  width: var(--fs-side) !important;
+  max-height: calc(100dvh - var(--fs-top) - var(--fs-bottom) - 56px) !important;
+  overflow-y: auto !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 5px !important;
+  margin: 0 !important;
+  padding: 6px !important;
+  border-radius: 13px !important;
+  background: linear-gradient(180deg, rgba(6, 33, 25, .92), rgba(1, 10, 7, .96)) !important;
+  border: 1px solid rgba(255, 213, 106, .26) !important;
+  box-shadow: 0 10px 28px rgba(0,0,0,.38) !important;
+  backdrop-filter: blur(10px);
+  pointer-events: auto !important;
+}
+
+body.table-fullscreen-mode .bottom-table-actions button {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 33px !important;
+  padding: 5px 5px !important;
+  border-radius: 10px !important;
+  font-size: clamp(10px, 1.05vw, 12px) !important;
+  line-height: 1.05 !important;
+  white-space: normal !important;
+  text-align: center !important;
+  grid-column: auto !important;
+}
+
+body.table-fullscreen-mode #shootBtn.primary-action {
+  order: -10 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 42px !important;
+  font-size: clamp(13px, 1.35vw, 16px) !important;
+  grid-column: auto !important;
+}
+
+body.table-fullscreen-mode #replayBtn { order: 1 !important; }
+body.table-fullscreen-mode #motionReplayBtn { order: 2 !important; }
+body.table-fullscreen-mode #guideBtn { order: 3 !important; }
+body.table-fullscreen-mode #exitPracticeBtn { order: 4 !important; }
+body.table-fullscreen-mode #placeBtn { order: 5 !important; }
+body.table-fullscreen-mode #randomBtn { order: 6 !important; }
+body.table-fullscreen-mode #fullscreenTableBtn { order: 20 !important; }
+
+/* Demo se oculta en mesa completa para no ocupar espacio; la práctica sigue disponible desde la guía y el replay. */
+body.table-fullscreen-mode #demoBtn {
+  display: none !important;
+}
+
+/* La mesa conserva el máximo espacio posible; en pantallas anchas se reserva el lateral para que nada tape la jugada. */
+body.table-fullscreen-mode .table-shell {
+  padding: var(--fs-top) var(--fs-gap) var(--fs-bottom) max(8px, env(safe-area-inset-left)) !important;
+}
+body.table-fullscreen-mode .table {
+  width: min(100vw, calc((100dvh - var(--fs-top) - var(--fs-bottom) - 8px) * 1.7857)) !important;
+  max-width: 100vw !important;
+  max-height: calc(100dvh - var(--fs-top) - var(--fs-bottom) - 8px) !important;
+}
+
+@media (min-width: 760px), (orientation: landscape) {
+  body.table-fullscreen-mode .table-shell {
+    padding-right: calc(var(--fs-side) + var(--fs-gap) + 10px) !important;
+  }
+  body.table-fullscreen-mode .table {
+    width: min(calc(100vw - var(--fs-side) - 22px), calc((100dvh - var(--fs-top) - var(--fs-bottom) - 8px) * 1.7857)) !important;
+    max-width: calc(100vw - var(--fs-side) - 22px) !important;
+  }
+}
+
+@media (max-width: 620px) and (orientation: portrait) {
+  body.table-fullscreen-mode {
+    --fs-side: clamp(92px, 25vw, 104px);
+  }
+  body.table-fullscreen-mode .hud {
+    top: calc(var(--fs-top) + 4px) !important;
+  }
+  body.table-fullscreen-mode .bottom-table-actions {
+    top: calc(var(--fs-top) + 46px) !important;
+    gap: 4px !important;
+    padding: 5px !important;
+    max-height: calc(100dvh - var(--fs-top) - var(--fs-bottom) - 56px) !important;
+  }
+  body.table-fullscreen-mode .bottom-table-actions button {
+    min-height: 30px !important;
+    padding: 4px 3px !important;
+    font-size: 9.5px !important;
+    border-radius: 9px !important;
+  }
+  body.table-fullscreen-mode #shootBtn.primary-action {
+    min-height: 38px !important;
+    font-size: 12px !important;
+  }
+  body.table-fullscreen-mode #practiceSelect {
+    min-height: 32px !important;
+    height: 32px !important;
+    font-size: 9.5px !important;
+  }
+}
+
+@media (max-height: 430px) and (orientation: landscape) {
+  body.table-fullscreen-mode {
+    --fs-side: clamp(104px, 16vw, 136px);
+  }
+  body.table-fullscreen-mode .bottom-table-actions {
+    gap: 3px !important;
+    padding: 4px !important;
+    top: calc(var(--fs-top) + 42px) !important;
+  }
+  body.table-fullscreen-mode .bottom-table-actions button {
+    min-height: 26px !important;
+    padding: 3px !important;
+    font-size: 9.5px !important;
+  }
+  body.table-fullscreen-mode #practiceSelect {
+    min-height: 30px !important;
+    height: 30px !important;
+    font-size: 9.5px !important;
+  }
+  body.table-fullscreen-mode #shootBtn.primary-action {
+    min-height: 32px !important;
+  }
+}
+
+
+/* v206 · Mesa completa maximizada con controles laterales derechos mínimos.
+   Se ocultan Ver replay, Demostración y Nueva posición solo en Mesa completa.
+   La mesa usa todo el espacio posible; los controles flotan a la derecha sin reservar ancho. */
+body.table-fullscreen-mode {
+  --fs-side: clamp(76px, 10.5vw, 126px);
+  --fs-gap: max(5px, env(safe-area-inset-right));
+  --fs-top: max(5px, env(safe-area-inset-top));
+  --fs-bottom: max(5px, env(safe-area-inset-bottom));
+}
+
+body.table-fullscreen-mode .table-shell {
+  inset: 0 !important;
+  padding: var(--fs-top) var(--fs-gap) var(--fs-bottom) max(5px, env(safe-area-inset-left)) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #020604 !important;
+}
+
+body.table-fullscreen-mode .table {
+  width: min(calc(100vw - 10px), calc((100dvh - var(--fs-top) - var(--fs-bottom) - 6px) * 1.7857)) !important;
+  max-width: calc(100vw - 10px) !important;
+  max-height: calc(100dvh - var(--fs-top) - var(--fs-bottom) - 6px) !important;
+  height: auto !important;
+  aspect-ratio: 1000 / 560 !important;
+}
+
+/* Selector compacto arriba a la derecha. */
+body.table-fullscreen-mode .hud {
+  top: var(--fs-top) !important;
+  right: var(--fs-gap) !important;
+  width: var(--fs-side) !important;
+  max-width: var(--fs-side) !important;
+}
+
+body.table-fullscreen-mode #practicePanel {
+  padding: 4px !important;
+  border-radius: 10px !important;
+  background: linear-gradient(180deg, rgba(8, 38, 29, .74), rgba(1, 10, 7, .84)) !important;
+  border: 1px solid rgba(255, 213, 106, .22) !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,.28) !important;
+}
+
+body.table-fullscreen-mode #practiceSelect {
+  min-height: 28px !important;
+  height: 28px !important;
+  padding: 0 4px !important;
+  border-radius: 8px !important;
+  font-size: clamp(8.5px, .85vw, 10.5px) !important;
+}
+
+/* Botonera derecha mínima. */
+body.table-fullscreen-mode .bottom-table-actions {
+  top: calc(var(--fs-top) + 36px) !important;
+  right: var(--fs-gap) !important;
+  width: var(--fs-side) !important;
+  max-width: var(--fs-side) !important;
+  max-height: calc(100dvh - var(--fs-top) - var(--fs-bottom) - 44px) !important;
+  gap: 4px !important;
+  padding: 4px !important;
+  border-radius: 10px !important;
+  overflow-y: auto !important;
+  background: linear-gradient(180deg, rgba(6, 33, 25, .76), rgba(1, 10, 7, .86)) !important;
+  border: 1px solid rgba(255, 213, 106, .20) !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.32) !important;
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+body.table-fullscreen-mode .bottom-table-actions button {
+  min-height: 28px !important;
+  padding: 3px 3px !important;
+  border-radius: 8px !important;
+  font-size: clamp(8.5px, .85vw, 10.5px) !important;
+  line-height: 1 !important;
+  opacity: .92;
+}
+
+body.table-fullscreen-mode #shootBtn.primary-action {
+  min-height: 38px !important;
+  font-size: clamp(11px, 1.05vw, 14px) !important;
+  order: -10 !important;
+}
+
+/* Ocultos únicamente dentro de Mesa completa por pedido del usuario. */
+body.table-fullscreen-mode #motionReplayBtn,
+body.table-fullscreen-mode #demoBtn,
+body.table-fullscreen-mode #randomBtn {
+  display: none !important;
+}
+
+body.table-fullscreen-mode #replayBtn { order: 1 !important; }
+body.table-fullscreen-mode #guideBtn { order: 2 !important; }
+body.table-fullscreen-mode #exitPracticeBtn { order: 3 !important; }
+body.table-fullscreen-mode #placeBtn { order: 4 !important; }
+body.table-fullscreen-mode #fullscreenTableBtn { order: 20 !important; }
+
+/* En portrait móvil la botonera es aún más estrecha para que la mesa conserve prioridad. */
+@media (max-width: 620px) and (orientation: portrait) {
+  body.table-fullscreen-mode {
+    --fs-side: clamp(66px, 18vw, 78px);
+  }
+  body.table-fullscreen-mode .bottom-table-actions {
+    top: calc(var(--fs-top) + 32px) !important;
+    gap: 3px !important;
+    padding: 3px !important;
+  }
+  body.table-fullscreen-mode .bottom-table-actions button {
+    min-height: 25px !important;
+    padding: 2px !important;
+    font-size: 8px !important;
+    border-radius: 7px !important;
+  }
+  body.table-fullscreen-mode #shootBtn.primary-action {
+    min-height: 33px !important;
+    font-size: 10px !important;
+  }
+  body.table-fullscreen-mode #practicePanel {
+    padding: 3px !important;
+  }
+  body.table-fullscreen-mode #practiceSelect {
+    min-height: 25px !important;
+    height: 25px !important;
+    font-size: 8px !important;
+  }
+}
+
+@media (max-height: 430px) and (orientation: landscape) {
+  body.table-fullscreen-mode {
+    --fs-side: clamp(72px, 10vw, 96px);
+  }
+  body.table-fullscreen-mode .bottom-table-actions {
+    top: calc(var(--fs-top) + 32px) !important;
+    gap: 2px !important;
+    padding: 3px !important;
+  }
+  body.table-fullscreen-mode .bottom-table-actions button {
+    min-height: 22px !important;
+    padding: 2px !important;
+    font-size: 8px !important;
+  }
+  body.table-fullscreen-mode #shootBtn.primary-action {
+    min-height: 28px !important;
+  }
+  body.table-fullscreen-mode #practiceSelect {
+    min-height: 25px !important;
+    height: 25px !important;
+    font-size: 8px !important;
+  }
+}
