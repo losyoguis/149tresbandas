@@ -1,0 +1,18 @@
+{
+  "version": "v206_mesa_completa_mesa_maxima_controles_derecha",
+  "estado": "OK",
+  "cambios": [
+    "Mesa completa maximizada sin reserva lateral de ancho",
+    "Controles compactos flotantes al lado derecho",
+    "Ocultos en Mesa completa: Ver replay, Demostración y Nueva posición",
+    "Selector de carambolas compacto en lado derecho",
+    "Service worker actualizado para evitar caché vieja"
+  ],
+  "archivos_modificados": [
+    "css/styles.css",
+    "js/app.js",
+    "sw.js",
+    "README.md",
+    "qa_v206_mesa_max_controles_derecha.json"
+  ]
+}

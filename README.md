@@ -366,3 +366,14 @@ Corrección solicitada:
 - El selector de carambolas queda visible a un lado sin ocupar el HUD completo.
 - Los botones principales quedan disponibles en el lateral: Tirar, Repetir, Replay, Guía, Libre, Ubicar, Nueva y Salir.
 - En pantallas anchas se reserva espacio para que los controles no tapen la mesa; en móviles se usa un lateral compacto para conservar área de juego.
+
+
+## v206 - Mesa completa maximizada con controles derechos mínimos
+
+Ajustes de producción:
+
+- En Mesa completa se ocultan los botones **Ver replay**, **Demostración** y **Nueva posición**.
+- El selector de carambolas se conserva como control compacto en el lateral derecho.
+- Los controles visibles quedan a la derecha: **Tirar**, **Repetir tiro**, **Guía**, **Modo libre**, **Ubicar bolas** y **Salir de mesa completa**.
+- La mesa ya no reserva espacio lateral; ocupa el máximo espacio posible y los controles flotan encima con tamaño reducido.
+- Se actualiza el service worker para evitar caché vieja.
