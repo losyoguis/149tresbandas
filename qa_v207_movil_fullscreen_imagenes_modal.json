@@ -1,0 +1,17 @@
+{
+  "version": "v207_movil_mesa_completa_boton_tirar_circular_imagenes_modal",
+  "estado": "produccion",
+  "cambios": [
+    "Mesa completa móvil con botón Tirar circular inferior derecho",
+    "Controles superiores izquierdos: selector de jugada, Repetir tiro y Guía",
+    "Controles superiores derechos: Modo libre, Ubicar bolas y Salir",
+    "Mesa sin reserva lateral de espacio para maximizar visualización",
+    "Modal móvil Android/iOS con imágenes de referencia siempre visibles"
+  ],
+  "validaciones_previstas": [
+    "Sintaxis JavaScript",
+    "Sintaxis Service Worker",
+    "Integridad ZIP",
+    "Presencia de CSS v207"
+  ]
+}

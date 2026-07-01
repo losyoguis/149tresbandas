@@ -377,3 +377,11 @@ Ajustes de producción:
 - Los controles visibles quedan a la derecha: **Tirar**, **Repetir tiro**, **Guía**, **Modo libre**, **Ubicar bolas** y **Salir de mesa completa**.
 - La mesa ya no reserva espacio lateral; ocupa el máximo espacio posible y los controles flotan encima con tamaño reducido.
 - Se actualiza el service worker para evitar caché vieja.
+
+
+## v207 - Mesa completa móvil y modal con imágenes visibles
+- En Mesa completa para móvil Android/iOS, la mesa ocupa el mayor espacio posible.
+- Botón Tirar grande, circular y fijo en la esquina inferior derecha.
+- Controles superiores izquierdos: selector de jugada, Repetir tiro y Guía.
+- Controles superiores derechos: Modo libre, Ubicar bolas y Salir de Mesa completa.
+- En el modal de video móvil se vuelven a mostrar siempre las imágenes de referencia de la jugada.
