@@ -4833,3 +4833,239 @@ body.table-fullscreen-mode #fullscreenTableBtn { order: 20 !important; }
     min-height: var(--v212-main) !important;
   }
 }
+
+/* v213 · Mesa completa móvil: controles finales solicitados.
+   - Izquierda: Guía encima de Seleccionar/Jugada.
+   - Derecha: Libre, Ubicar, Repetir, Salir.
+   - Tirar y bola de efecto permanecen grandes abajo, fuera del paño para no tapar la mesa ni diamantes. */
+@media (orientation: landscape) and (pointer: coarse), (orientation: landscape) and (hover: none), (orientation: landscape) and (max-width: 1180px) {
+  html body.table-fullscreen-mode {
+    --v213-safe-top: max(7px, env(safe-area-inset-top));
+    --v213-safe-bottom: max(7px, env(safe-area-inset-bottom));
+    --v213-safe-left: max(6px, env(safe-area-inset-left));
+    --v213-safe-right: max(6px, env(safe-area-inset-right));
+    --v213-table-w: min(calc(100vw - clamp(178px, 24.5vw, 264px)), calc(100dvh * 1.785714));
+    --v213-gutter: max(86px, calc((100vw - var(--v213-table-w)) / 2));
+    --v213-btn-w: clamp(76px, calc(var(--v213-gutter) - 26px), 126px);
+    --v213-btn-h: clamp(31px, 7.0vh, 45px);
+    --v213-gap: clamp(5px, 1.22vh, 9px);
+    --v213-main: clamp(80px, min(19vh, calc(var(--v213-gutter) - 18px)), 126px);
+    --v213-left-x: max(var(--v213-safe-left), calc((var(--v213-gutter) - var(--v213-btn-w)) / 2));
+    --v213-right-x: max(var(--v213-safe-right), calc((var(--v213-gutter) - var(--v213-btn-w)) / 2));
+    --v213-main-left-x: max(var(--v213-safe-left), calc((var(--v213-gutter) - var(--v213-main)) / 2));
+    --v213-main-right-x: max(var(--v213-safe-right), calc((var(--v213-gutter) - var(--v213-main)) / 2));
+    background: #020604 !important;
+    overflow: hidden !important;
+  }
+
+  html body.table-fullscreen-mode .table {
+    width: var(--v213-table-w) !important;
+    max-width: var(--v213-table-w) !important;
+    height: auto !important;
+    max-height: 100dvh !important;
+    aspect-ratio: 1000 / 560 !important;
+    margin: 0 auto !important;
+  }
+
+  html body.table-fullscreen-mode .hud,
+  html body.table-fullscreen-mode #practicePanel {
+    display: block !important;
+    position: fixed !important;
+    top: var(--v213-safe-top) !important;
+    left: var(--v213-left-x) !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: var(--v213-btn-w) !important;
+    min-width: var(--v213-btn-w) !important;
+    max-width: var(--v213-btn-w) !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    pointer-events: auto !important;
+    z-index: 10440 !important;
+    transform: none !important;
+  }
+
+  html body.table-fullscreen-mode #practiceSelect,
+  html body.table-fullscreen-mode .bottom-table-actions button {
+    width: var(--v213-btn-w) !important;
+    height: var(--v213-btn-h) !important;
+    min-width: var(--v213-btn-w) !important;
+    min-height: var(--v213-btn-h) !important;
+    max-width: var(--v213-btn-w) !important;
+    max-height: var(--v213-btn-h) !important;
+    border-radius: 999px !important;
+    font-size: clamp(9px, 2.28vh, 14px) !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    z-index: 10460 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Izquierda: Guía encima de Seleccionar/Jugada. */
+  html body.table-fullscreen-mode #guideBtn {
+    left: var(--v213-left-x) !important;
+    right: auto !important;
+    top: var(--v213-safe-top) !important;
+    bottom: auto !important;
+  }
+
+  html body.table-fullscreen-mode #practiceSelect {
+    display: block !important;
+    position: fixed !important;
+    left: var(--v213-left-x) !important;
+    right: auto !important;
+    top: calc(var(--v213-safe-top) + var(--v213-btn-h) + var(--v213-gap)) !important;
+    bottom: auto !important;
+    margin: 0 !important;
+    padding: 0 5px !important;
+    color: #06110d !important;
+    background: linear-gradient(180deg, rgba(255, 225, 128, .99), rgba(225, 168, 45, .99)) !important;
+    border: 1px solid rgba(255,255,255,.58) !important;
+    box-shadow: 0 7px 18px rgba(0,0,0,.52), 0 0 14px rgba(255,213,106,.24) !important;
+  }
+
+  /* Derecha: Libre, Ubicar, Repetir, Salir. */
+  html body.table-fullscreen-mode #exitPracticeBtn {
+    left: auto !important;
+    right: var(--v213-right-x) !important;
+    top: var(--v213-safe-top) !important;
+    bottom: auto !important;
+  }
+
+  html body.table-fullscreen-mode #placeBtn {
+    left: auto !important;
+    right: var(--v213-right-x) !important;
+    top: calc(var(--v213-safe-top) + var(--v213-btn-h) + var(--v213-gap)) !important;
+    bottom: auto !important;
+  }
+
+  html body.table-fullscreen-mode #replayBtn {
+    left: auto !important;
+    right: var(--v213-right-x) !important;
+    top: calc(var(--v213-safe-top) + (var(--v213-btn-h) * 2) + (var(--v213-gap) * 2)) !important;
+    bottom: auto !important;
+  }
+
+  html body.table-fullscreen-mode #fullscreenTableBtn {
+    left: auto !important;
+    right: var(--v213-right-x) !important;
+    top: calc(var(--v213-safe-top) + (var(--v213-btn-h) * 3) + (var(--v213-gap) * 3)) !important;
+    bottom: auto !important;
+  }
+
+  /* Grandes abajo y fuera del área útil de la mesa. */
+  html body.table-fullscreen-mode .effect-control:not(.hidden) {
+    position: fixed !important;
+    left: var(--v213-main-left-x) !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: var(--v213-safe-bottom) !important;
+    width: var(--v213-main) !important;
+    height: var(--v213-main) !important;
+    min-width: var(--v213-main) !important;
+    min-height: var(--v213-main) !important;
+    max-width: var(--v213-main) !important;
+    max-height: var(--v213-main) !important;
+    z-index: 10470 !important;
+  }
+
+  html body.table-fullscreen-mode #shootBtn,
+  html body.table-fullscreen-mode #shootBtn.primary-action {
+    position: fixed !important;
+    left: auto !important;
+    right: var(--v213-main-right-x) !important;
+    top: auto !important;
+    bottom: var(--v213-safe-bottom) !important;
+    width: var(--v213-main) !important;
+    height: var(--v213-main) !important;
+    min-width: var(--v213-main) !important;
+    min-height: var(--v213-main) !important;
+    max-width: var(--v213-main) !important;
+    max-height: var(--v213-main) !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    font-size: clamp(16px, 4.3vh, 28px) !important;
+    z-index: 10480 !important;
+  }
+}
+
+@media (orientation: portrait) and (pointer: coarse), (orientation: portrait) and (hover: none), (orientation: portrait) and (max-width: 760px) {
+  html body.table-fullscreen-mode {
+    --v213-safe-top: max(8px, env(safe-area-inset-top));
+    --v213-safe-bottom: max(8px, env(safe-area-inset-bottom));
+    --v213-safe-left: max(6px, env(safe-area-inset-left));
+    --v213-safe-right: max(6px, env(safe-area-inset-right));
+    --v213-btn-w: clamp(78px, 25vw, 112px);
+    --v213-btn-h: clamp(32px, 8.4vw, 44px);
+    --v213-main: clamp(88px, 27vw, 124px);
+    --v213-gap: clamp(5px, 1.6vw, 9px);
+  }
+
+  html body.table-fullscreen-mode #guideBtn {
+    left: var(--v213-safe-left) !important;
+    right: auto !important;
+    top: var(--v213-safe-top) !important;
+    bottom: auto !important;
+  }
+
+  html body.table-fullscreen-mode #practiceSelect {
+    left: var(--v213-safe-left) !important;
+    right: auto !important;
+    top: calc(var(--v213-safe-top) + var(--v213-btn-h) + var(--v213-gap)) !important;
+    bottom: auto !important;
+  }
+
+  html body.table-fullscreen-mode #exitPracticeBtn {
+    left: auto !important;
+    right: var(--v213-safe-right) !important;
+    top: var(--v213-safe-top) !important;
+    bottom: auto !important;
+  }
+
+  html body.table-fullscreen-mode #placeBtn {
+    left: auto !important;
+    right: var(--v213-safe-right) !important;
+    top: calc(var(--v213-safe-top) + var(--v213-btn-h) + var(--v213-gap)) !important;
+    bottom: auto !important;
+  }
+
+  html body.table-fullscreen-mode #replayBtn {
+    left: auto !important;
+    right: var(--v213-safe-right) !important;
+    top: calc(var(--v213-safe-top) + (var(--v213-btn-h) * 2) + (var(--v213-gap) * 2)) !important;
+    bottom: auto !important;
+  }
+
+  html body.table-fullscreen-mode #fullscreenTableBtn {
+    left: auto !important;
+    right: var(--v213-safe-right) !important;
+    top: calc(var(--v213-safe-top) + (var(--v213-btn-h) * 3) + (var(--v213-gap) * 3)) !important;
+    bottom: auto !important;
+  }
+
+  html body.table-fullscreen-mode .effect-control:not(.hidden) {
+    left: var(--v213-safe-left) !important;
+    right: auto !important;
+    bottom: var(--v213-safe-bottom) !important;
+    width: var(--v213-main) !important;
+    height: var(--v213-main) !important;
+    min-width: var(--v213-main) !important;
+    min-height: var(--v213-main) !important;
+  }
+
+  html body.table-fullscreen-mode #shootBtn,
+  html body.table-fullscreen-mode #shootBtn.primary-action {
+    left: auto !important;
+    right: var(--v213-safe-right) !important;
+    bottom: var(--v213-safe-bottom) !important;
+    width: var(--v213-main) !important;
+    height: var(--v213-main) !important;
+    min-width: var(--v213-main) !important;
+    min-height: var(--v213-main) !important;
+  }
+}
