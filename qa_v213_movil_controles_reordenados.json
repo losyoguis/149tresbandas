@@ -1,0 +1,17 @@
+{
+  "version": "v213_movil_controles_reordenados",
+  "estado": "OK",
+  "cambios": [
+    "Guía ubicada encima del selector de jugada en Mesa completa móvil",
+    "Columna derecha ordenada: Libre, Ubicar, Repetir, Salir",
+    "Tirar y bola de efecto conservados grandes abajo y fuera del paño",
+    "Mesa y diamantes se mantienen visibles en Android/iOS"
+  ],
+  "validaciones": {
+    "css_actualizado": true,
+    "cache_versionado": true,
+    "modal_movil_imagenes": true,
+    "sintaxis_js": true,
+    "sintaxis_sw": true
+  }
+}

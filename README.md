@@ -440,3 +440,11 @@ Ajustes de producción:
 - La bola blanca de efecto queda grande abajo a la izquierda, fuera de la mesa.
 - El botón Tirar queda grande abajo a la derecha, debajo visualmente de Salir.
 - Se conserva el modal móvil con imágenes visibles en Android/iOS.
+
+
+## v213 · Controles móviles reordenados
+
+- En Mesa completa móvil, la columna izquierda queda con Guía encima del selector de jugada.
+- En el lado derecho se ordenan los controles en columna: Libre, Ubicar, Repetir y Salir.
+- Se conservan Tirar y la bola de efecto grandes en la parte inferior, fuera del área útil de la mesa.
+- Se mantiene la prioridad de mesa grande y diamantes visibles en Android/iOS.
