@@ -1,0 +1,14 @@
+{
+  "version": "v208_movil_controles_ordenados",
+  "status": "OK",
+  "summary": "Mesa completa móvil reorganizada con controles superiores laterales y botón Tirar circular inferior derecho; modal móvil conserva imágenes.",
+  "checks": {
+    "syntax_app_js": "OK",
+    "syntax_sw_js": "OK",
+    "mobile_fullscreen_left_column": ["selector", "repetir", "guia"],
+    "mobile_fullscreen_right_column": ["libre", "ubicar", "salir"],
+    "mobile_fullscreen_shoot_button": "bottom-right circular large",
+    "hidden_in_mobile_fullscreen": ["ver replay", "demostracion", "nueva posicion"],
+    "table_priority": "maximized"
+  }
+}

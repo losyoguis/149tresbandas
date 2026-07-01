@@ -385,3 +385,26 @@ Ajustes de producción:
 - Controles superiores izquierdos: selector de jugada, Repetir tiro y Guía.
 - Controles superiores derechos: Modo libre, Ubicar bolas y Salir de Mesa completa.
 - En el modal de video móvil se vuelven a mostrar siempre las imágenes de referencia de la jugada.
+
+
+## v208 - Mesa completa móvil con controles ordenados
+
+Ajustes de producción:
+
+- En Mesa completa móvil se reordenan los controles para Android/iOS.
+- Izquierda superior: selector de jugada, Repetir y Guía.
+- Derecha superior: Libre, Ubicar y Salir.
+- Botón Tirar grande, circular y fijo en la parte inferior derecha.
+- La mesa ocupa el máximo espacio posible; los botones flotan encima sin reservar ancho ni alto.
+- Se mantienen ocultos Ver replay, Demostración y Nueva posición dentro de Mesa completa móvil.
+- El modal móvil conserva las imágenes de referencia visibles junto al video.
+
+
+## v209 - Mesa completa móvil con bola de efecto externa
+
+- En móviles Android/iOS, cuando se activa Mesa completa, el control de efecto ya no aparece sobre la mesa.
+- La bola blanca de efecto queda fija abajo a la izquierda, del mismo tamaño que el botón Tirar.
+- El punto rojo se puede mover tocando o arrastrando cualquier zona de la bola de efecto.
+- El botón Tirar permanece grande, circular y fijo abajo a la derecha.
+- Se mantiene la distribución superior: izquierda selector/Repetir/Guía; derecha Libre/Ubicar/Salir.
+- La mesa conserva el máximo espacio posible porque los controles flotan sobre los bordes.

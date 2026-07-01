@@ -1,0 +1,18 @@
+{
+  "version": "v209-movil-efecto-externo",
+  "status": "OK",
+  "cambios": [
+    "Mesa completa móvil con bola de efecto externa abajo a la izquierda",
+    "Botón Tirar grande y circular abajo a la derecha",
+    "Control de efecto del mismo tamaño visual que Tirar",
+    "El punto de efecto se puede mover tocando o arrastrando sobre la bola blanca externa",
+    "El control de efecto deja de ubicarse sobre la mesa en móvil",
+    "Se conserva distribución superior izquierda/derecha de controles y selector"
+  ],
+  "validaciones": {
+    "sintaxis_js": "OK",
+    "sintaxis_sw": "OK",
+    "mesa_completa_movil": "OK",
+    "android_ios": "OK"
+  }
+}
