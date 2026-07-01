@@ -43,7 +43,7 @@
     // v182 profesional: guía principal persistente + sincronización exacta del efecto
     // durante la preparación y durante la tacada; ya no se borra al atacar.
     // La potencia puede ser larga, pero el paño, las bandas y el efecto mantienen física estable.
-    const PROFESSIONAL_PHYSICS_VERSION = 'v217_sin_guia_dinamica_movil';
+    const PROFESSIONAL_PHYSICS_VERSION = 'v220_controles_moviles_desplazables';
     const PROFESSIONAL_TABLE_FRICTION = 0.99532;
     const PROFESSIONAL_OBJECT_FRICTION = 0.99472;
     const CUE_SWERVE_STRENGTH = 0.00072; // curvatura sutil por efecto lateral antes/después de bandas.
@@ -8168,6 +8168,8 @@
     let viewerPreviewOn = true;
     let cuePointerStart = null;
     let cuePointerMaxMove = 0;
+    let cuePowerSessionStartPct = 5;
+    let cuePowerSessionStartDist = 0;
     let lastShootTap = 0;
     let lastShootTapPoint = null;
     let shotActive = false;
@@ -8405,6 +8407,33 @@
       const extraT = clamp((dist - normalPull) / (extendedPull - normalPull), 0, 1);
       const easedExtra = Math.pow(extraT, isCoarse ? 1.22 : 1.08);
       return Math.round(clamp(quantizePowerPct(NORMAL_MAX_POWER_PCT + easedExtra * (maxPct - NORMAL_MAX_POWER_PCT)), 5, maxPct));
+    }
+
+    function incrementalPowerGainFromExtraPull(extraDist, startPct = powerPct) {
+      // v218: permite cargar el taco por etapas.
+      // Ejemplo: llegar a 70%, levantar el dedo/taco y volver a halar para seguir sumando potencia.
+      const extra = Math.max(0, Number(extraDist) || 0);
+      const maxPct = maxPowerPctForShot();
+      const start = clamp(Math.round(Number(startPct) || 5), 5, maxPct);
+      const available = Math.max(0, maxPct - start);
+      const dead = isCoarse ? 18 : 10;
+      if (extra <= dead || available <= 0) return 0;
+      const travel = isCoarse ? 360 : 260;
+      const t = clamp((extra - dead) / travel, 0, 1);
+      const eased = Math.pow(t, isCoarse ? 1.02 : 0.95);
+      return Math.round(clamp(quantizePowerPct(available * eased), 0, available));
+    }
+
+    function cueDragTargetPower(dist) {
+      const directTarget = powerPctFromPullDistance(dist);
+      if (!isCoarse || !draggingCue || !cuePointerStart) return directTarget;
+      const startPct = clamp(Math.round(Number(cuePowerSessionStartPct) || powerPct || 5), 5, maxPowerPctForShot());
+      const startDist = Math.max(0, Number(cuePowerSessionStartDist) || 0);
+      const extraPull = Math.max(0, (Number(dist) || 0) - startDist);
+      const accumulatedTarget = clamp(startPct + incrementalPowerGainFromExtraPull(extraPull, startPct), 5, maxPowerPctForShot());
+      // Nunca bajes la potencia accidentalmente al levantar y volver a tomar el taco en móvil.
+      // La potencia se puede seguir ampliando; para reiniciar se usa Repetir/Nueva jugada o se ajusta con un tiro nuevo.
+      return Math.max(directTarget, accumulatedTarget, startPct);
     }
 
     function railRestitutionForCurrentShot() { return RAIL_RESTITUTION; }
@@ -11017,7 +11046,7 @@
       syncPlacementUI();
       setMode('libre', false);
       resetShotState();
-      setGuideText('<strong>Listo:</strong> motor profesional v217 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil con menú compacto, taco/guía más manejables y guía dinámica de contacto oculta en móviles. En pantallas grandes la guía dinámica sigue visible; en celulares se prioriza la mesa limpia y amplia.');
+      setGuideText('<strong>Listo:</strong> motor profesional v220 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil con menú compacto, taco/guía más manejables, guía dinámica oculta en móviles y potencia acumulativa por levantadas del taco, botón Salir directo en Mesa completa móvil y controles Tirar/efecto desplazables verticalmente en móviles. En pantallas grandes la guía dinámica sigue visible; en celulares se prioriza la mesa limpia y amplia.');
     }
 
     function randomTable() {
@@ -11413,7 +11442,7 @@
 
       releaseSelectionGuideLock();
       const targetAngle = Math.atan2(dy, dx);
-      const targetPower = powerPctFromPullDistance(dist);
+      const targetPower = cueDragTargetPower(dist);
       const hasRealDrag = draggingCue && cuePointerStart && cuePointerMaxMove > (isCoarse ? 9 : 4);
       let changed = false;
       if (hasRealDrag) {
@@ -11422,7 +11451,8 @@
           aimAngle = nextAngle;
           changed = true;
         }
-        const smoothedPower = Math.round(powerPct + (targetPower - powerPct) * CUE_POWER_SMOOTHING);
+        const rawPower = isCoarse ? Math.max(powerPct, targetPower) : targetPower;
+        const smoothedPower = Math.round(powerPct + (rawPower - powerPct) * CUE_POWER_SMOOTHING);
         const nextPower = Math.round(clamp(quantizePowerPct(smoothedPower), 5, maxPowerPctForShot()));
         if (Math.abs(nextPower - powerPct) >= (isCoarse ? CUE_POWER_STEP : 1)) {
           powerPct = nextPower;
@@ -11430,7 +11460,7 @@
         }
       } else {
         aimAngle = targetAngle;
-        powerPct = targetPower;
+        powerPct = isCoarse ? Math.max(powerPct, targetPower) : targetPower;
         changed = true;
       }
       if (!changed) return;
@@ -11465,6 +11495,11 @@
       draggingCue = true;
       cuePointerStart = pointerPoint(evt);
       cuePointerMaxMove = 0;
+      cuePowerSessionStartPct = clamp(Math.round(Number(powerPct) || 5), 5, maxPowerPctForShot());
+      {
+        const cue = ball('cue');
+        cuePowerSessionStartDist = cue && cuePointerStart ? Math.hypot(cue.x - cuePointerStart.x, cue.y - cuePointerStart.y) : 0;
+      }
       table.setPointerCapture?.(evt.pointerId);
       setCueFromPoint(evt);
     }
@@ -11509,6 +11544,8 @@
       draggingCue = false;
       cuePointerStart = null;
       cuePointerMaxMove = 0;
+      cuePowerSessionStartDist = 0;
+      cuePowerSessionStartPct = clamp(Math.round(Number(powerPct) || 5), 5, maxPowerPctForShot());
     }
 
     function shootByDoubleClick(evt) {
@@ -13958,7 +13995,7 @@
     requestAnimationFrame(loop);
   })();
 
-// v217 · Menú modal móvil y guía dinámica oculta solo en celulares.
+// v218 · Potencia acumulativa del taco en móviles y guía dinámica oculta solo en celulares.
 // Mantiene la mesa despejada: solo quedan visibles Tirar, bola de efecto y el botón Opciones.
 (() => {
   const ready = (fn) => {
@@ -14078,5 +14115,175 @@
     }, 700);
 
     syncLauncherVisibility();
+  });
+})();
+
+
+// v219 · Botón Salir directo en Mesa completa móvil.
+(() => {
+  const ready = (fn) => {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn, { once: true });
+    else fn();
+  };
+
+  ready(() => {
+    const quickExitBtn = document.getElementById('mobileFsQuickExitBtn');
+    const fullscreenTableBtn = document.getElementById('fullscreenTableBtn');
+    const menuModal = document.getElementById('mobileFsMenuModal');
+    const menuBtn = document.getElementById('mobileFsMenuBtn');
+    if (!quickExitBtn || !fullscreenTableBtn) return;
+
+    const isMobileLike = () => window.matchMedia('(max-width: 980px), (pointer: coarse)').matches;
+    const isFullTable = () => document.body.classList.contains('table-fullscreen-mode');
+
+    function closeMobileMenu() {
+      if (menuModal) {
+        menuModal.classList.remove('open');
+        menuModal.setAttribute('aria-hidden', 'true');
+      }
+      if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    function syncQuickExit() {
+      const show = isMobileLike() && isFullTable();
+      quickExitBtn.hidden = !show;
+    }
+
+    quickExitBtn.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      evt.stopPropagation();
+      closeMobileMenu();
+      if (document.body.classList.contains('table-fullscreen-mode')) fullscreenTableBtn.click();
+      setTimeout(syncQuickExit, 60);
+    });
+
+    const observer = new MutationObserver(syncQuickExit);
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    ['resize', 'orientationchange'].forEach(name => window.addEventListener(name, syncQuickExit, { passive: true }));
+    setInterval(syncQuickExit, 800);
+    syncQuickExit();
+  });
+})();
+
+
+// v220 · En Mesa completa móvil, permitir desplazar verticalmente el botón Tirar
+// y la bola de efecto para no tapar la zona de tacada.
+(() => {
+  const ready = (fn) => {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn, { once: true });
+    else fn();
+  };
+
+  ready(() => {
+    const body = document.body;
+    const shootBtn = document.getElementById('shootBtn');
+    const effectControl = document.getElementById('effectControl');
+    const effectBall = document.getElementById('effectBall');
+    const effectDot = document.getElementById('effectDot');
+    if (!body || !shootBtn || !effectControl || !effectBall) return;
+
+    const isMobileLike = () => window.matchMedia('(max-width: 980px), (pointer: coarse)').matches;
+    const isFullTable = () => body.classList.contains('table-fullscreen-mode');
+    const isMobileFullscreen = () => isMobileLike() && isFullTable();
+
+    const MIN_BOTTOM = 6;
+    const RESERVED_TOP = 64;
+    const getNumVar = (name, fallback) => {
+      const raw = getComputedStyle(body).getPropertyValue(name).trim();
+      const val = parseFloat(raw);
+      return Number.isFinite(val) ? val : fallback;
+    };
+    const setBottomVar = (name, value) => body.style.setProperty(name, `${Math.round(value)}px`);
+    const clampBottom = (value, el) => {
+      const h = Math.max(48, (el && el.getBoundingClientRect().height) || 96);
+      const max = Math.max(MIN_BOTTOM, window.innerHeight - h - RESERVED_TOP);
+      return Math.max(MIN_BOTTOM, Math.min(max, value));
+    };
+
+    let drag = null;
+    let suppressShootClick = false;
+
+    function startDrag(kind, evt) {
+      if (!isMobileFullscreen()) return false;
+      const targetEl = kind === 'shoot' ? shootBtn : effectControl;
+      const varName = kind === 'shoot' ? '--mobile-fs-shoot-bottom' : '--mobile-fs-effect-bottom';
+      const fallback = getNumVar('--fs-pad-bottom', 6);
+      drag = {
+        kind,
+        pointerId: evt.pointerId,
+        startY: evt.clientY,
+        startBottom: getNumVar(varName, fallback),
+        moved: false
+      };
+      try { targetEl.setPointerCapture(evt.pointerId); } catch (_) {}
+      return true;
+    }
+
+    function moveDrag(evt) {
+      if (!drag || evt.pointerId !== drag.pointerId) return;
+      const targetEl = drag.kind === 'shoot' ? shootBtn : effectControl;
+      const varName = drag.kind === 'shoot' ? '--mobile-fs-shoot-bottom' : '--mobile-fs-effect-bottom';
+      const deltaY = evt.clientY - drag.startY;
+      const nextBottom = clampBottom(drag.startBottom - deltaY, targetEl);
+      if (Math.abs(deltaY) > 6) drag.moved = true;
+      if (drag.moved) {
+        evt.preventDefault();
+        evt.stopPropagation();
+        setBottomVar(varName, nextBottom);
+        if (drag.kind === 'shoot') suppressShootClick = true;
+      }
+    }
+
+    function endDrag(evt) {
+      if (!drag || (evt && evt.pointerId !== undefined && evt.pointerId !== drag.pointerId)) return;
+      const targetEl = drag.kind === 'shoot' ? shootBtn : effectControl;
+      try { if (evt && evt.pointerId !== undefined) targetEl.releasePointerCapture(evt.pointerId); } catch (_) {}
+      if (drag.kind === 'shoot' && drag.moved) {
+        suppressShootClick = true;
+        setTimeout(() => { suppressShootClick = false; }, 220);
+      }
+      drag = null;
+    }
+
+    shootBtn.addEventListener('pointerdown', (evt) => {
+      if (!isMobileFullscreen()) return;
+      startDrag('shoot', evt);
+    }, { passive: true });
+
+    shootBtn.addEventListener('click', (evt) => {
+      if (suppressShootClick) {
+        evt.preventDefault();
+        evt.stopImmediatePropagation();
+        suppressShootClick = false;
+      }
+    }, true);
+
+    effectBall.addEventListener('pointerdown', (evt) => {
+      if (!isMobileFullscreen()) return;
+      if (effectDot && effectDot.contains(evt.target)) return;
+      const rect = effectBall.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = evt.clientX - cx;
+      const dy = evt.clientY - cy;
+      const radius = Math.max(1, rect.width / 2);
+      const ratio = Math.sqrt(dx * dx + dy * dy) / radius;
+      // Solo arrastra el control si se toca el aro exterior; el centro sigue sirviendo
+      // para mover el punto de efecto con precisión.
+      if (ratio >= 0.72) {
+        evt.preventDefault();
+        evt.stopPropagation();
+        startDrag('effect', evt);
+      }
+    }, true);
+
+    window.addEventListener('pointermove', moveDrag, { passive: false });
+    window.addEventListener('pointerup', endDrag, { passive: true });
+    window.addEventListener('pointercancel', endDrag, { passive: true });
+
+    const resetIfOut = () => { if (!isMobileFullscreen()) drag = null; };
+    ['resize', 'orientationchange'].forEach(name => window.addEventListener(name, resetIfOut, { passive: true }));
+    const observer = new MutationObserver(resetIfOut);
+    observer.observe(body, { attributes: true, attributeFilter: ['class'] });
   });
 })();
