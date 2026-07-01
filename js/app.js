@@ -43,7 +43,7 @@
     // v182 profesional: guía principal persistente + sincronización exacta del efecto
     // durante la preparación y durante la tacada; ya no se borra al atacar.
     // La potencia puede ser larga, pero el paño, las bandas y el efecto mantienen física estable.
-    const PROFESSIONAL_PHYSICS_VERSION = 'v223_parada_rapida_carambola';
+    const PROFESSIONAL_PHYSICS_VERSION = 'v224_salir_movil_asegurado';
     const PROFESSIONAL_TABLE_FRICTION = 0.99532;
     const PROFESSIONAL_OBJECT_FRICTION = 0.99472;
     const CUE_SWERVE_STRENGTH = 0.00072; // curvatura sutil por efecto lateral antes/después de bandas.
@@ -11078,7 +11078,7 @@
       syncPlacementUI();
       setMode('libre', false);
       resetShotState();
-      setGuideText('<strong>Listo:</strong> motor profesional v223 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil con menú compacto, taco/guía más manejables, guía dinámica oculta en móviles botón Salir directo en Mesa completa móvil, controles Tirar/efecto desplazables verticalmente y potencia móvil reversible y parada rápida tras la carambola/acumulativa que se puede subir o quitar por etapas sin quedar fija en 159%. En pantallas grandes la guía dinámica sigue visible; en celulares se prioriza la mesa limpia y amplia.');
+      setGuideText('<strong>Listo:</strong> motor profesional v224 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil con menú compacto, taco/guía más manejables, guía dinámica oculta en móviles botón Salir directo en Mesa completa móvil, controles Tirar/efecto desplazables verticalmente y potencia móvil reversible y parada rápida tras la carambola/acumulativa que se puede subir o quitar por etapas sin quedar fija en 159%. En pantallas grandes la guía dinámica sigue visible; en celulares se prioriza la mesa limpia y amplia.');
     }
 
     function randomTable() {
@@ -14380,6 +14380,36 @@
     observer.observe(body, { attributes: true, attributeFilter: ['class'] });
     ['resize', 'orientationchange'].forEach(name => window.addEventListener(name, sync, { passive: true }));
     setInterval(sync, 600);
+    sync();
+  });
+})();
+
+
+// v224 · asegurar botón Salir siempre visible en Mesa completa móvil.
+(() => {
+  const ready = (fn) => {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn, { once: true });
+    else fn();
+  };
+  ready(() => {
+    const exitBtn = document.getElementById('mobileFsQuickExitBtn');
+    const body = document.body;
+    if (!exitBtn || !body) return;
+    const isMobileLike = () => window.matchMedia('(max-width: 980px), (pointer: coarse)').matches;
+    const sync = () => {
+      const show = isMobileLike() && body.classList.contains('table-fullscreen-mode');
+      exitBtn.hidden = !show;
+      exitBtn.textContent = 'Salir';
+      exitBtn.setAttribute('aria-label', 'Salir de mesa completa');
+      exitBtn.style.display = show ? 'inline-flex' : 'none';
+      exitBtn.style.visibility = show ? 'visible' : 'hidden';
+      exitBtn.style.opacity = show ? '1' : '0';
+      exitBtn.style.pointerEvents = show ? 'auto' : 'none';
+    };
+    const observer = new MutationObserver(sync);
+    observer.observe(body, { attributes: true, attributeFilter: ['class'] });
+    ['resize', 'orientationchange', 'fullscreenchange'].forEach(name => window.addEventListener(name, sync, { passive: true }));
+    setInterval(sync, 500);
     sync();
   });
 })();
