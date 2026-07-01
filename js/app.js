@@ -43,7 +43,7 @@
     // v182 profesional: guía principal persistente + sincronización exacta del efecto
     // durante la preparación y durante la tacada; ya no se borra al atacar.
     // La potencia puede ser larga, pero el paño, las bandas y el efecto mantienen física estable.
-    const PROFESSIONAL_PHYSICS_VERSION = 'v220_controles_moviles_desplazables';
+    const PROFESSIONAL_PHYSICS_VERSION = 'v223_parada_rapida_carambola';
     const PROFESSIONAL_TABLE_FRICTION = 0.99532;
     const PROFESSIONAL_OBJECT_FRICTION = 0.99472;
     const CUE_SWERVE_STRENGTH = 0.00072; // curvatura sutil por efecto lateral antes/después de bandas.
@@ -52,6 +52,7 @@
     const RAIL_SPIN_OPEN_CLOSE = 0.118; // apertura/cierre por efecto a favor o contrario.
     const COLLISION_THROW_SCALE = 0.028; // throw por fricción entre bolas.
     const DEMO_COUNTS_AS_SCORE = false;
+    const AUTO_STOP_AFTER_CAROM_MS = 520; // v223: después del cierre a segunda bola, detener para seguir rápido.
     const VIDEO_ANALYSIS_026_060 = {
       "001": {
             "posicion": "0:33",
@@ -656,8 +657,8 @@
     // v215: taco y guía más manejables, especialmente en Android/iOS.
     // Se reduce la sensibilidad angular, se agrega zona muerta y se evita que pequeños temblores del dedo muevan la guía.
     const CUE_AIM_SMOOTHING = isCoarse ? 0.13 : 0.32;
-    const CUE_POWER_SMOOTHING = isCoarse ? 0.14 : 0.32;
-    const CUE_POWER_STEP = isCoarse ? 3 : 1;
+    const CUE_POWER_SMOOTHING = isCoarse ? 0.20 : 0.32;
+    const CUE_POWER_STEP = isCoarse ? 2 : 1;
     const CUE_AIM_DEADZONE_RAD = (Math.PI / 180) * (isCoarse ? 0.55 : 0.18);
     const CUE_AIM_SNAP_RAD = (Math.PI / 180) * (isCoarse ? 0.25 : 0);
     const CUE_MIN_AIM_PULL = isCoarse ? 48 : 22;
@@ -8193,7 +8194,9 @@
       routeLength: 0,
       professionalPhysics: PROFESSIONAL_PHYSICS_VERSION,
       shotSource: 'libre',
-      illuminated: false
+      illuminated: false,
+      quickStopTimer: 0,
+      quickStopDone: false
     };
 
     let soundEnabled = true;
@@ -8424,16 +8427,45 @@
       return Math.round(clamp(quantizePowerPct(available * eased), 0, available));
     }
 
+    function incrementalPowerLossFromReturn(returnDist, startPct = powerPct) {
+      // v222: igual que se puede sumar potencia por etapas, también se puede quitar
+      // potencia por etapas acercando el taco a la bola. Esto evita que se quede fija
+      // en valores altos como 159/160%.
+      const inward = Math.max(0, Number(returnDist) || 0);
+      const maxPct = maxPowerPctForShot();
+      const start = clamp(Math.round(Number(startPct) || 5), 5, maxPct);
+      const removable = Math.max(0, start - 5);
+      const dead = isCoarse ? 12 : 8;
+      if (inward <= dead || removable <= 0) return 0;
+      const travel = isCoarse ? 310 : 230;
+      const t = clamp((inward - dead) / travel, 0, 1);
+      const eased = Math.pow(t, isCoarse ? 0.92 : 0.9);
+      return Math.round(clamp(quantizePowerPct(removable * eased), 0, removable));
+    }
+
     function cueDragTargetPower(dist) {
       const directTarget = powerPctFromPullDistance(dist);
       if (!isCoarse || !draggingCue || !cuePointerStart) return directTarget;
       const startPct = clamp(Math.round(Number(cuePowerSessionStartPct) || powerPct || 5), 5, maxPowerPctForShot());
       const startDist = Math.max(0, Number(cuePowerSessionStartDist) || 0);
-      const extraPull = Math.max(0, (Number(dist) || 0) - startDist);
-      const accumulatedTarget = clamp(startPct + incrementalPowerGainFromExtraPull(extraPull, startPct), 5, maxPowerPctForShot());
-      // Nunca bajes la potencia accidentalmente al levantar y volver a tomar el taco en móvil.
-      // La potencia se puede seguir ampliando; para reiniciar se usa Repetir/Nueva jugada o se ajusta con un tiro nuevo.
-      return Math.max(directTarget, accumulatedTarget, startPct);
+      const currentDist = Math.max(0, Number(dist) || 0);
+      const deltaDist = currentDist - startDist;
+      const resetDeadZone = 14;
+      // v222: potencia móvil reversible y parada rápida tras la carambola y acumulativa.
+      // - Halar más lejos suma potencia por etapas.
+      // - Acercar el dedo/taco a la bola quita potencia por etapas.
+      // - Tocar directamente una distancia menor también baja al valor correspondiente.
+      if (deltaDist > resetDeadZone) {
+        const accumulatedTarget = clamp(startPct + incrementalPowerGainFromExtraPull(deltaDist, startPct), 5, maxPowerPctForShot());
+        return clamp(Math.max(directTarget, accumulatedTarget), 5, maxPowerPctForShot());
+      }
+      if (deltaDist < -resetDeadZone) {
+        const reducedTarget = clamp(startPct - incrementalPowerLossFromReturn(-deltaDist, startPct), 5, maxPowerPctForShot());
+        return clamp(Math.min(directTarget, reducedTarget), 5, maxPowerPctForShot());
+      }
+      // En la zona pequeña de inicio se respeta la distancia actual para poder bajar
+      // o subir con toques cortos, sin saltos bruscos.
+      return clamp(directTarget, 5, maxPowerPctForShot());
     }
 
     function railRestitutionForCurrentShot() { return RAIL_RESTITUTION; }
@@ -11046,7 +11078,7 @@
       syncPlacementUI();
       setMode('libre', false);
       resetShotState();
-      setGuideText('<strong>Listo:</strong> motor profesional v220 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil con menú compacto, taco/guía más manejables, guía dinámica oculta en móviles y potencia acumulativa por levantadas del taco, botón Salir directo en Mesa completa móvil y controles Tirar/efecto desplazables verticalmente en móviles. En pantallas grandes la guía dinámica sigue visible; en celulares se prioriza la mesa limpia y amplia.');
+      setGuideText('<strong>Listo:</strong> motor profesional v223 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil con menú compacto, taco/guía más manejables, guía dinámica oculta en móviles botón Salir directo en Mesa completa móvil, controles Tirar/efecto desplazables verticalmente y potencia móvil reversible y parada rápida tras la carambola/acumulativa que se puede subir o quitar por etapas sin quedar fija en 159%. En pantallas grandes la guía dinámica sigue visible; en celulares se prioriza la mesa limpia y amplia.');
     }
 
     function randomTable() {
@@ -11451,16 +11483,24 @@
           aimAngle = nextAngle;
           changed = true;
         }
-        const rawPower = isCoarse ? Math.max(powerPct, targetPower) : targetPower;
-        const smoothedPower = Math.round(powerPct + (rawPower - powerPct) * CUE_POWER_SMOOTHING);
-        const nextPower = Math.round(clamp(quantizePowerPct(smoothedPower), 5, maxPowerPctForShot()));
+        const rawPower = targetPower;
+        const powerDelta = rawPower - powerPct;
+        // v222: bajar potencia debe ser tan manejable como subirla. En móvil se aplica
+        // una respuesta un poco más rápida al acercar el taco, para que pueda quitarse
+        // fuerza por varios intentos continuos sin quedarse pegada en valores altos.
+        const powerSmoothing = isCoarse && powerDelta < 0 ? 0.54 : CUE_POWER_SMOOTHING;
+        const smoothedPower = Math.round(powerPct + powerDelta * powerSmoothing);
+        let nextPower = Math.round(clamp(quantizePowerPct(smoothedPower), 5, maxPowerPctForShot()));
+        if (isCoarse && powerDelta < -18) {
+          nextPower = Math.min(nextPower, Math.round(clamp(quantizePowerPct(rawPower), 5, maxPowerPctForShot())));
+        }
         if (Math.abs(nextPower - powerPct) >= (isCoarse ? CUE_POWER_STEP : 1)) {
           powerPct = nextPower;
           changed = true;
         }
       } else {
         aimAngle = targetAngle;
-        powerPct = isCoarse ? Math.max(powerPct, targetPower) : targetPower;
+        powerPct = targetPower;
         changed = true;
       }
       if (!changed) return;
@@ -11615,6 +11655,8 @@
       shot.demoMode = !!options.demoMode;
       shot.shotSource = options.shotSource || (practiceMode ? 'jugada-libre' : 'libre');
       shot.illuminated = false;
+      if (shot.quickStopTimer) { clearTimeout(shot.quickStopTimer); shot.quickStopTimer = 0; }
+      shot.quickStopDone = false;
       shot.predictiveIllumination = predictiveGuide ? {
         ...predictiveGuide,
         points: predictiveGuide.points.map(p => ({ x: p.x, y: p.y })),
@@ -12815,6 +12857,31 @@
       }
     }
 
+    function stopAllBallsForResolvedCarom() {
+      for (const b of balls) {
+        b.vx = 0;
+        b.vy = 0;
+      }
+      shot.spin = { x: 0, y: 0, side: 0, follow: 0 };
+      if (path && path.length) {
+        const cue = ball('cue');
+        if (cue) path.push({ x: cue.x, y: cue.y });
+      }
+    }
+
+    function scheduleQuickStopAfterCarom() {
+      if (!shotActive || !shotResolved || shot.quickStopDone) return;
+      shot.quickStopDone = true;
+      if (shot.quickStopTimer) clearTimeout(shot.quickStopTimer);
+      shot.quickStopTimer = setTimeout(() => {
+        shot.quickStopTimer = 0;
+        if (!shotActive) return;
+        stopAllBallsForResolvedCarom();
+        finishShot();
+        renderBalls();
+      }, AUTO_STOP_AFTER_CAROM_MS);
+    }
+
     function registerTargetHit(a, b) {
       if (!shotActive || shotResolved) return;
       let target = null;
@@ -12861,10 +12928,12 @@
           }
         }
         updateHUD();
+        scheduleQuickStopAfterCarom();
       }
     }
 
     function finishShot() {
+      if (shot.quickStopTimer) { clearTimeout(shot.quickStopTimer); shot.quickStopTimer = 0; }
       captureShotFrame(true);
       lastShotFrames = currentShotFrames.map(frame => frame.map(f => ({ ...f })));
       currentShotFrames = [];
@@ -14285,5 +14354,32 @@
     ['resize', 'orientationchange'].forEach(name => window.addEventListener(name, resetIfOut, { passive: true }));
     const observer = new MutationObserver(resetIfOut);
     observer.observe(body, { attributes: true, attributeFilter: ['class'] });
+  });
+})();
+
+
+// v222 · Refuerzo visual/funcional para Mesa completa móvil:
+// mantener Salir visible y permitir que el usuario reajuste potencia sin bloqueo.
+(() => {
+  const ready = (fn) => {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn, { once: true });
+    else fn();
+  };
+  ready(() => {
+    const exitBtn = document.getElementById('mobileFsQuickExitBtn');
+    const body = document.body;
+    if (!exitBtn || !body) return;
+    const isMobileLike = () => window.matchMedia('(max-width: 980px), (pointer: coarse)').matches;
+    const sync = () => {
+      const show = isMobileLike() && body.classList.contains('table-fullscreen-mode');
+      exitBtn.hidden = !show;
+      exitBtn.textContent = 'Salir';
+      exitBtn.setAttribute('aria-label', 'Salir de mesa completa');
+    };
+    const observer = new MutationObserver(sync);
+    observer.observe(body, { attributes: true, attributeFilter: ['class'] });
+    ['resize', 'orientationchange'].forEach(name => window.addEventListener(name, sync, { passive: true }));
+    setInterval(sync, 600);
+    sync();
   });
 })();
