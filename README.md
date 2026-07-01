@@ -457,3 +457,13 @@ Ajustes de producción:
 - La potencia ahora crece con curva progresiva y pasos discretos, evitando tiros demasiado rápidos por accidente.
 - Se conserva la física profesional, la guía predictiva, el modo mesa completa móvil y la bola de efecto externa.
 - Service worker actualizado a v214 para evitar caché vieja.
+
+
+## v215 · Taco y guía más manejables
+
+- Se redujo la sensibilidad angular del taco en Android/iOS.
+- Se agregó zona muerta para evitar que micro movimientos del dedo muevan la guía amarilla.
+- Se suavizó más la actualización de potencia y dirección durante el arrastre.
+- Se aumentó el recorrido necesario para subir potencia en móvil.
+- Se mantiene la física profesional, la guía principal, la bola de efecto externa y los controles móviles de v213/v214.
+- Service worker actualizado a v215 para evitar caché vieja.

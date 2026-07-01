@@ -1,0 +1,20 @@
+{
+  "version": "v215_taco_guia_mas_manejable",
+  "estado": "OK",
+  "objetivo": "Reducir sensibilidad del taco y de la guía de tacada, especialmente en móviles Android/iOS.",
+  "cambios": [
+    "CUE_AIM_SMOOTHING móvil reducido de 0.24 a 0.13.",
+    "CUE_POWER_SMOOTHING móvil reducido de 0.22 a 0.14.",
+    "CUE_POWER_STEP móvil aumentado a 3 para evitar saltos pequeños continuos.",
+    "Nueva zona muerta angular móvil de 0.55 grados para temblores del dedo.",
+    "Nuevo snap fino móvil de 0.25 grados para estabilizar la guía sin volverla torpe.",
+    "Distancia mínima de arrastre móvil aumentada a 48 unidades de mesa.",
+    "Curva de potencia móvil extendida: normalPull 410 y extendedPull 630."
+  ],
+  "validaciones": [
+    "Sintaxis JS validada con node --check.",
+    "Sintaxis service worker validada con node --check.",
+    "ZIP final verificado con unzip -t.",
+    "No se alteraron assets de jugadas ni física base de colisiones."
+  ]
+}
