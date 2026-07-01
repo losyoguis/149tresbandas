@@ -43,7 +43,7 @@
     // v182 profesional: guía principal persistente + sincronización exacta del efecto
     // durante la preparación y durante la tacada; ya no se borra al atacar.
     // La potencia puede ser larga, pero el paño, las bandas y el efecto mantienen física estable.
-    const PROFESSIONAL_PHYSICS_VERSION = 'v216_menu_movil_fullscreen';
+    const PROFESSIONAL_PHYSICS_VERSION = 'v217_sin_guia_dinamica_movil';
     const PROFESSIONAL_TABLE_FRICTION = 0.99532;
     const PROFESSIONAL_OBJECT_FRICTION = 0.99472;
     const CUE_SWERVE_STRENGTH = 0.00072; // curvatura sutil por efecto lateral antes/después de bandas.
@@ -11017,7 +11017,7 @@
       syncPlacementUI();
       setMode('libre', false);
       resetShotState();
-      setGuideText('<strong>Listo:</strong> motor profesional v216 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil reordenada y taco/guía más manejables: menos sensibilidad angular, zona muerta contra temblores del dedo, potencia progresiva y tiros menos bruscos. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
+      setGuideText('<strong>Listo:</strong> motor profesional v217 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil con menú compacto, taco/guía más manejables y guía dinámica de contacto oculta en móviles. En pantallas grandes la guía dinámica sigue visible; en celulares se prioriza la mesa limpia y amplia.');
     }
 
     function randomTable() {
@@ -13958,7 +13958,7 @@
     requestAnimationFrame(loop);
   })();
 
-// v216 · Menú modal para Mesa completa móvil.
+// v217 · Menú modal móvil y guía dinámica oculta solo en celulares.
 // Mantiene la mesa despejada: solo quedan visibles Tirar, bola de efecto y el botón Opciones.
 (() => {
   const ready = (fn) => {
