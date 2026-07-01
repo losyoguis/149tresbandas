@@ -3787,7 +3787,7 @@ body.table-fullscreen-mode #fullscreenTableBtn { order: 20 !important; }
     left: var(--fs-pad-left, max(4px, env(safe-area-inset-left))) !important;
     right: auto !important;
     top: auto !important;
-    bottom: var(--fs-pad-bottom, max(6px, env(safe-area-inset-bottom))) !important;
+    bottom: var(--mobile-fs-effect-bottom, var(--fs-pad-bottom, max(6px, env(safe-area-inset-bottom)))) !important;
     width: var(--fs-shoot, var(--fs-shoot-size, 96px)) !important;
     height: var(--fs-shoot, var(--fs-shoot-size, 96px)) !important;
     min-width: var(--fs-shoot, var(--fs-shoot-size, 96px)) !important;
@@ -3870,7 +3870,7 @@ body.table-fullscreen-mode #fullscreenTableBtn { order: 20 !important; }
   body.table-fullscreen-mode #shootBtn,
   body.table-fullscreen-mode #shootBtn.primary-action {
     right: var(--fs-pad-right, max(4px, env(safe-area-inset-right))) !important;
-    bottom: var(--fs-pad-bottom, max(6px, env(safe-area-inset-bottom))) !important;
+    bottom: var(--mobile-fs-shoot-bottom, var(--fs-pad-bottom, max(6px, env(safe-area-inset-bottom)))) !important;
   }
 }
 
@@ -5414,5 +5414,77 @@ body.table-fullscreen-mode #fullscreenTableBtn { order: 20 !important; }
   html body:not(.table-fullscreen-mode) .deflection-guide-panel {
     display: block;
     visibility: visible;
+  }
+}
+
+
+/* v219 · Botón Salir directo en Mesa completa móvil.
+   Mantiene la mesa despejada: Opciones queda arriba a la izquierda y Salir arriba a la derecha. */
+.mobile-fs-quick-exit-btn {
+  display: none;
+}
+
+@media (max-width: 980px), (pointer: coarse) {
+  html body.table-fullscreen-mode .mobile-fs-quick-exit-btn:not([hidden]) {
+    display: inline-flex !important;
+    position: fixed !important;
+    top: var(--v216-safe-top, max(8px, env(safe-area-inset-top))) !important;
+    right: max(var(--v216-safe-right, 8px), calc((var(--v216-gutter, 0px) - var(--v216-menu-w, 92px)) / 2)) !important;
+    left: auto !important;
+    width: var(--v216-menu-w, 96px) !important;
+    min-width: var(--v216-menu-w, 96px) !important;
+    max-width: var(--v216-menu-w, 112px) !important;
+    height: clamp(36px, 8.3vh, 48px) !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 9px !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(255,255,255,.55) !important;
+    color: #fff7f7 !important;
+    background: linear-gradient(180deg, rgba(255, 120, 120, .98), rgba(157, 24, 24, .98)) !important;
+    box-shadow: 0 8px 22px rgba(0,0,0,.55), 0 0 18px rgba(255,94,94,.26) !important;
+    font-weight: 950 !important;
+    font-size: clamp(11px, 2.8vh, 15px) !important;
+    line-height: 1 !important;
+    z-index: 10620 !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+  }
+
+  html body.table-fullscreen-mode .mobile-fs-menu-btn:not([hidden]) {
+    left: max(var(--v216-safe-left, 8px), calc((var(--v216-gutter, 0px) - var(--v216-menu-w, 92px)) / 2)) !important;
+    right: auto !important;
+    top: var(--v216-safe-top, max(8px, env(safe-area-inset-top))) !important;
+    transform: none !important;
+  }
+}
+
+@media (orientation: portrait) and (pointer: coarse), (orientation: portrait) and (hover: none), (orientation: portrait) and (max-width: 760px) {
+  html body.table-fullscreen-mode .mobile-fs-menu-btn:not([hidden]) {
+    left: var(--v216-safe-left, max(8px, env(safe-area-inset-left))) !important;
+    right: auto !important;
+    transform: none !important;
+  }
+
+  html body.table-fullscreen-mode .mobile-fs-quick-exit-btn:not([hidden]) {
+    right: var(--v216-safe-right, max(8px, env(safe-area-inset-right))) !important;
+  }
+}
+
+
+/* v220 · permitir desplazar verticalmente Tirar y la bola de efecto en móvil fullscreen. */
+@media (max-width: 980px), (pointer: coarse) {
+  body.table-fullscreen-mode #shootBtn.primary-action,
+  body.table-fullscreen-mode .effect-control:not(.hidden) {
+    touch-action: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+  body.table-fullscreen-mode #shootBtn.primary-action {
+    cursor: grab !important;
+  }
+  body.table-fullscreen-mode #shootBtn.primary-action:active,
+  body.table-fullscreen-mode .effect-ball:active {
+    cursor: grabbing !important;
   }
 }
