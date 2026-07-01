@@ -43,7 +43,7 @@
     // v182 profesional: guía principal persistente + sincronización exacta del efecto
     // durante la preparación y durante la tacada; ya no se borra al atacar.
     // La potencia puede ser larga, pero el paño, las bandas y el efecto mantienen física estable.
-    const PROFESSIONAL_PHYSICS_VERSION = 'v207_movil_mesa_completa_boton_tirar_circular_imagenes_modal';
+    const PROFESSIONAL_PHYSICS_VERSION = 'v209_movil_efecto_externo_mesa_completa';
     const PROFESSIONAL_TABLE_FRICTION = 0.99532;
     const PROFESSIONAL_OBJECT_FRICTION = 0.99472;
     const CUE_SWERVE_STRENGTH = 0.00072; // curvatura sutil por efecto lateral antes/después de bandas.
@@ -10662,7 +10662,7 @@
       syncTableFullscreenUI();
       if (announce) {
         setGuideText(next
-          ? '<strong>Mesa completa:</strong> modo activado. En móvil verás el selector, repetir y guía arriba a la izquierda; libre, ubicar y salir arriba a la derecha; y <span class="route">Tirar</span> grande abajo a la derecha.'
+          ? '<strong>Mesa completa:</strong> modo activado. En móvil verás selector, Repetir y Guía arriba a la izquierda; Libre, Ubicar y Salir arriba a la derecha; y <span class="route">Tirar</span> grande abajo a la derecha.'
           : '<strong>Mesa completa:</strong> modo normal activado.');
       }
     }
@@ -10981,7 +10981,7 @@
       syncPlacementUI();
       setMode('libre', false);
       resetShotState();
-      setGuideText('<strong>Listo:</strong> motor profesional v207 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, efecto visual transparente para la física, video móvil optimizado para Android/iOS, Mesa completa móvil con botón Tirar circular inferior derecho, controles superiores laterales y modal móvil con imágenes siempre visibles. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
+      setGuideText('<strong>Listo:</strong> motor profesional v209 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, efecto visual transparente para la física, video móvil optimizado para Android/iOS, Mesa completa móvil con controles ordenados y control de efecto externo: selector/Repetir/Guía a la izquierda, Libre/Ubicar/Salir a la derecha, botón Tirar grande abajo a la derecha y bola de efecto grande abajo a la izquierda. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
     }
 
     function randomTable() {
@@ -13565,9 +13565,13 @@
     window.addEventListener('pointerup', endCue, { passive: false });
     window.addEventListener('pointercancel', endCue, { passive: false });
 
-    const effectHitTarget = effectDot || effectBall;
-    effectHitTarget.addEventListener('pointerdown', beginEffect, { passive: false });
-    effectHitTarget.addEventListener('pointermove', moveEffect, { passive: false });
+    // v209: el control de efecto puede tocarse desde cualquier punto de la bola.
+    // Esto permite que en Mesa completa móvil la bola de efecto externa funcione
+    // como un control grande, no solo arrastrando el punto rojo.
+    [effectBall, effectDot].filter(Boolean).forEach(effectTarget => {
+      effectTarget.addEventListener('pointerdown', beginEffect, { passive: false });
+      effectTarget.addEventListener('pointermove', moveEffect, { passive: false });
+    });
     window.addEventListener('pointermove', moveEffect, { passive: false });
     window.addEventListener('pointerup', endEffect, { passive: false });
     window.addEventListener('pointercancel', endEffect, { passive: false });
