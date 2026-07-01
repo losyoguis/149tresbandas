@@ -1,0 +1,22 @@
+{
+  "version": "v210_movil_ui_equilibrada_mesa_maxima",
+  "status": "OK",
+  "fecha": "2026-07-01",
+  "cambios": [
+    "Reorganización final de controles en Mesa completa móvil para evitar botones dispersos sobre la mesa.",
+    "Mesa centrada y maximizada con controles aprovechando las franjas laterales cuando existen.",
+    "Selector, Repetir y Guía fijados en columna izquierda superior.",
+    "Libre, Ubicar y Salir fijados en columna derecha superior.",
+    "Botón Tirar circular y grande abajo a la derecha.",
+    "Bola blanca de efecto circular y táctil abajo a la izquierda, del mismo tamaño que Tirar.",
+    "Limpieza explícita de top/right/bottom/left heredados para todos los controles móviles.",
+    "Se mantienen ocultos Ver replay, Demostración y Nueva posición en Mesa completa para priorizar la mesa."
+  ],
+  "validaciones": {
+    "js_sintaxis": "OK",
+    "sw_sintaxis": "OK",
+    "mesa_completa_movil": "Controles laterales ordenados y mesa con tamaño máximo lógico",
+    "efecto_movil": "Control externo táctil conservado",
+    "modal_video_movil": "Imágenes visibles dentro del modal Android/iOS"
+  }
+}

@@ -408,3 +408,16 @@ Ajustes de producción:
 - El botón Tirar permanece grande, circular y fijo abajo a la derecha.
 - Se mantiene la distribución superior: izquierda selector/Repetir/Guía; derecha Libre/Ubicar/Salir.
 - La mesa conserva el máximo espacio posible porque los controles flotan sobre los bordes.
+
+## v210 - Mesa completa móvil con UI equilibrada
+
+- Se reorganizaron los controles en Mesa completa móvil para evitar que queden regados sobre la mesa.
+- La mesa queda centrada y con el mayor tamaño lógico posible.
+- Izquierda superior: selector de jugada, Repetir y Guía.
+- Derecha superior: Libre, Ubicar y Salir.
+- Inferior derecha: botón Tirar grande y circular.
+- Inferior izquierda: bola blanca de efecto, táctil, del mismo tamaño que Tirar.
+- Se limpian posiciones CSS heredadas (`top/right/bottom/left`) para evitar reacomodos incorrectos en Android/iOS.
+- Se mantiene el modal móvil con imágenes visibles.
+- Service worker actualizado a **v210**.
+- Archivo QA agregado: `qa_v210_movil_ui_equilibrada.json`.
