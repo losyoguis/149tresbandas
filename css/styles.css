@@ -5521,3 +5521,25 @@ body.table-fullscreen-mode #fullscreenTableBtn { order: 20 !important; }
     z-index: 13000 !important;
   }
 }
+
+
+/* v224 · botón Salir garantizado en Mesa completa móvil */
+@media (max-width: 980px), (pointer: coarse) {
+  html body.table-fullscreen-mode #mobileFsQuickExitBtn:not([hidden]) {
+    display: inline-flex !important;
+    position: fixed !important;
+    top: max(8px, env(safe-area-inset-top)) !important;
+    right: max(8px, env(safe-area-inset-right)) !important;
+    left: auto !important;
+    width: 96px !important;
+    min-width: 96px !important;
+    height: 42px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 999px !important;
+    z-index: 14000 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
