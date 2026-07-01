@@ -467,3 +467,13 @@ Ajustes de producción:
 - Se aumentó el recorrido necesario para subir potencia en móvil.
 - Se mantiene la física profesional, la guía principal, la bola de efecto externa y los controles móviles de v213/v214.
 - Service worker actualizado a v215 para evitar caché vieja.
+
+
+## v216 · Mesa completa móvil con menú modal
+
+- En Android/iOS, dentro de Mesa completa, se ocultan los botones laterales para despejar la mesa.
+- Solo quedan visibles el botón **Tirar**, la **bola de efecto** y un botón pequeño **Opciones**.
+- El selector de jugadas y los controles principales se abren dentro de un modal compacto.
+- El modal permite usar: Guía, Repetir tiro, Videotutorial, Ver replay, Demostración, Modo libre, Ubicar bolas, Nueva posición y Salir de Mesa completa.
+- La mesa conserva el máximo tamaño posible y se reducen los elementos que tapan los diamantes.
+- Service worker actualizado a v216 para evitar caché vieja.

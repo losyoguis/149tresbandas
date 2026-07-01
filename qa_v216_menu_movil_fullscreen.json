@@ -1,0 +1,17 @@
+{
+  "version": "v216_menu_movil_fullscreen",
+  "date": "2026-07-01",
+  "status": "funcional",
+  "changes": [
+    "Mesa completa móvil con menú modal de opciones",
+    "Oculta botones laterales heredados en Android/iOS",
+    "Mantiene visibles solo Tirar y bola de efecto junto con botón Opciones",
+    "Selector de jugadas duplicado/sincronizado dentro del modal",
+    "Botones proxy para guía, repetir, videotutorial, replay, demostración, modo libre, ubicar, nueva posición y salir"
+  ],
+  "validation": [
+    "node --check js/app.js",
+    "node --check sw.js",
+    "zip integrity test"
+  ]
+}

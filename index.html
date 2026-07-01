@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
-  <title>Entrenador de Carambola Guiada · v209 móvil efecto externo</title>
+  <title>Entrenador de Carambola Guiada · v216 menú móvil fullscreen</title>
   <meta name="theme-color" content="#07110e" />
-  <meta name="app-version" content="v215-taco-guia-mas-manejable" />
+  <meta name="app-version" content="v216-menu-movil-fullscreen" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -226,6 +226,35 @@
       </div>
       <div id="practiceImagesGrid" class="image-grid"></div>
       <div id="practiceImagesNote" class="image-note"></div>
+    </div>
+  </div>
+
+
+  <button id="mobileFsMenuBtn" class="mobile-fs-menu-btn" type="button" aria-haspopup="dialog" aria-controls="mobileFsMenuModal" aria-expanded="false" hidden>☰ Opciones</button>
+
+  <div id="mobileFsMenuModal" class="mobile-fs-menu-modal" role="dialog" aria-modal="true" aria-labelledby="mobileFsMenuTitle" aria-hidden="true">
+    <div class="mobile-fs-menu-card">
+      <div class="mobile-fs-menu-head">
+        <div>
+          <h2 id="mobileFsMenuTitle">Opciones de mesa</h2>
+          <p>Selecciona la jugada o activa una herramienta sin tapar la mesa.</p>
+        </div>
+        <button id="mobileFsMenuClose" class="mobile-fs-menu-close secondary" type="button" aria-label="Cerrar opciones">×</button>
+      </div>
+      <label class="mobile-fs-menu-label" for="mobileFsPracticeSelect">Jugada</label>
+      <select id="mobileFsPracticeSelect" class="mobile-fs-select" aria-label="Selecciona la carambola en mesa completa"></select>
+      <div class="mobile-fs-menu-grid" aria-label="Opciones de mesa completa">
+        <button id="mobileFsGuideBtn" class="secondary" type="button" data-proxy="guideBtn">Guía</button>
+        <button id="mobileFsReplayBtn" class="secondary" type="button" data-proxy="replayBtn">Repetir tiro</button>
+        <button id="mobileFsVideoBtn" class="secondary" type="button" data-proxy="videoBtn">Videotutorial</button>
+        <button id="mobileFsMotionReplayBtn" class="secondary" type="button" data-proxy="motionReplayBtn">Ver replay</button>
+        <button id="mobileFsDemoBtn" class="secondary" type="button" data-proxy="demoBtn">Demostración</button>
+        <button id="mobileFsFreeBtn" class="secondary" type="button" data-proxy="exitPracticeBtn">Modo libre</button>
+        <button id="mobileFsPlaceBtn" class="secondary" type="button" data-proxy="placeBtn">Ubicar bolas</button>
+        <button id="mobileFsRandomBtn" class="secondary" type="button" data-proxy="randomBtn">Nueva posición</button>
+        <button id="mobileFsExitBtn" class="secondary mobile-fs-exit" type="button" data-proxy="fullscreenTableBtn">Salir</button>
+      </div>
+      <p class="mobile-fs-menu-note">La bola de efecto y Tirar quedan siempre afuera para jugar rápido.</p>
     </div>
   </div>
 
