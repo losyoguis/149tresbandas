@@ -5390,3 +5390,29 @@ body.table-fullscreen-mode #fullscreenTableBtn { order: 20 !important; }
     --v216-menu-w: clamp(68px, min(16vw, max(68px, calc(var(--v216-gutter) - 12px))), 106px);
   }
 }
+
+
+/* v217 · Ocultar la guía dinámica de contacto solo en móviles.
+   En computadores, tablets grandes y TV se mantiene visible. */
+@media (max-width: 860px), (max-height: 520px) and (pointer: coarse), (max-height: 520px) and (hover: none) {
+  html body #deflectionGuidePanel,
+  html body .deflection-guide-panel {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+  }
+}
+
+@media (min-width: 861px) and (min-height: 521px) {
+  html body:not(.table-fullscreen-mode) #deflectionGuidePanel,
+  html body:not(.table-fullscreen-mode) .deflection-guide-panel {
+    display: block;
+    visibility: visible;
+  }
+}
