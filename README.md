@@ -421,3 +421,12 @@ Ajustes de producción:
 - Se mantiene el modal móvil con imágenes visibles.
 - Service worker actualizado a **v210**.
 - Archivo QA agregado: `qa_v210_movil_ui_equilibrada.json`.
+
+
+## v211 · Controles móviles verticales y diamantes visibles
+
+- Mesa completa móvil reorganizada para Android/iOS en horizontal.
+- Columna izquierda: Jugada, Guía, Repetir.
+- Columna derecha: Libre, Ubicar, Salir.
+- Botón Tirar abajo a la izquierda, frente a la bola de efecto.
+- La mesa se centra y conserva el mayor tamaño lógico sin tapar los diamantes.

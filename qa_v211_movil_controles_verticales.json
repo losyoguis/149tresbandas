@@ -1,0 +1,18 @@
+{
+  "version": "v211_movil_controles_verticales_diamantes_visibles",
+  "estado": "funcional",
+  "ajustes": [
+    "Mesa completa móvil con controles en columnas verticales fuera de la mesa",
+    "Izquierda superior: selector de jugada, Guía y Repetir",
+    "Derecha superior: Libre, Ubicar y Salir",
+    "Tirar ubicado en la parte inferior izquierda frente a la bola de efecto",
+    "Mesa centrada con ancho máximo lógico y diamantes visibles",
+    "Modal móvil mantiene imágenes de referencia en Android/iOS"
+  ],
+  "validaciones": {
+    "sintaxis_js": "OK",
+    "sintaxis_sw": "OK",
+    "assets_jugadas": "heredados_de_v210",
+    "cache": "actualizada_a_v211"
+  }
+}
