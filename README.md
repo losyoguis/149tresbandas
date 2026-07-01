@@ -512,3 +512,13 @@ Ajustes de producción:
 - Tirar: arrástralo hacia arriba o abajo sin disparar accidentalmente si solo reubicas el control.
 - Bola de efecto: al tocar el aro exterior se desplaza el control; al tocar el centro se sigue ajustando el punto de efecto.
 - Service worker actualizado a v220 para evitar caché vieja.
+
+
+## v221 · Potencia móvil libre y Salir fijo
+
+- En Mesa completa móvil, el botón Salir queda visible para volver a la pantalla normal.
+- La potencia del taco ya no queda bloqueada en 159/160%.
+- Se puede subir potencia por etapas levantando y volviendo a halar el taco.
+- También se puede bajar la potencia acercando el taco hacia la bola blanca.
+- Tirar y la bola de efecto conservan desplazamiento vertical para no tapar la zona de tacada.
+- Service worker actualizado a v221 para evitar caché vieja.
