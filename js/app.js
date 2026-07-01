@@ -43,7 +43,7 @@
     // v182 profesional: guía principal persistente + sincronización exacta del efecto
     // durante la preparación y durante la tacada; ya no se borra al atacar.
     // La potencia puede ser larga, pero el paño, las bandas y el efecto mantienen física estable.
-    const PROFESSIONAL_PHYSICS_VERSION = 'v213_movil_controles_reordenados';
+    const PROFESSIONAL_PHYSICS_VERSION = 'v214_taco_suave_controlado';
     const PROFESSIONAL_TABLE_FRICTION = 0.99532;
     const PROFESSIONAL_OBJECT_FRICTION = 0.99472;
     const CUE_SWERVE_STRENGTH = 0.00072; // curvatura sutil por efecto lateral antes/después de bandas.
@@ -652,6 +652,12 @@
 };
 
     const isCoarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+
+    // v214: control del taco más noble en Android/iOS y escritorio.
+    // El arrastre ahora necesita más recorrido para subir potencia y suaviza los micro-movimientos.
+    const CUE_AIM_SMOOTHING = isCoarse ? 0.24 : 0.42;
+    const CUE_POWER_SMOOTHING = isCoarse ? 0.22 : 0.40;
+    const CUE_POWER_STEP = isCoarse ? 2 : 1;
 
     const table = document.getElementById('table');
     const scoreEl = document.getElementById('score');
@@ -8297,6 +8303,11 @@
     function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
     function stopAllBalls() { for (const b of balls) { b.vx = 0; b.vy = 0; } }
     function angleTo(from, to) { return Math.atan2(to.y - from.y, to.x - from.x); }
+    function blendAngle(current, target, alpha) {
+      const a = Number.isFinite(current) ? current : target;
+      const delta = Math.atan2(Math.sin(target - a), Math.cos(target - a));
+      return a + delta * clamp(alpha, 0, 1);
+    }
     function currentPracticeShot() { return practiceShots[practiceIndex] || practiceShots[0]; }
     function ballLabel(id) { return id === 'cue' ? 'blanca' : id === 'red' ? 'roja' : 'amarilla'; }
 
@@ -8358,17 +8369,28 @@
       return `<br><span class="route">Tiro largo activo:</span> potencia extendida habilitada; la mesa conserva la misma física profesional de paño y banda.`;
     }
 
+    function quantizePowerPct(value) {
+      const step = Math.max(1, CUE_POWER_STEP || 1);
+      return Math.round(value / step) * step;
+    }
+
     function powerPctFromPullDistance(dist) {
-      const minPull = isCoarse ? 42 : 36;
-      const normalPull = isCoarse ? 250 : 220;
-      const extendedPull = isCoarse ? 405 : 360;
+      // v214: curva de potencia menos sensible.
+      // Antes, en móvil un pequeño arrastre podía subir demasiado la potencia y hacer que el tiro saliera brusco.
+      // Ahora hay más zona útil, curva progresiva y pasos discretos para que sea más manejable.
+      const minPull = isCoarse ? 58 : 40;
+      const normalPull = isCoarse ? 345 : 255;
+      const extendedPull = isCoarse ? 540 : 415;
       const maxPct = maxPowerPctForShot();
       if (dist <= minPull) return 5;
       if (dist <= normalPull || maxPct <= NORMAL_MAX_POWER_PCT) {
-        return Math.round(clamp((dist - minPull) / (normalPull - minPull) * NORMAL_MAX_POWER_PCT, 5, Math.min(maxPct, NORMAL_MAX_POWER_PCT)));
+        const t = clamp((dist - minPull) / (normalPull - minPull), 0, 1);
+        const eased = Math.pow(t, isCoarse ? 1.34 : 1.16);
+        return Math.round(clamp(quantizePowerPct(5 + eased * (NORMAL_MAX_POWER_PCT - 5)), 5, Math.min(maxPct, NORMAL_MAX_POWER_PCT)));
       }
-      const extra = clamp((dist - normalPull) / (extendedPull - normalPull), 0, 1);
-      return Math.round(clamp(NORMAL_MAX_POWER_PCT + extra * (maxPct - NORMAL_MAX_POWER_PCT), 5, maxPct));
+      const extraT = clamp((dist - normalPull) / (extendedPull - normalPull), 0, 1);
+      const easedExtra = Math.pow(extraT, isCoarse ? 1.22 : 1.08);
+      return Math.round(clamp(quantizePowerPct(NORMAL_MAX_POWER_PCT + easedExtra * (maxPct - NORMAL_MAX_POWER_PCT)), 5, maxPct));
     }
 
     function railRestitutionForCurrentShot() { return RAIL_RESTITUTION; }
@@ -10981,7 +11003,7 @@
       syncPlacementUI();
       setMode('libre', false);
       resetShotState();
-      setGuideText('<strong>Listo:</strong> motor profesional v213 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS y Mesa completa móvil con controles reordenados: Guía encima del selector a la izquierda, Libre/Ubicar/Repetir/Salir a la derecha, bola de efecto abajo a la izquierda y Tirar grande abajo a la derecha con diamantes visibles. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
+      setGuideText('<strong>Listo:</strong> motor profesional v214 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil reordenada y taco suavizado: apuntado más estable, potencia progresiva y tiros menos bruscos. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
     }
 
     function randomTable() {
@@ -11376,8 +11398,17 @@
       if (dist < 14) return;
 
       releaseSelectionGuideLock();
-      aimAngle = Math.atan2(dy, dx);
-      powerPct = powerPctFromPullDistance(dist);
+      const targetAngle = Math.atan2(dy, dx);
+      const targetPower = powerPctFromPullDistance(dist);
+      const hasRealDrag = draggingCue && cuePointerStart && cuePointerMaxMove > (isCoarse ? 5 : 3);
+      if (hasRealDrag) {
+        aimAngle = blendAngle(aimAngle, targetAngle, CUE_AIM_SMOOTHING);
+        powerPct = Math.round(powerPct + (targetPower - powerPct) * CUE_POWER_SMOOTHING);
+        powerPct = Math.round(clamp(quantizePowerPct(powerPct), 5, maxPowerPctForShot()));
+      } else {
+        aimAngle = targetAngle;
+        powerPct = targetPower;
+      }
       markModeDone('taco');
       markModeDone('potencia');
 
