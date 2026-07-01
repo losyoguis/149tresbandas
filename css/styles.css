@@ -4524,3 +4524,312 @@ body.table-fullscreen-mode #fullscreenTableBtn { order: 20 !important; }
     border-radius: 50% !important;
   }
 }
+
+/* v212 · Mesa completa móvil ordenada final.
+   Distribución solicitada para Android/iOS:
+   - Izquierda superior: Jugada, Repetir, Guía.
+   - Derecha superior: Libre, Ubicar, Salir.
+   - Inferior izquierda: bola de efecto grande.
+   - Inferior derecha: Tirar grande, debajo visualmente de Salir.
+   Los controles se alojan en las zonas laterales para dejar visibles los diamantes. */
+@media (orientation: landscape) and (pointer: coarse), (orientation: landscape) and (hover: none), (orientation: landscape) and (max-width: 1180px) {
+  html body.table-fullscreen-mode {
+    --v212-safe-top: max(7px, env(safe-area-inset-top));
+    --v212-safe-bottom: max(7px, env(safe-area-inset-bottom));
+    --v212-safe-left: max(6px, env(safe-area-inset-left));
+    --v212-safe-right: max(6px, env(safe-area-inset-right));
+    --v212-table-w: min(calc(100vw - clamp(174px, 24vw, 260px)), calc(100dvh * 1.785714));
+    --v212-gutter: max(84px, calc((100vw - var(--v212-table-w)) / 2));
+    --v212-btn-w: clamp(76px, calc(var(--v212-gutter) - 26px), 126px);
+    --v212-btn-h: clamp(32px, 7.2vh, 46px);
+    --v212-gap: clamp(6px, 1.35vh, 10px);
+    --v212-main: clamp(78px, min(19vh, calc(var(--v212-gutter) - 20px)), 124px);
+    --v212-left-x: max(var(--v212-safe-left), calc((var(--v212-gutter) - var(--v212-btn-w)) / 2));
+    --v212-right-x: max(var(--v212-safe-right), calc((var(--v212-gutter) - var(--v212-btn-w)) / 2));
+    --v212-main-left-x: max(var(--v212-safe-left), calc((var(--v212-gutter) - var(--v212-main)) / 2));
+    --v212-main-right-x: max(var(--v212-safe-right), calc((var(--v212-gutter) - var(--v212-main)) / 2));
+    background: #020604 !important;
+    overflow: hidden !important;
+  }
+
+  html body.table-fullscreen-mode .app,
+  html body.table-fullscreen-mode .table-shell {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: #020604 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  html body.table-fullscreen-mode .table-shell {
+    z-index: 9990 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  html body.table-fullscreen-mode .table {
+    width: var(--v212-table-w) !important;
+    max-width: var(--v212-table-w) !important;
+    height: auto !important;
+    max-height: 100dvh !important;
+    aspect-ratio: 1000 / 560 !important;
+    margin: 0 auto !important;
+    border-radius: clamp(7px, 1.6vw, 17px) !important;
+  }
+
+  html body.table-fullscreen-mode .hud,
+  html body.table-fullscreen-mode #practicePanel {
+    display: block !important;
+    position: fixed !important;
+    top: var(--v212-safe-top) !important;
+    left: var(--v212-left-x) !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: var(--v212-btn-w) !important;
+    min-width: var(--v212-btn-w) !important;
+    max-width: var(--v212-btn-w) !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    pointer-events: auto !important;
+    z-index: 10340 !important;
+    transform: none !important;
+  }
+
+  html body.table-fullscreen-mode #practicePanel .practice-top,
+  html body.table-fullscreen-mode #practicePanel .practice-controls {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  html body.table-fullscreen-mode #practiceSelect {
+    display: block !important;
+    position: fixed !important;
+    top: var(--v212-safe-top) !important;
+    left: var(--v212-left-x) !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: var(--v212-btn-w) !important;
+    min-width: var(--v212-btn-w) !important;
+    max-width: var(--v212-btn-w) !important;
+    height: var(--v212-btn-h) !important;
+    min-height: var(--v212-btn-h) !important;
+    max-height: var(--v212-btn-h) !important;
+    margin: 0 !important;
+    padding: 0 5px !important;
+    border-radius: 999px !important;
+    font-size: clamp(9px, 2.35vh, 14px) !important;
+    line-height: 1 !important;
+    font-weight: 900 !important;
+    text-align: center !important;
+    color: #06110d !important;
+    background: linear-gradient(180deg, rgba(255, 225, 128, .99), rgba(225, 168, 45, .99)) !important;
+    border: 1px solid rgba(255,255,255,.58) !important;
+    box-shadow: 0 7px 18px rgba(0,0,0,.52), 0 0 14px rgba(255,213,106,.24) !important;
+    z-index: 10360 !important;
+    pointer-events: auto !important;
+  }
+
+  html body.table-fullscreen-mode .bottom-table-actions button {
+    position: fixed !important;
+    width: var(--v212-btn-w) !important;
+    height: var(--v212-btn-h) !important;
+    min-width: var(--v212-btn-w) !important;
+    min-height: var(--v212-btn-h) !important;
+    max-width: var(--v212-btn-w) !important;
+    max-height: var(--v212-btn-h) !important;
+    margin: 0 !important;
+    padding: 0 5px !important;
+    border-radius: 999px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: clamp(9px, 2.35vh, 14px) !important;
+    line-height: 1 !important;
+    font-weight: 900 !important;
+    text-align: center !important;
+    white-space: normal !important;
+    pointer-events: auto !important;
+    opacity: .97 !important;
+    z-index: 10350 !important;
+    transform: none !important;
+    box-shadow: 0 7px 18px rgba(0,0,0,.52) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Izquierda: Jugada, Repetir, Guía. */
+  html body.table-fullscreen-mode #replayBtn {
+    left: var(--v212-left-x) !important;
+    right: auto !important;
+    top: calc(var(--v212-safe-top) + var(--v212-btn-h) + var(--v212-gap)) !important;
+    bottom: auto !important;
+  }
+
+  html body.table-fullscreen-mode #guideBtn {
+    left: var(--v212-left-x) !important;
+    right: auto !important;
+    top: calc(var(--v212-safe-top) + (var(--v212-btn-h) * 2) + (var(--v212-gap) * 2)) !important;
+    bottom: auto !important;
+  }
+
+  /* Derecha: Libre, Ubicar, Salir. */
+  html body.table-fullscreen-mode #exitPracticeBtn {
+    left: auto !important;
+    right: var(--v212-right-x) !important;
+    top: var(--v212-safe-top) !important;
+    bottom: auto !important;
+  }
+
+  html body.table-fullscreen-mode #placeBtn {
+    left: auto !important;
+    right: var(--v212-right-x) !important;
+    top: calc(var(--v212-safe-top) + var(--v212-btn-h) + var(--v212-gap)) !important;
+    bottom: auto !important;
+  }
+
+  html body.table-fullscreen-mode #fullscreenTableBtn {
+    left: auto !important;
+    right: var(--v212-right-x) !important;
+    top: calc(var(--v212-safe-top) + (var(--v212-btn-h) * 2) + (var(--v212-gap) * 2)) !important;
+    bottom: auto !important;
+  }
+
+  /* Inferior izquierda: bola blanca de efecto grande, fuera de la mesa. */
+  html body.table-fullscreen-mode .effect-control:not(.hidden) {
+    position: fixed !important;
+    left: var(--v212-main-left-x) !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: var(--v212-safe-bottom) !important;
+    width: var(--v212-main) !important;
+    height: var(--v212-main) !important;
+    min-width: var(--v212-main) !important;
+    min-height: var(--v212-main) !important;
+    max-width: var(--v212-main) !important;
+    max-height: var(--v212-main) !important;
+    transform: none !important;
+    z-index: 10370 !important;
+    opacity: .98 !important;
+    pointer-events: auto !important;
+    touch-action: none !important;
+  }
+
+  /* Inferior derecha: Tirar grande, alineado debajo de Salir. */
+  html body.table-fullscreen-mode #shootBtn,
+  html body.table-fullscreen-mode #shootBtn.primary-action {
+    position: fixed !important;
+    left: auto !important;
+    right: var(--v212-main-right-x) !important;
+    top: auto !important;
+    bottom: var(--v212-safe-bottom) !important;
+    width: var(--v212-main) !important;
+    height: var(--v212-main) !important;
+    min-width: var(--v212-main) !important;
+    min-height: var(--v212-main) !important;
+    max-width: var(--v212-main) !important;
+    max-height: var(--v212-main) !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    font-size: clamp(16px, 4.3vh, 28px) !important;
+    line-height: 1 !important;
+    letter-spacing: .01em !important;
+    z-index: 10380 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 0 0 4px rgba(255,255,255,.16), 0 0 30px rgba(255,213,106,.48), 0 13px 30px rgba(0,0,0,.60) !important;
+  }
+
+  html body.table-fullscreen-mode .effect-ball {
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    pointer-events: auto !important;
+    touch-action: none !important;
+  }
+
+  html body.table-fullscreen-mode .effect-dot {
+    width: clamp(17px, 4.8vh, 28px) !important;
+    height: clamp(17px, 4.8vh, 28px) !important;
+    pointer-events: auto !important;
+    touch-action: none !important;
+  }
+}
+
+@media (orientation: portrait) and (pointer: coarse), (orientation: portrait) and (hover: none), (orientation: portrait) and (max-width: 760px) {
+  html body.table-fullscreen-mode {
+    --v212-safe-top: max(8px, env(safe-area-inset-top));
+    --v212-safe-bottom: max(8px, env(safe-area-inset-bottom));
+    --v212-safe-left: max(6px, env(safe-area-inset-left));
+    --v212-safe-right: max(6px, env(safe-area-inset-right));
+    --v212-btn-w: clamp(78px, 25vw, 112px);
+    --v212-btn-h: clamp(32px, 8.4vw, 44px);
+    --v212-main: clamp(86px, 26vw, 122px);
+    --v212-gap: clamp(5px, 1.6vw, 9px);
+  }
+
+  html body.table-fullscreen-mode #practiceSelect,
+  html body.table-fullscreen-mode #replayBtn,
+  html body.table-fullscreen-mode #guideBtn {
+    left: var(--v212-safe-left) !important;
+    right: auto !important;
+  }
+
+  html body.table-fullscreen-mode #practiceSelect {
+    top: var(--v212-safe-top) !important;
+  }
+
+  html body.table-fullscreen-mode #replayBtn {
+    top: calc(var(--v212-safe-top) + var(--v212-btn-h) + var(--v212-gap)) !important;
+  }
+
+  html body.table-fullscreen-mode #guideBtn {
+    top: calc(var(--v212-safe-top) + (var(--v212-btn-h) * 2) + (var(--v212-gap) * 2)) !important;
+  }
+
+  html body.table-fullscreen-mode #exitPracticeBtn,
+  html body.table-fullscreen-mode #placeBtn,
+  html body.table-fullscreen-mode #fullscreenTableBtn {
+    left: auto !important;
+    right: var(--v212-safe-right) !important;
+  }
+
+  html body.table-fullscreen-mode #exitPracticeBtn { top: var(--v212-safe-top) !important; }
+  html body.table-fullscreen-mode #placeBtn { top: calc(var(--v212-safe-top) + var(--v212-btn-h) + var(--v212-gap)) !important; }
+  html body.table-fullscreen-mode #fullscreenTableBtn { top: calc(var(--v212-safe-top) + (var(--v212-btn-h) * 2) + (var(--v212-gap) * 2)) !important; }
+
+  html body.table-fullscreen-mode .effect-control:not(.hidden) {
+    left: var(--v212-safe-left) !important;
+    bottom: var(--v212-safe-bottom) !important;
+    width: var(--v212-main) !important;
+    height: var(--v212-main) !important;
+    min-width: var(--v212-main) !important;
+    min-height: var(--v212-main) !important;
+  }
+
+  html body.table-fullscreen-mode #shootBtn,
+  html body.table-fullscreen-mode #shootBtn.primary-action {
+    left: auto !important;
+    right: var(--v212-safe-right) !important;
+    bottom: var(--v212-safe-bottom) !important;
+    width: var(--v212-main) !important;
+    height: var(--v212-main) !important;
+    min-width: var(--v212-main) !important;
+    min-height: var(--v212-main) !important;
+  }
+}
