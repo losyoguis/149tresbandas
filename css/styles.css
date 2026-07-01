@@ -5168,7 +5168,7 @@ body.table-fullscreen-mode #fullscreenTableBtn { order: 20 !important; }
     left: auto !important;
     right: max(var(--v216-safe-right), calc((var(--v216-gutter) - var(--v216-main)) / 2)) !important;
     top: auto !important;
-    bottom: var(--v216-safe-bottom) !important;
+    bottom: var(--mobile-fs-shoot-bottom, var(--v216-safe-bottom)) !important;
     width: var(--v216-main) !important;
     height: var(--v216-main) !important;
     min-width: var(--v216-main) !important;
@@ -5192,7 +5192,7 @@ body.table-fullscreen-mode #fullscreenTableBtn { order: 20 !important; }
     left: max(var(--v216-safe-left), calc((var(--v216-gutter) - var(--v216-main)) / 2)) !important;
     right: auto !important;
     top: auto !important;
-    bottom: var(--v216-safe-bottom) !important;
+    bottom: var(--mobile-fs-effect-bottom, var(--v216-safe-bottom)) !important;
     width: var(--v216-main) !important;
     height: var(--v216-main) !important;
     min-width: var(--v216-main) !important;
@@ -5486,5 +5486,38 @@ body.table-fullscreen-mode #fullscreenTableBtn { order: 20 !important; }
   body.table-fullscreen-mode #shootBtn.primary-action:active,
   body.table-fullscreen-mode .effect-ball:active {
     cursor: grabbing !important;
+  }
+}
+
+
+/* v221 · Mesa completa móvil pulida: Salir siempre visible y controles desplazables efectivos. */
+@media (max-width: 980px), (pointer: coarse) {
+  html body.table-fullscreen-mode #shootBtn,
+  html body.table-fullscreen-mode #shootBtn.primary-action {
+    bottom: var(--mobile-fs-shoot-bottom, var(--v216-safe-bottom, max(8px, env(safe-area-inset-bottom)))) !important;
+    touch-action: none !important;
+  }
+
+  html body.table-fullscreen-mode .effect-control:not(.hidden) {
+    bottom: var(--mobile-fs-effect-bottom, var(--v216-safe-bottom, max(8px, env(safe-area-inset-bottom)))) !important;
+    touch-action: none !important;
+  }
+
+  html body.table-fullscreen-mode .mobile-fs-quick-exit-btn:not([hidden]) {
+    display: inline-flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 13050 !important;
+  }
+}
+
+
+/* v222 · Salir siempre visible y controles móviles priorizados en Mesa completa. */
+@media (max-width: 980px), (pointer: coarse) {
+  body.table-fullscreen-mode #mobileFsQuickExitBtn:not([hidden]) {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: .96 !important;
+    z-index: 13000 !important;
   }
 }
