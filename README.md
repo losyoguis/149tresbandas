@@ -540,3 +540,10 @@ Ajustes de producción:
 - Permite seguir con otra jugada sin esperar a que todas las bolas se frenen lentamente.
 - Conserva replay, marcador, iluminación predictiva, potencia móvil reversible y botón Salir en Mesa completa móvil.
 - Service worker actualizado a v223 para evitar caché vieja.
+
+
+## v224 · Salir móvil asegurado
+
+- En Mesa completa móvil, el botón **Salir** queda visible de forma fija arriba a la derecha.
+- Se mantiene la parada rápida de carambola, la potencia móvil reversible y los controles desplazables.
+- Service worker actualizado a v224 para evitar caché vieja.
