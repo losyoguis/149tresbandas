@@ -448,3 +448,12 @@ Ajustes de producción:
 - En el lado derecho se ordenan los controles en columna: Libre, Ubicar, Repetir y Salir.
 - Se conservan Tirar y la bola de efecto grandes en la parte inferior, fuera del área útil de la mesa.
 - Se mantiene la prioridad de mesa grande y diamantes visibles en Android/iOS.
+
+
+## v214 · Taco suave y potencia controlada
+
+- Se suavizó el apuntado del taco para evitar saltos por micro-movimientos del dedo.
+- En móviles Android/iOS se amplió el recorrido necesario para subir potencia.
+- La potencia ahora crece con curva progresiva y pasos discretos, evitando tiros demasiado rápidos por accidente.
+- Se conserva la física profesional, la guía predictiva, el modo mesa completa móvil y la bola de efecto externa.
+- Service worker actualizado a v214 para evitar caché vieja.

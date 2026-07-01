@@ -1,0 +1,16 @@
+{
+  "version": "v214_taco_suave_controlado",
+  "estado": "OK",
+  "cambios": [
+    "Apuntado del taco suavizado con interpolacion angular para evitar saltos bruscos.",
+    "Potencia del taco recalibrada con curva progresiva, especialmente en pantallas tactiles Android/iOS.",
+    "Mayor recorrido de arrastre para alcanzar potencias altas y tiro largo.",
+    "Potencia discretizada en movil para que el control sea mas manejable.",
+    "Se conserva la fisica profesional, guias, modo mesa completa movil y control de efecto externo."
+  ],
+  "validaciones": [
+    "js/app.js sin errores de sintaxis",
+    "sw.js sin errores de sintaxis",
+    "ZIP generado para produccion"
+  ]
+}
