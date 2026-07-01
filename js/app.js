@@ -43,7 +43,7 @@
     // v182 profesional: guía principal persistente + sincronización exacta del efecto
     // durante la preparación y durante la tacada; ya no se borra al atacar.
     // La potencia puede ser larga, pero el paño, las bandas y el efecto mantienen física estable.
-    const PROFESSIONAL_PHYSICS_VERSION = 'v209_movil_efecto_externo_mesa_completa';
+    const PROFESSIONAL_PHYSICS_VERSION = 'v210_movil_ui_equilibrada_mesa_maxima';
     const PROFESSIONAL_TABLE_FRICTION = 0.99532;
     const PROFESSIONAL_OBJECT_FRICTION = 0.99472;
     const CUE_SWERVE_STRENGTH = 0.00072; // curvatura sutil por efecto lateral antes/después de bandas.
@@ -10981,7 +10981,7 @@
       syncPlacementUI();
       setMode('libre', false);
       resetShotState();
-      setGuideText('<strong>Listo:</strong> motor profesional v209 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, efecto visual transparente para la física, video móvil optimizado para Android/iOS, Mesa completa móvil con controles ordenados y control de efecto externo: selector/Repetir/Guía a la izquierda, Libre/Ubicar/Salir a la derecha, botón Tirar grande abajo a la derecha y bola de efecto grande abajo a la izquierda. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
+      setGuideText('<strong>Listo:</strong> motor profesional v210 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, efecto visual transparente para la física, video móvil optimizado para Android/iOS y Mesa completa móvil equilibrada: controles ordenados en los laterales sin tapar la mesa, botón Tirar grande abajo a la derecha y bola de efecto grande abajo a la izquierda. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
     }
 
     function randomTable() {
