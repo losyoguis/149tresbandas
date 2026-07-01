@@ -43,7 +43,7 @@
     // v182 profesional: guía principal persistente + sincronización exacta del efecto
     // durante la preparación y durante la tacada; ya no se borra al atacar.
     // La potencia puede ser larga, pero el paño, las bandas y el efecto mantienen física estable.
-    const PROFESSIONAL_PHYSICS_VERSION = 'v212_movil_controles_finales_diamantes_visibles';
+    const PROFESSIONAL_PHYSICS_VERSION = 'v213_movil_controles_reordenados';
     const PROFESSIONAL_TABLE_FRICTION = 0.99532;
     const PROFESSIONAL_OBJECT_FRICTION = 0.99472;
     const CUE_SWERVE_STRENGTH = 0.00072; // curvatura sutil por efecto lateral antes/después de bandas.
@@ -10981,7 +10981,7 @@
       syncPlacementUI();
       setMode('libre', false);
       resetShotState();
-      setGuideText('<strong>Listo:</strong> motor profesional v212 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS y Mesa completa móvil con controles finales fuera de la mesa: Jugada/Repetir/Guía a la izquierda, Libre/Ubicar/Salir a la derecha, bola de efecto abajo a la izquierda y Tirar grande abajo a la derecha con diamantes visibles. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
+      setGuideText('<strong>Listo:</strong> motor profesional v213 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS y Mesa completa móvil con controles reordenados: Guía encima del selector a la izquierda, Libre/Ubicar/Repetir/Salir a la derecha, bola de efecto abajo a la izquierda y Tirar grande abajo a la derecha con diamantes visibles. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
     }
 
     function randomTable() {
