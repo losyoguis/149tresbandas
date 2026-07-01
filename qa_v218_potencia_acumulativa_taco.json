@@ -1,0 +1,16 @@
+{
+  "version": "v218_potencia_acumulativa_taco",
+  "base": "v217_sin_guia_dinamica_movil",
+  "fecha": "2026-07-01",
+  "cambios": [
+    "Potencia acumulativa del taco en móviles: permite levantar y volver a halar para seguir aumentando potencia.",
+    "Protección contra caída accidental de potencia al retomar el taco en Android/iOS.",
+    "La guía/taco mantienen suavizado y zona muerta de v215.",
+    "Se conserva Mesa completa móvil con menú compacto, Tirar y bola de efecto externos."
+  ],
+  "validaciones": [
+    "js/app.js sin errores de sintaxis con node --check",
+    "sw.js actualizado a caché v218",
+    "index.html actualizado con meta app-version v218"
+  ]
+}

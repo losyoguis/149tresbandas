@@ -1,0 +1,16 @@
+{
+  "version": "v217_sin_guia_dinamica_movil",
+  "fecha_generacion": "2026-07-01T02:51:52Z",
+  "cambios": [
+    "Oculta #deflectionGuidePanel solo en móviles por CSS responsive.",
+    "Mantiene visible la guía dinámica en pantallas grandes fuera de Mesa completa.",
+    "Conserva guía principal de ruta, guía amarilla predictiva, bola de efecto externa y botón Tirar móvil.",
+    "Actualiza versión interna y service worker para evitar caché vieja."
+  ],
+  "validaciones_esperadas": {
+    "mobile_width_<=860": "#deflectionGuidePanel display none",
+    "mobile_landscape_coarse_height_<=520": "#deflectionGuidePanel display none",
+    "desktop_width_>861_height_>521": "#deflectionGuidePanel visible fuera de Mesa completa",
+    "table_fullscreen": "#deflectionGuidePanel oculto como en versiones anteriores"
+  }
+}

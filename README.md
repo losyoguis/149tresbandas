@@ -477,3 +477,38 @@ Ajustes de producción:
 - El modal permite usar: Guía, Repetir tiro, Videotutorial, Ver replay, Demostración, Modo libre, Ubicar bolas, Nueva posición y Salir de Mesa completa.
 - La mesa conserva el máximo tamaño posible y se reducen los elementos que tapan los diamantes.
 - Service worker actualizado a v216 para evitar caché vieja.
+
+
+## v217 · Guía dinámica oculta en móviles
+
+- Se ocultó el panel **Guía dinámica: contacto real entre bolas** únicamente en celulares/móviles.
+- En computadores, tablets grandes, pantallas grandes y TV la guía dinámica se mantiene visible.
+- En móviles se prioriza una mesa más limpia, con mayor espacio visual y sin ocupar pantalla con el panel lateral de explicación.
+- Se conserva la guía principal de ruta, la línea amarilla predictiva, la bola de efecto externa, el botón Tirar grande y el menú compacto de Mesa completa móvil.
+- Service worker actualizado a v217 para evitar caché vieja.
+
+
+## v218 · Potencia acumulativa del taco
+
+- En móviles, al preparar la tacada se puede cargar potencia por etapas.
+- Ejemplo: halar el taco hasta 70%, levantar el dedo/taco y volver a halar para seguir aumentando la potencia sin reiniciar desde cero.
+- La potencia ya no baja accidentalmente al volver a tocar el taco en Mesa completa móvil.
+- Se conserva la guía más estable y manejable de v215.
+- Se mantiene la guía dinámica oculta solo en móviles y visible en pantallas grandes.
+- Service worker actualizado a v218 para evitar caché vieja.
+
+
+## v219 · Botón Salir directo en móvil
+
+- En Mesa completa móvil se agregó un botón visible **Salir** para volver a la pantalla normal sin abrir el menú de opciones.
+- El botón **Opciones** queda arriba a la izquierda y **Salir** arriba a la derecha para no tapar la mesa, los diamantes, la bola de efecto ni el botón Tirar.
+- Se conserva la potencia acumulativa del taco, la guía estable y el menú compacto de herramientas.
+- Service worker actualizado a v219 para evitar caché vieja.
+
+
+## v220 · Controles móviles desplazables
+
+- En Mesa completa móvil, la bola de efecto y el botón Tirar se pueden desplazar verticalmente.
+- Tirar: arrástralo hacia arriba o abajo sin disparar accidentalmente si solo reubicas el control.
+- Bola de efecto: al tocar el aro exterior se desplaza el control; al tocar el centro se sigue ajustando el punto de efecto.
+- Service worker actualizado a v220 para evitar caché vieja.

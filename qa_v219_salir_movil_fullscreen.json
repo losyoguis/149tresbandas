@@ -1,0 +1,17 @@
+{
+  "version": "v219_salir_movil_fullscreen",
+  "descripcion": "Boton Salir visible en Mesa completa movil para volver a la pantalla normal sin abrir el modal de opciones.",
+  "base": "v218_potencia_acumulativa_taco",
+  "cambios": [
+    "Agregado mobileFsQuickExitBtn en index.html",
+    "CSS responsive para mostrar Salir solo en Mesa completa movil",
+    "Opciones se reubica arriba a la izquierda y Salir arriba a la derecha",
+    "JS sincroniza visibilidad del boton y ejecuta fullscreenTableBtn para salir"
+  ],
+  "validaciones_esperadas": [
+    "En movil + Mesa completa se ve Salir sin abrir Opciones",
+    "Al tocar Salir vuelve a pantalla normal",
+    "En pantallas grandes no aparece el boton movil",
+    "No se altera el boton Tirar ni la bola de efecto externa"
+  ]
+}

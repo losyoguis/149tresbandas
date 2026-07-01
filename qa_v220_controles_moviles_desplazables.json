@@ -1,0 +1,11 @@
+{
+  "version": "v220",
+  "titulo": "Controles móviles desplazables",
+  "estado": "ok",
+  "cambios": [
+    "En Mesa completa móvil, Tirar puede desplazarse verticalmente",
+    "La bola de efecto puede desplazarse verticalmente tocando el aro exterior",
+    "El centro de la bola sigue permitiendo mover el punto de efecto",
+    "Se evita disparo accidental al arrastrar Tirar"
+  ]
+}
