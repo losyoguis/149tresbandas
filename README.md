@@ -430,3 +430,13 @@ Ajustes de producción:
 - Columna derecha: Libre, Ubicar, Salir.
 - Botón Tirar abajo a la izquierda, frente a la bola de efecto.
 - La mesa se centra y conserva el mayor tamaño lógico sin tapar los diamantes.
+
+
+## v212 · Controles móviles finales y botones grandes
+
+- En Mesa completa móvil se reorganizan los controles para que no tapen los diamantes.
+- Columna izquierda: selector de jugada, Repetir y Guía.
+- Columna derecha: Libre, Ubicar y Salir.
+- La bola blanca de efecto queda grande abajo a la izquierda, fuera de la mesa.
+- El botón Tirar queda grande abajo a la derecha, debajo visualmente de Salir.
+- Se conserva el modal móvil con imágenes visibles en Android/iOS.

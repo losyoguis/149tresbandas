@@ -1,0 +1,21 @@
+{
+  "version": "v212_movil_controles_finales_diamantes_visibles",
+  "fecha": "2026-07-01",
+  "estado": "OK",
+  "cambios": [
+    "Mesa completa móvil con controles en columnas laterales sin tapar diamantes",
+    "Izquierda: Jugada, Repetir, Guía",
+    "Derecha: Libre, Ubicar, Salir",
+    "Bola de efecto grande abajo a la izquierda",
+    "Tirar grande abajo a la derecha debajo visualmente de Salir",
+    "Se mantiene efecto táctil movible y modal móvil con imágenes"
+  ],
+  "validaciones": {
+    "css_responsive": true,
+    "botones_fuera_de_mesa": true,
+    "diamantes_visibles": true,
+    "efecto_tactil_movil": true,
+    "sintaxis_js": true,
+    "sintaxis_sw": true
+  }
+}
