@@ -43,7 +43,7 @@
     // v182 profesional: guía principal persistente + sincronización exacta del efecto
     // durante la preparación y durante la tacada; ya no se borra al atacar.
     // La potencia puede ser larga, pero el paño, las bandas y el efecto mantienen física estable.
-    const PROFESSIONAL_PHYSICS_VERSION = 'v210_movil_ui_equilibrada_mesa_maxima';
+    const PROFESSIONAL_PHYSICS_VERSION = 'v211_movil_controles_verticales_diamantes_visibles';
     const PROFESSIONAL_TABLE_FRICTION = 0.99532;
     const PROFESSIONAL_OBJECT_FRICTION = 0.99472;
     const CUE_SWERVE_STRENGTH = 0.00072; // curvatura sutil por efecto lateral antes/después de bandas.
@@ -10662,7 +10662,7 @@
       syncTableFullscreenUI();
       if (announce) {
         setGuideText(next
-          ? '<strong>Mesa completa:</strong> modo activado. En móvil verás selector, Repetir y Guía arriba a la izquierda; Libre, Ubicar y Salir arriba a la derecha; y <span class="route">Tirar</span> grande abajo a la derecha.'
+          ? '<strong>Mesa completa:</strong> modo activado. En móvil verás Jugada, Guía y Repetir en columna a la izquierda; Libre, Ubicar y Salir en columna a la derecha; y <span class="route">Tirar</span> abajo a la izquierda frente a la bola de efecto, sin tapar los diamantes.'
           : '<strong>Mesa completa:</strong> modo normal activado.');
       }
     }
@@ -10981,7 +10981,7 @@
       syncPlacementUI();
       setMode('libre', false);
       resetShotState();
-      setGuideText('<strong>Listo:</strong> motor profesional v210 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, efecto visual transparente para la física, video móvil optimizado para Android/iOS y Mesa completa móvil equilibrada: controles ordenados en los laterales sin tapar la mesa, botón Tirar grande abajo a la derecha y bola de efecto grande abajo a la izquierda. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
+      setGuideText('<strong>Listo:</strong> motor profesional v211 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS y Mesa completa móvil con controles verticales fuera de la mesa: Jugada/Guía/Repetir a la izquierda, Libre/Ubicar/Salir a la derecha, Tirar abajo a la izquierda frente a la bola de efecto y diamantes visibles. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
     }
 
     function randomTable() {
