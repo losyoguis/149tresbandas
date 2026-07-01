@@ -43,7 +43,7 @@
     // v182 profesional: guía principal persistente + sincronización exacta del efecto
     // durante la preparación y durante la tacada; ya no se borra al atacar.
     // La potencia puede ser larga, pero el paño, las bandas y el efecto mantienen física estable.
-    const PROFESSIONAL_PHYSICS_VERSION = 'v214_taco_suave_controlado';
+    const PROFESSIONAL_PHYSICS_VERSION = 'v215_taco_guia_mas_manejable';
     const PROFESSIONAL_TABLE_FRICTION = 0.99532;
     const PROFESSIONAL_OBJECT_FRICTION = 0.99472;
     const CUE_SWERVE_STRENGTH = 0.00072; // curvatura sutil por efecto lateral antes/después de bandas.
@@ -653,11 +653,14 @@
 
     const isCoarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
 
-    // v214: control del taco más noble en Android/iOS y escritorio.
-    // El arrastre ahora necesita más recorrido para subir potencia y suaviza los micro-movimientos.
-    const CUE_AIM_SMOOTHING = isCoarse ? 0.24 : 0.42;
-    const CUE_POWER_SMOOTHING = isCoarse ? 0.22 : 0.40;
-    const CUE_POWER_STEP = isCoarse ? 2 : 1;
+    // v215: taco y guía más manejables, especialmente en Android/iOS.
+    // Se reduce la sensibilidad angular, se agrega zona muerta y se evita que pequeños temblores del dedo muevan la guía.
+    const CUE_AIM_SMOOTHING = isCoarse ? 0.13 : 0.32;
+    const CUE_POWER_SMOOTHING = isCoarse ? 0.14 : 0.32;
+    const CUE_POWER_STEP = isCoarse ? 3 : 1;
+    const CUE_AIM_DEADZONE_RAD = (Math.PI / 180) * (isCoarse ? 0.55 : 0.18);
+    const CUE_AIM_SNAP_RAD = (Math.PI / 180) * (isCoarse ? 0.25 : 0);
+    const CUE_MIN_AIM_PULL = isCoarse ? 48 : 22;
 
     const table = document.getElementById('table');
     const scoreEl = document.getElementById('score');
@@ -8308,6 +8311,18 @@
       const delta = Math.atan2(Math.sin(target - a), Math.cos(target - a));
       return a + delta * clamp(alpha, 0, 1);
     }
+    function angleDeltaSigned(current, target) {
+      const a = Number.isFinite(current) ? current : target;
+      return Math.atan2(Math.sin(target - a), Math.cos(target - a));
+    }
+    function stabilizeAimAngleForCue(current, target) {
+      if (!isCoarse) return blendAngle(current, target, CUE_AIM_SMOOTHING);
+      const delta = angleDeltaSigned(current, target);
+      if (Math.abs(delta) < CUE_AIM_DEADZONE_RAD) return current;
+      let next = blendAngle(current, target, CUE_AIM_SMOOTHING);
+      if (CUE_AIM_SNAP_RAD > 0) next = Math.round(next / CUE_AIM_SNAP_RAD) * CUE_AIM_SNAP_RAD;
+      return next;
+    }
     function currentPracticeShot() { return practiceShots[practiceIndex] || practiceShots[0]; }
     function ballLabel(id) { return id === 'cue' ? 'blanca' : id === 'red' ? 'roja' : 'amarilla'; }
 
@@ -8375,12 +8390,11 @@
     }
 
     function powerPctFromPullDistance(dist) {
-      // v214: curva de potencia menos sensible.
-      // Antes, en móvil un pequeño arrastre podía subir demasiado la potencia y hacer que el tiro saliera brusco.
-      // Ahora hay más zona útil, curva progresiva y pasos discretos para que sea más manejable.
-      const minPull = isCoarse ? 58 : 40;
-      const normalPull = isCoarse ? 345 : 255;
-      const extendedPull = isCoarse ? 540 : 415;
+      // v215: curva de potencia todavía más progresiva.
+      // En móvil se necesita más recorrido para mover la guía/potencia y se evitan saltos bruscos.
+      const minPull = isCoarse ? 72 : 44;
+      const normalPull = isCoarse ? 410 : 280;
+      const extendedPull = isCoarse ? 630 : 445;
       const maxPct = maxPowerPctForShot();
       if (dist <= minPull) return 5;
       if (dist <= normalPull || maxPct <= NORMAL_MAX_POWER_PCT) {
@@ -11003,7 +11017,7 @@
       syncPlacementUI();
       setMode('libre', false);
       resetShotState();
-      setGuideText('<strong>Listo:</strong> motor profesional v214 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil reordenada y taco suavizado: apuntado más estable, potencia progresiva y tiros menos bruscos. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
+      setGuideText('<strong>Listo:</strong> motor profesional v215 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil reordenada y taco/guía más manejables: menos sensibilidad angular, zona muerta contra temblores del dedo, potencia progresiva y tiros menos bruscos. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
     }
 
     function randomTable() {
@@ -11395,20 +11409,31 @@
       const dx = cue.x - p.x;
       const dy = cue.y - p.y;
       const dist = Math.hypot(dx, dy);
-      if (dist < 14) return;
+      if (dist < CUE_MIN_AIM_PULL) return;
 
       releaseSelectionGuideLock();
       const targetAngle = Math.atan2(dy, dx);
       const targetPower = powerPctFromPullDistance(dist);
-      const hasRealDrag = draggingCue && cuePointerStart && cuePointerMaxMove > (isCoarse ? 5 : 3);
+      const hasRealDrag = draggingCue && cuePointerStart && cuePointerMaxMove > (isCoarse ? 9 : 4);
+      let changed = false;
       if (hasRealDrag) {
-        aimAngle = blendAngle(aimAngle, targetAngle, CUE_AIM_SMOOTHING);
-        powerPct = Math.round(powerPct + (targetPower - powerPct) * CUE_POWER_SMOOTHING);
-        powerPct = Math.round(clamp(quantizePowerPct(powerPct), 5, maxPowerPctForShot()));
+        const nextAngle = stabilizeAimAngleForCue(aimAngle, targetAngle);
+        if (Math.abs(angleDeltaSigned(aimAngle, nextAngle)) >= (isCoarse ? CUE_AIM_DEADZONE_RAD * 0.25 : 0.0005)) {
+          aimAngle = nextAngle;
+          changed = true;
+        }
+        const smoothedPower = Math.round(powerPct + (targetPower - powerPct) * CUE_POWER_SMOOTHING);
+        const nextPower = Math.round(clamp(quantizePowerPct(smoothedPower), 5, maxPowerPctForShot()));
+        if (Math.abs(nextPower - powerPct) >= (isCoarse ? CUE_POWER_STEP : 1)) {
+          powerPct = nextPower;
+          changed = true;
+        }
       } else {
         aimAngle = targetAngle;
         powerPct = targetPower;
+        changed = true;
       }
+      if (!changed) return;
       markModeDone('taco');
       markModeDone('potencia');
 
