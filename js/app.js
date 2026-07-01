@@ -43,7 +43,7 @@
     // v182 profesional: guía principal persistente + sincronización exacta del efecto
     // durante la preparación y durante la tacada; ya no se borra al atacar.
     // La potencia puede ser larga, pero el paño, las bandas y el efecto mantienen física estable.
-    const PROFESSIONAL_PHYSICS_VERSION = 'v215_taco_guia_mas_manejable';
+    const PROFESSIONAL_PHYSICS_VERSION = 'v216_menu_movil_fullscreen';
     const PROFESSIONAL_TABLE_FRICTION = 0.99532;
     const PROFESSIONAL_OBJECT_FRICTION = 0.99472;
     const CUE_SWERVE_STRENGTH = 0.00072; // curvatura sutil por efecto lateral antes/después de bandas.
@@ -11017,7 +11017,7 @@
       syncPlacementUI();
       setMode('libre', false);
       resetShotState();
-      setGuideText('<strong>Listo:</strong> motor profesional v215 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil reordenada y taco/guía más manejables: menos sensibilidad angular, zona muerta contra temblores del dedo, potencia progresiva y tiros menos bruscos. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
+      setGuideText('<strong>Listo:</strong> motor profesional v216 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil reordenada y taco/guía más manejables: menos sensibilidad angular, zona muerta contra temblores del dedo, potencia progresiva y tiros menos bruscos. La ruta verde de la jugada queda visible antes, durante y después de atacar; si ajustas manualmente, la línea amarilla puede mostrar la física libre sin borrar la guía principal.');
     }
 
     function randomTable() {
@@ -13957,3 +13957,126 @@
     window.addEventListener('resize', updateBallViewer, { passive: true });
     requestAnimationFrame(loop);
   })();
+
+// v216 · Menú modal para Mesa completa móvil.
+// Mantiene la mesa despejada: solo quedan visibles Tirar, bola de efecto y el botón Opciones.
+(() => {
+  const ready = (fn) => {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn, { once: true });
+    else fn();
+  };
+
+  ready(() => {
+    const menuBtn = document.getElementById('mobileFsMenuBtn');
+    const modal = document.getElementById('mobileFsMenuModal');
+    const closeBtn = document.getElementById('mobileFsMenuClose');
+    const mobileSelect = document.getElementById('mobileFsPracticeSelect');
+    const originalSelect = document.getElementById('practiceSelect');
+    const body = document.body;
+
+    if (!menuBtn || !modal || !mobileSelect || !originalSelect) return;
+
+    const isMobileLike = () => window.matchMedia('(max-width: 980px), (pointer: coarse)').matches;
+    const isFullTable = () => body.classList.contains('table-fullscreen-mode');
+
+    const proxyButtons = Array.from(modal.querySelectorAll('[data-proxy]'));
+
+    function copySelectOptions() {
+      if (mobileSelect.innerHTML !== originalSelect.innerHTML) {
+        mobileSelect.innerHTML = originalSelect.innerHTML;
+      }
+      mobileSelect.value = originalSelect.value || '';
+    }
+
+    function syncProxyButtons() {
+      copySelectOptions();
+      proxyButtons.forEach(btn => {
+        const target = document.getElementById(btn.dataset.proxy || '');
+        if (!target) return;
+        btn.disabled = !!target.disabled;
+        const targetText = (target.textContent || '').trim();
+        if (targetText) btn.textContent = targetText;
+        const pressed = target.getAttribute('aria-pressed');
+        if (pressed !== null) btn.setAttribute('aria-pressed', pressed);
+        else btn.removeAttribute('aria-pressed');
+      });
+    }
+
+    function syncLauncherVisibility() {
+      const show = isFullTable() && isMobileLike();
+      menuBtn.hidden = !show;
+      menuBtn.setAttribute('aria-expanded', modal.classList.contains('open') ? 'true' : 'false');
+      if (!show) closeMenu();
+    }
+
+    function openMenu() {
+      if (!isFullTable() || !isMobileLike()) return;
+      syncProxyButtons();
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      menuBtn.setAttribute('aria-expanded', 'true');
+      setTimeout(() => mobileSelect.focus({ preventScroll: true }), 30);
+    }
+
+    function closeMenu() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    menuBtn.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      evt.stopPropagation();
+      if (modal.classList.contains('open')) closeMenu();
+      else openMenu();
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      closeMenu();
+    });
+
+    modal.addEventListener('click', (evt) => {
+      if (evt.target === modal) closeMenu();
+    });
+
+    mobileSelect.addEventListener('change', () => {
+      originalSelect.value = mobileSelect.value;
+      originalSelect.dispatchEvent(new Event('change', { bubbles: true }));
+      setTimeout(syncProxyButtons, 80);
+      closeMenu();
+    });
+
+    proxyButtons.forEach(btn => {
+      btn.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        evt.stopPropagation();
+        const target = document.getElementById(btn.dataset.proxy || '');
+        if (!target || target.disabled) return;
+        target.click();
+        setTimeout(syncProxyButtons, 80);
+        if (btn.dataset.proxy === 'fullscreenTableBtn' || btn.dataset.proxy === 'videoBtn') closeMenu();
+      });
+    });
+
+    document.addEventListener('keydown', (evt) => {
+      if (evt.key === 'Escape' && modal.classList.contains('open')) {
+        evt.preventDefault();
+        closeMenu();
+      }
+    });
+
+    const observer = new MutationObserver(syncLauncherVisibility);
+    observer.observe(body, { attributes: true, attributeFilter: ['class'] });
+
+    ['resize', 'orientationchange'].forEach(name => window.addEventListener(name, syncLauncherVisibility, { passive: true }));
+    originalSelect.addEventListener('change', () => setTimeout(copySelectOptions, 60));
+
+    setInterval(() => {
+      if (modal.classList.contains('open')) syncProxyButtons();
+      syncLauncherVisibility();
+    }, 700);
+
+    syncLauncherVisibility();
+  });
+})();
