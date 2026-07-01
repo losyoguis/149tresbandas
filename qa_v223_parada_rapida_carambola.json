@@ -1,0 +1,12 @@
+{
+  "version": "v223",
+  "titulo": "Parada rápida después de la carambola",
+  "estado": "ok",
+  "alcance": "todas las pantallas",
+  "cambios": [
+    "Después de tocar la segunda bola y resolver la carambola, las bolas se detienen automáticamente",
+    "No es necesario esperar a que las bolas pierdan toda la velocidad por fricción",
+    "Se conserva el resultado del tiro, el marcador, el replay y la iluminación predictiva",
+    "En Mesa completa móvil se mantiene botón Salir visible, potencia reversible y controles desplazables"
+  ]
+}

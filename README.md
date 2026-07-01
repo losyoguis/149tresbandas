@@ -522,3 +522,21 @@ Ajustes de producción:
 - También se puede bajar la potencia acercando el taco hacia la bola blanca.
 - Tirar y la bola de efecto conservan desplazamiento vertical para no tapar la zona de tacada.
 - Service worker actualizado a v221 para evitar caché vieja.
+
+
+## v222 · Potencia móvil reversible
+
+- En Mesa completa móvil se conserva el botón Salir visible para volver a la pantalla normal.
+- La potencia del taco ahora puede aumentarse y también quitarse en varios intentos continuos.
+- Al halar hacia atrás se suma potencia por etapas; al acercar el taco a la bola se resta potencia por etapas.
+- Se corrigió el caso donde la fuerza podía quedarse pegada cerca de 159%/160%.
+- Service worker actualizado a v222 para evitar caché vieja.
+
+
+## v223 · Parada rápida después de la carambola
+
+- Al tocar la segunda bola y resolverse la carambola, el sistema detiene automáticamente las bolas después de una pausa corta.
+- Aplica a móvil, tablet, computador y TV.
+- Permite seguir con otra jugada sin esperar a que todas las bolas se frenen lentamente.
+- Conserva replay, marcador, iluminación predictiva, potencia móvil reversible y botón Salir en Mesa completa móvil.
+- Service worker actualizado a v223 para evitar caché vieja.

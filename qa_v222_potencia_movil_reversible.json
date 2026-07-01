@@ -1,0 +1,12 @@
+{
+  "version": "v222",
+  "titulo": "Potencia movil reversible",
+  "estado": "ok",
+  "validaciones": [
+    "La potencia se puede aumentar por etapas en moviles",
+    "La potencia se puede quitar por etapas en moviles",
+    "La potencia no queda fija en 159/160%",
+    "El boton Salir permanece visible en Mesa completa movil",
+    "Se conservan controles moviles desplazables, bola de efecto y menu modal"
+  ]
+}
