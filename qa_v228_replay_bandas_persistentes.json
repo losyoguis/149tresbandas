@@ -1,0 +1,11 @@
+{
+  "version": "production-v228",
+  "bug": "BUG 4",
+  "estado": "corregido",
+  "descripcion": "El contador BANDAS persiste al finalizar Ver replay y no se reinicia visualmente a 0.",
+  "validaciones": [
+    "makeShotSnapshot guarda shotCushions, scoringCushions y hudCushions",
+    "endReplay restaura el contador después de resetShotState",
+    "El replay no altera intentos ni puntos"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "version": "production-v229",
+  "bug": "BUG 5",
+  "estado": "corregido",
+  "cambios": [
+    "La guía dinámica no inicia como caja negra vacía",
+    "Estado por defecto con Efecto activo",
+    "Placeholder explicativo en readout/status",
+    "Se mantiene oculta en móviles"
+  ]
+}

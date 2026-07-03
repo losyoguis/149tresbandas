@@ -1,0 +1,11 @@
+{
+  "version": "production-v232",
+  "bug": "BUG 8",
+  "estado": "corregido",
+  "validaciones": [
+    "Tirar se deshabilita inmediatamente al iniciar un tiro",
+    "Doble clic/tap rápido no ejecuta otro disparo",
+    "El botón muestra estado visual de animación",
+    "El botón se desbloquea al finalizar el tiro"
+  ]
+}

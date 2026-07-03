@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
-  <title>Entrenador de Carambola Guiada · v224 salir móvil asegurado</title>
+  <title>Entrenador de Carambola Guiada</title>
   <meta name="theme-color" content="#07110e" />
-  <meta name="app-version" content="v224-salir-movil-asegurado" />
+  <meta name="app-version" content="production-v233" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -23,7 +23,7 @@
       <div class="hud-row">
         <div>
           <h1>Entrenador de Carambola Guiada</h1>
-          <p class="app-subtitle">Aprende <span class="highlight">148 jugadas activas</span> · guía maestra + física profesional</p>
+          <p class="app-subtitle">Aprende <span class="highlight">148 jugadas disponibles</span> · 001–079 y 081–149 · guía maestra + física profesional</p>
           <div class="subtitle-actions" aria-label="Ayuda de ejecución de la tacada">
             <button id="instructionsBtn" class="instructions-btn secondary" type="button" aria-haspopup="dialog" aria-controls="instructionsModal">Instrucciones</button>
           </div>
@@ -32,6 +32,7 @@
           <div class="stat"><div class="label">Puntos</div><div id="score" class="value">0</div></div>
           <div class="stat"><div class="label">Intentos</div><div id="attempts" class="value">0</div></div>
           <div class="stat"><div class="label">Bandas</div><div id="cushions" class="value">0</div></div>
+          <button id="resetScoreBtn" class="reset-score-btn" type="button" title="Reiniciar puntos, intentos y bandas" aria-label="Reiniciar marcador">Reiniciar</button>
         </section>
       </div>
       <div id="guide" class="guide" aria-hidden="false"><strong>Listo para jugar:</strong> mueve el taco para dirección y potencia, ajusta el punto azul para el efecto y toca <span class="route">Tirar</span>. En práctica, al seleccionar una jugada se activa de inmediato la <span class="route">guía principal</span>: una banda verde luminosa debajo de la línea amarilla, sincronizada con la tacada exacta.</div>
@@ -176,7 +177,7 @@
         <li><strong>Ajusta la potencia:</strong> Regula la fuerza del tiro según la distancia y el recorrido que requiera la jugada.</li>
         <li><strong>Tira:</strong> Ejecuta el golpe presionando el botón de tiro, la barra espaciadora o la tecla Enter.</li>
       </ol>
-      <p class="instructions-note"><strong>Nota:</strong> Si no deseas practicar las 148 jugadas activas predefinidas, puedes utilizar los botones de <strong>Modo libre</strong> y <strong>Ubicar bolas</strong> para entrenar tu propio sistema.</p>
+      <p class="instructions-note"><strong>Nota:</strong> Si no deseas practicar las 148 jugadas disponibles predefinidas, puedes utilizar los botones de <strong>Modo libre</strong> y <strong>Ubicar bolas</strong> para entrenar tu propio sistema. La jugada 080 no se muestra como practicable porque no existen sus imágenes base.</p>
       <div class="instructions-actions">
         <button id="closeInstructionsActionBtn" class="primary-action" type="button">Entendido</button>
       </div>
@@ -253,6 +254,7 @@
         <button id="mobileFsFreeBtn" class="secondary" type="button" data-proxy="exitPracticeBtn">Modo libre</button>
         <button id="mobileFsPlaceBtn" class="secondary" type="button" data-proxy="placeBtn">Ubicar bolas</button>
         <button id="mobileFsRandomBtn" class="secondary" type="button" data-proxy="randomBtn">Nueva posición</button>
+        <button id="mobileFsResetScoreBtn" class="secondary" type="button" data-proxy="resetScoreBtn">Reiniciar marcador</button>
         <button id="mobileFsExitBtn" class="secondary mobile-fs-exit" type="button" data-proxy="fullscreenTableBtn">Salir</button>
       </div>
       <p class="mobile-fs-menu-note">La bola de efecto y Tirar quedan siempre afuera para jugar rápido.</p>

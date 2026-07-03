@@ -1,0 +1,8 @@
+{
+  "version": "production-v226",
+  "bug": "BUG 2 - Jugada 080 ausente",
+  "estado": "corregido",
+  "decision": "No se habilita la jugada 080 porque no existen sus assets. Se aclara el rango real y se muestra como opción deshabilitada.",
+  "selector": "001-079, 080 no disponible, 081-149",
+  "jugadas_practicables": 148
+}

@@ -1,0 +1,11 @@
+{
+  "version": "production-v230",
+  "bug": "BUG 6",
+  "estado": "corregido",
+  "cambios": [
+    "Botón Reiniciar agregado al marcador principal",
+    "Reinicia puntos, intentos y bandas sin recargar la página",
+    "Disponible también en el modal Opciones de Mesa completa móvil",
+    "La posición de las bolas se conserva"
+  ]
+}

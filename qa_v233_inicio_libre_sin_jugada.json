@@ -1,0 +1,10 @@
+{
+  "version": "production-v233",
+  "estado": "ok",
+  "cambios": [
+    "La mesa inicial se puede jugar como modo libre sin seleccionar una jugada",
+    "El botón Tirar queda habilitado al inicio",
+    "Barra espaciadora y Enter disparan en la mesa inicial",
+    "Al seleccionar una jugada se conserva el modo práctica normal"
+  ]
+}

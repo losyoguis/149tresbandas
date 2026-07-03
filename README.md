@@ -547,3 +547,69 @@ Ajustes de producción:
 - En Mesa completa móvil, el botón **Salir** queda visible de forma fija arriba a la derecha.
 - Se mantiene la parada rápida de carambola, la potencia móvil reversible y los controles desplazables.
 - Service worker actualizado a v224 para evitar caché vieja.
+
+
+## v226 · Rango de jugadas aclarado
+
+- Título del navegador limpio: **Entrenador de Carambola Guiada**.
+- La app mantiene **148 jugadas disponibles** y aclara el rango real: **001–079 y 081–149**.
+- La **Jugada 080** aparece como opción deshabilitada/no disponible para que el selector no parezca tener un error de salto.
+- No se activa la jugada 080 porque no existen sus imágenes base ni su guía de referencia.
+- Service worker actualizado a production-v226 para evitar caché vieja.
+
+
+## v227 · Bloqueo de tiro sin jugada
+
+- El botón Tirar queda deshabilitado al inicio hasta seleccionar una jugada.
+- El disparo tampoco se ejecuta por doble toque, teclado o accesos indirectos si no hay jugada seleccionada.
+- El tiro se permite en Modo libre solo cuando el usuario lo activa conscientemente mediante Modo libre o Nueva posición.
+- Service worker actualizado a production-v227 para evitar caché vieja.
+
+
+## v228 · BUG 4 corregido: BANDAS persistente después de Ver replay
+
+- El contador **BANDAS** ya no vuelve a 0 al terminar el replay de movimiento.
+- Al iniciar y terminar **Ver replay**, se conserva el valor acumulado del último tiro.
+- Se mantiene el estado visual hasta repetir, cambiar jugada, ubicar bolas o lanzar un nuevo tiro.
+- Service worker actualizado a production-v228 para evitar caché vieja.
+
+
+## production-v229 · BUG 5 corregido
+
+- La guía dinámica ya no aparece como caja negra vacía al cargar.
+- Se muestra un estado inicial con **Efecto** activo y una mini-escena de referencia.
+- El texto explica que al seleccionar una jugada o apuntar a una bola, la guía se actualizará con el contacto real.
+- En móviles se mantiene oculta la guía dinámica como estaba configurado.
+
+
+## production-v230 · BUG 6 corregido
+
+- Se agregó el botón **Reiniciar** al marcador principal.
+- Reinicia únicamente **Puntos**, **Intentos** y **Bandas** a 0.
+- La posición de las bolas se conserva para continuar practicando.
+- En Mesa completa móvil también aparece dentro del modal **Opciones** como **Reiniciar marcador**.
+- Service worker actualizado a production-v230 para evitar caché vieja.
+
+
+## production-v231 · BUG 7 corregido
+
+- El botón **Modo libre** ahora muestra estado: **Modo libre: ON/OFF**.
+- En Mesa completa o vista compacta se muestra como **Libre ON/OFF**.
+- El modal móvil sincroniza el mismo texto y estado mediante el proxy del botón original.
+- Se agregó estado visual cuando el modo libre está activo.
+
+
+## production-v232 · BUG 8 corregido
+
+- El botón **Tirar** queda deshabilitado de forma inmediata al iniciar un tiro.
+- Durante la animación muestra estado visual de espera y no acepta doble clic/tap.
+- Se desbloquea automáticamente al finalizar el tiro, al detenerse la carambola o por red de seguridad si la animación termina por una ruta alterna.
+- Service worker actualizado a production-v232 para evitar caché vieja.
+
+
+## production-v233 · Inicio jugable como modo libre
+
+- La mesa inicial puede jugarse aunque el selector esté en "Selecciona la carambola".
+- El usuario puede tacar con el botón Tirar, barra espaciadora o Enter sin seleccionar una jugada.
+- Si el usuario selecciona una jugada, entra en modo práctica; si sale de práctica, vuelve a modo libre.
+- Se mantiene el bloqueo de Tirar durante la animación para evitar doble clic inconsistente.

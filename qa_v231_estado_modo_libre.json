@@ -1,0 +1,11 @@
+{
+  "version": "production-v231",
+  "bug": 7,
+  "estado": "corregido",
+  "cambios": [
+    "Modo libre muestra ON/OFF",
+    "Vista compacta muestra Libre ON/OFF",
+    "Estado aria-pressed y clase visual sincronizados",
+    "Modal móvil hereda el texto actualizado"
+  ]
+}

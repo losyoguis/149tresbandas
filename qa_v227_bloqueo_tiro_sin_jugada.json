@@ -1,0 +1,12 @@
+{
+  "version": "production-v227",
+  "bug": "BUG 3",
+  "estado": "corregido",
+  "descripcion": "Bloquea disparos sin jugada seleccionada, salvo modo libre explícito.",
+  "validaciones": [
+    "Tirar inicia deshabilitado cuando el selector está en placeholder",
+    "shoot() retorna sin sumar intentos si no hay jugada ni modo libre explícito",
+    "Modo libre y Nueva posición habilitan tiro conscientemente",
+    "Seleccionar una jugada habilita el tiro de práctica"
+  ]
+}
