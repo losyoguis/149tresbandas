@@ -631,3 +631,11 @@ Ajustes de producción:
 2. Activar GitHub Pages en la rama correspondiente.
 3. Abrir la URL pública `https://usuario.github.io/repositorio/` y borrar caché si venía de una versión anterior.
 4. En Google Sites, insertar la URL pública con **Insertar → Incorporar → URL**.
+
+
+## production-v235 · Potencia en esquinas
+
+- Corrección para tiros con la blanca cerca de una esquina o banda: si el taco sale visualmente de la mesa, el arrastre sigue activo.
+- Se agregó asistencia de distancia de potencia solo cuando el taco sale del área de paño o la bola está muy cerca de una esquina.
+- La dirección del taco se mantiene basada en el punto real del usuario; solo se amplifica la distancia usada para la potencia.
+- Compatible con Mesa completa, móvil, escritorio, GitHub Pages y Google Sites.

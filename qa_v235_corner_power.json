@@ -1,0 +1,10 @@
+{
+  "version": "production-v235",
+  "estado": "ok",
+  "cambios": [
+    "Arrastre del taco sigue funcionando aunque salga por esquina en mesa completa",
+    "Asistencia de potencia para tiros con blanca cerca de banda/esquina",
+    "Pointermove global durante arrastre del taco para no perder potencia fuera del div de mesa",
+    "Rutas relativas y service worker actualizado para GitHub Pages / Google Sites"
+  ]
+}
