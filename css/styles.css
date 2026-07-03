@@ -5613,3 +5613,17 @@ body.table-fullscreen-mode #fullscreenTableBtn { order: 20 !important; }
   animation: shootBusySpin .72s linear infinite;
 }
 @keyframes shootBusySpin { to { transform: rotate(360deg); } }
+
+
+/* production-v235 · Permitir halar el taco fuera de las esquinas sin perder potencia. */
+body.table-fullscreen-mode .table-shell,
+body.table-fullscreen-mode .table,
+body.table-fullscreen-mode #overlay {
+  overflow: visible !important;
+}
+body.table-fullscreen-mode #cueStick,
+body.table-fullscreen-mode #cueTip,
+body.table-fullscreen-mode #cueHandle,
+body.table-fullscreen-mode .power-badge {
+  pointer-events: auto;
+}
