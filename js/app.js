@@ -43,7 +43,7 @@
     // v182 profesional: guía principal persistente + sincronización exacta del efecto
     // durante la preparación y durante la tacada; ya no se borra al atacar.
     // La potencia puede ser larga, pero el paño, las bandas y el efecto mantienen física estable.
-    const PROFESSIONAL_PHYSICS_VERSION = 'v224_salir_movil_asegurado';
+    const PROFESSIONAL_PHYSICS_VERSION = 'production_v233_inicio_libre';
     const PROFESSIONAL_TABLE_FRICTION = 0.99532;
     const PROFESSIONAL_OBJECT_FRICTION = 0.99472;
     const CUE_SWERVE_STRENGTH = 0.00072; // curvatura sutil por efecto lateral antes/después de bandas.
@@ -667,6 +667,7 @@
     const scoreEl = document.getElementById('score');
     const attemptsEl = document.getElementById('attempts');
     const cushionsEl = document.getElementById('cushions');
+    const resetScoreBtn = document.getElementById('resetScoreBtn');
     const guideEl = document.getElementById('guide');
     const shootBtn = document.getElementById('shootBtn');
     const fullscreenTableBtn = document.getElementById('fullscreenTableBtn');
@@ -1530,6 +1531,7 @@
       return { summary, items };
     }
 
+    // La jugada 080 se conserva como número reservado/no disponible: no tiene assets de posición/recorrido/guía.
     const EXCLUDED_PRACTICE_SHOT_CODES = new Set(['080']);
     const practiceShots = applyReferenceGuideCorrections(buildPracticeShotLibrary())
       .filter(shot => !EXCLUDED_PRACTICE_SHOT_CODES.has(String(shot?.code || '').padStart(3, '0')))
@@ -8151,6 +8153,10 @@
     let draggingEffect = false;
     let placingMode = false;
     let practiceMode = false;
+    // v233: la primera mesa de inicio se puede jugar como modo libre aunque
+    // el selector siga en "Selecciona la carambola". Si el usuario selecciona
+    // una jugada, se activa práctica; si sale de práctica, vuelve al modo libre.
+    let explicitFreeMode = true;
     let fineAlignMode = false;
     let practiceIndex = 0;
     const practiceSetupCache = new Map();
@@ -8174,6 +8180,9 @@
     let lastShootTap = 0;
     let lastShootTapPoint = null;
     let shotActive = false;
+    // v232: bloqueo explícito del botón Tirar durante toda la animación.
+    // Evita doble clics/taps inconsistentes antes de que el HUD alcance a refrescarse.
+    let shootButtonLocked = false;
     let shotResolved = false;
     let path = [];
     let rafGuide = 0;
@@ -8286,6 +8295,20 @@
     function cloneBalls(data) { return data.map(b => ({ ...b })); }
     function ball(id) { return balls.find(b => b.id === id); }
     function allStopped() { return balls.every(b => Math.hypot(b.vx, b.vy) < STOP_SPEED * 2); }
+    function setShootButtonLocked(locked, label = 'Tirando...') {
+      shootButtonLocked = !!locked;
+      if (!shootBtn) return;
+      shootBtn.classList.toggle('shot-busy', shootButtonLocked);
+      shootBtn.setAttribute('aria-busy', shootButtonLocked ? 'true' : 'false');
+      if (shootButtonLocked) {
+        shootBtn.disabled = true;
+        shootBtn.textContent = label;
+        shootBtn.title = 'Espera a que termine el tiro';
+      } else {
+        shootBtn.removeAttribute('aria-busy');
+        shootBtn.classList.remove('shot-busy');
+      }
+    }
     function toCssX(x) { return (x / DESIGN_W * 100) + '%'; }
     function toCssY(y) { return (y / DESIGN_H * 100) + '%'; }
     function powerValueForPct(pct = powerPct) {
@@ -8514,7 +8537,12 @@
         effectX,
         effectY,
         practiceMode,
-        practiceIndex
+        practiceIndex,
+        // v228: conservar el dato visual de BANDAS al reproducir Ver replay.
+        shotCushions: Number.isFinite(shot.cushions) ? shot.cushions : 0,
+        scoringCushions: Number.isFinite(shot.scoringCushions) ? shot.scoringCushions : null,
+        hudCushions: countedCushionsForHUD(),
+        shotResult: shot.result
       };
     }
 
@@ -8600,6 +8628,15 @@
         replayingMotion = false;
         syncPracticeUI();
         resetShotState();
+        // v228: resetShotState limpia BANDAS a 0; después de Ver replay se debe
+        // restaurar el valor acumulado del tiro anterior para que no se pierda visualmente.
+        const replayHudCushions = Number.isFinite(restoreSnapshot.hudCushions) ? restoreSnapshot.hudCushions : null;
+        if (replayHudCushions !== null) {
+          shot.cushions = Number.isFinite(restoreSnapshot.shotCushions) ? restoreSnapshot.shotCushions : replayHudCushions;
+          shot.scoringCushions = Number.isFinite(restoreSnapshot.scoringCushions) ? restoreSnapshot.scoringCushions : replayHudCushions;
+          shot.caromLocked = Number.isFinite(shot.scoringCushions);
+          shot.result = restoreSnapshot.shotResult || shot.result;
+        }
         renderPracticeMarkers();
         renderBalls();
         updateHUD();
@@ -9571,14 +9608,24 @@
       practiceSelect.innerHTML = '';
       const placeholder = document.createElement('option');
       placeholder.value = '';
-      placeholder.textContent = 'Selecciona la carambola:';
+      placeholder.textContent = 'Selecciona la carambola (001–079 / 081–149):';
       placeholder.disabled = true;
       placeholder.selected = true;
       practiceSelect.appendChild(placeholder);
       practiceShots.forEach((shot, index) => {
+        const code = String(shot.code).padStart(3, '0');
+        if (code === '081' && !practiceSelect.querySelector('option[data-missing-shot="080"]')) {
+          const missing = document.createElement('option');
+          missing.value = '__missing_080__';
+          missing.textContent = 'Jugada 080 — no disponible';
+          missing.disabled = true;
+          missing.dataset.missingShot = '080';
+          missing.title = 'La jugada 080 no está disponible porque faltan sus imágenes de posición y recorrido.';
+          practiceSelect.appendChild(missing);
+        }
         const opt = document.createElement('option');
         opt.value = String(index);
-        opt.textContent = `Jugada ${String(shot.code).padStart(3, '0')}`;
+        opt.textContent = `Jugada ${code}`;
         practiceSelect.appendChild(opt);
       });
       practiceSelect.value = '';
@@ -9598,6 +9645,7 @@
       syncPracticeImagesUI();
       syncSquareCaromUI();
       syncEasyAlignUI();
+      syncFullscreenCompactLabels();
     }
 
     function updatePracticeInfo() {
@@ -9681,6 +9729,7 @@
       practiceIndex = (index + practiceShots.length) % practiceShots.length;
       const s = currentPracticeShot();
       practiceMode = true;
+      explicitFreeMode = false;
       guide = true;
       practicePanel.classList.add('open', 'manual-open');
       placingMode = false;
@@ -9715,6 +9764,7 @@
 
     function exitPracticeMode(announce = true) {
       practiceMode = false;
+      explicitFreeMode = true;
       deflectionGuideMode = null;
       guide = true;
       if (guideBtn) guideBtn.textContent = 'Guía: ON';
@@ -10328,10 +10378,39 @@
       const m = getDeflectionGuideModel();
       deflectionButtons.forEach(btn => btn.classList.toggle('active', (m.mode === 'imagen' && btn.dataset.deflectThickness === 'imagen') || (!!m.manualMode && btn.dataset.deflectThickness === m.mode)));
       if (m.hidden) {
-        setDeflectionGuideGraphicVisible(false);
-        // Sin bola receptora activa no se muestra nada en la mini-guía.
-        if (deflectionGuideReadout) deflectionGuideReadout.innerHTML = '';
-        if (deflectionGuideStatus) deflectionGuideStatus.innerHTML = '';
+        // v229: estado visual por defecto para evitar que la guía dinámica
+        // arranque como caja negra vacía. Se mantiene una mini-escena clara
+        // y el botón Efecto activo como referencia inicial.
+        deflectionButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.deflectThickness === 'imagen'));
+        setDeflectionGuideGraphicVisible(true);
+        if (deflectionTargetBall) {
+          deflectionTargetBall.setAttribute('cx', '158');
+          deflectionTargetBall.setAttribute('cy', '60');
+          deflectionTargetBall.setAttribute('fill', 'url(#guideRedBallFill)');
+          deflectionTargetBall.setAttribute('stroke', '#6e0505');
+        }
+        if (deflectionCueBall) {
+          deflectionCueBall.setAttribute('cx', '118');
+          deflectionCueBall.setAttribute('cy', '60');
+        }
+        if (deflectionCueDot) {
+          deflectionCueDot.setAttribute('cx', '132');
+          deflectionCueDot.setAttribute('cy', '46');
+        }
+        if (deflectionTargetShadow) {
+          deflectionTargetShadow.setAttribute('cx', '162');
+          deflectionTargetShadow.setAttribute('cy', '84');
+        }
+        if (deflectionCueShadow) {
+          deflectionCueShadow.setAttribute('cx', '118');
+          deflectionCueShadow.setAttribute('cy', '86');
+        }
+        if (deflectionGuideReadout) {
+          deflectionGuideReadout.innerHTML = 'Estado inicial · <strong>Efecto</strong> activo · selecciona una jugada o apunta el taco hacia la roja/amarilla para ver el contacto real.';
+        }
+        if (deflectionGuideStatus) {
+          deflectionGuideStatus.innerHTML = 'La mini-guía muestra una referencia inicial. Al elegir una jugada o mover el taco, se actualizará con la bola receptora, el grosor y el efecto real.';
+        }
         return;
       }
       setDeflectionGuideGraphicVisible(true);
@@ -10641,6 +10720,18 @@
       if (moved) setGuideText(`<strong>${moved.name} ubicada desde el visor.</strong> Si hace falta, sigue ajustando en la mesa o en este mismo visor.`);
     }
 
+    function hasSelectedPracticeForShot() {
+      return !!(practiceMode && currentPracticeShot());
+    }
+
+    function canShootInCurrentContext() {
+      return hasSelectedPracticeForShot() || !!explicitFreeMode;
+    }
+
+    function blockedShootContextMessage() {
+      return '<strong>No se puede tirar en este estado.</strong> Selecciona una jugada o vuelve a <span class="route">Modo libre</span>. La mesa inicial sí se puede jugar libremente con Tirar, barra espaciadora o Enter.';
+    }
+
     function updateFloatingControls() {
       const cue = ball('cue');
       const dirX = Math.cos(aimAngle);
@@ -10689,7 +10780,12 @@
 
       effectDot.style.left = `${effectDotPercent(effectX)}%`;
       effectDot.style.top = `${effectDotPercent(effectY)}%`;
-      shootBtn.disabled = shotActive || !allStopped() || placingMode;
+      if (!shotActive && !replayingMotion && allStopped() && shootButtonLocked) setShootButtonLocked(false);
+      const shootBlockedByContext = !canShootInCurrentContext();
+      shootBtn.disabled = shootButtonLocked || shotActive || replayingMotion || !allStopped() || placingMode || shootBlockedByContext;
+      shootBtn.classList.toggle('shot-busy', shootButtonLocked || shotActive);
+      shootBtn.setAttribute('aria-busy', (shootButtonLocked || shotActive) ? 'true' : 'false');
+      shootBtn.title = (shootButtonLocked || shotActive) ? 'Espera a que termine el tiro' : (shootBlockedByContext ? 'Selecciona una jugada o entra en Modo libre para tirar' : 'Tirar');
       if (demoBtn) {
         demoBtn.disabled = !practiceMode || shotActive || !allStopped() || placingMode;
         demoBtn.style.display = practiceMode ? 'inline-flex' : 'none';
@@ -10708,15 +10804,21 @@
 
     function syncFullscreenCompactLabels() {
       const compact = !!tableFullscreenMode;
+      const freeOn = !practiceMode && !!explicitFreeMode;
       if (replayBtn) replayBtn.textContent = compact ? 'Repetir' : 'Repetir tiro';
       if (motionReplayBtn) motionReplayBtn.textContent = compact ? 'Replay' : 'Ver replay';
-      if (exitPracticeBtn) exitPracticeBtn.textContent = compact ? 'Libre' : 'Modo libre';
+      if (exitPracticeBtn) {
+        exitPracticeBtn.textContent = compact ? `Libre ${freeOn ? 'ON' : 'OFF'}` : `Modo libre: ${freeOn ? 'ON' : 'OFF'}`;
+        exitPracticeBtn.classList.toggle('free-mode-on', freeOn);
+        exitPracticeBtn.setAttribute('aria-pressed', freeOn ? 'true' : 'false');
+        exitPracticeBtn.title = freeOn ? 'Modo libre activo' : 'Entrar a modo libre';
+      }
       if (randomBtn) randomBtn.textContent = compact ? 'Nueva' : 'Nueva posición';
       if (demoBtn) demoBtn.textContent = compact ? 'Demo' : 'Demostración';
       if (guideBtn) guideBtn.textContent = compact ? `Guía ${guide ? 'ON' : 'OFF'}` : `Guía: ${guide ? 'ON' : 'OFF'}`;
       if (placeBtn) placeBtn.textContent = compact ? `Ubicar ${placingMode ? 'ON' : 'OFF'}` : `Ubicar bolas: ${placingMode ? 'ON' : 'OFF'}`;
       if (fullscreenTableBtn) fullscreenTableBtn.textContent = compact ? 'Salir' : 'Mesa completa';
-      if (shootBtn) shootBtn.textContent = 'Tirar';
+      if (shootBtn && !(shootButtonLocked || shotActive)) shootBtn.textContent = 'Tirar';
     }
 
     function syncTableFullscreenUI() {
@@ -10922,6 +11024,29 @@
       cushionsEl.textContent = countedCushionsForHUD();
     }
 
+    function resetScoreboardOnly() {
+      if (replayingMotion && replayAnimationId) {
+        cancelAnimationFrame(replayAnimationId);
+        replayAnimationId = 0;
+      }
+      replayingMotion = false;
+      stopAllBalls();
+      if (shot.quickStopTimer) { clearTimeout(shot.quickStopTimer); shot.quickStopTimer = 0; }
+      score = 0;
+      attempts = 0;
+      shot.cushions = 0;
+      shot.scoringCushions = null;
+      shot.caromLocked = false;
+      shot.result = null;
+      shotResolved = false;
+      shotActive = false;
+      clearReplayShot();
+      updateHUD();
+      syncReplayUI();
+      setGuideText('<strong>Marcador reiniciado:</strong> puntos, intentos y bandas volvieron a 0. La posición de las bolas se conserva para seguir practicando.');
+      playSound('ui', .45);
+    }
+
     function syncPlacementUI() {
       table.classList.toggle('placing', placingMode && !shotActive);
       placeBtn.textContent = `Ubicar bolas: ${placingMode ? 'ON' : 'OFF'}`;
@@ -11070,6 +11195,7 @@
       powerLocked = false;
       placingMode = false;
       practiceMode = false;
+      explicitFreeMode = true;
       deflectionGuideMode = null;
       lastPracticeFeedback = '';
       clearReplayShot();
@@ -11078,7 +11204,7 @@
       syncPlacementUI();
       setMode('libre', false);
       resetShotState();
-      setGuideText('<strong>Listo:</strong> motor profesional v224 activo: 148 jugadas activas, guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil con menú compacto, taco/guía más manejables, guía dinámica oculta en móviles botón Salir directo en Mesa completa móvil, controles Tirar/efecto desplazables verticalmente y potencia móvil reversible y parada rápida tras la carambola/acumulativa que se puede subir o quitar por etapas sin quedar fija en 159%. En pantallas grandes la guía dinámica sigue visible; en celulares se prioriza la mesa limpia y amplia.');
+      setGuideText('<strong>Listo:</strong> motor profesional v234 activo: la mesa inicial se puede jugar como <span class="route">Modo libre</span> aunque no hayas seleccionado jugada. Puedes tacar con <span class="route">Tirar</span>, barra espaciadora o Enter. Hay 148 jugadas disponibles (001–079 y 081–149; 080 no disponible por falta de imágenes), guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil con menú compacto, controles Tirar/efecto desplazables, potencia móvil reversible y parada rápida tras la carambola.');
     }
 
     function randomTable() {
@@ -11104,6 +11230,7 @@
       powerLocked = false;
       placingMode = false;
       practiceMode = false;
+      explicitFreeMode = true;
       deflectionGuideMode = null;
       lastPracticeFeedback = '';
       clearReplayShot();
@@ -11617,6 +11744,7 @@
     function endEffect() { draggingEffect = false; }
 
     function prepareShotState(message = '', options = {}) {
+      setShootButtonLocked(true);
       const cue = ball('cue');
       const countAttempt = options.countAttempt !== false;
       lastPracticeFeedback = '';
@@ -12541,8 +12669,12 @@
 
     function shoot() {
       if (placingMode) { setGuideText('<strong>Ubicar bolas está activo:</strong> desactívalo para poder tirar.'); return; }
-      if (replayingMotion) return;
-      if (shotActive || replayingMotion || !allStopped()) return;
+      if (!canShootInCurrentContext()) { setGuideText(blockedShootContextMessage()); playSound('fail', .45); return; }
+      if (shootButtonLocked || shotActive || replayingMotion || !allStopped()) {
+        setShootButtonLocked(true);
+        return;
+      }
+      setShootButtonLocked(true);
 
       // v190: Tirar ya no ejecuta una ruta lineal cuando las guías coinciden.
       // El imán solo corrige suavemente dirección/potencia/efecto; el disparo se resuelve con el motor físico real.
@@ -12939,6 +13071,7 @@
       currentShotFrames = [];
       shotActive = false;
       shotResolved = true;
+      setShootButtonLocked(false);
       // Al terminar la jugada se borra la línea real recorrida por la tacada.
       // El replay sigue disponible porque los fotogramas ya quedaron guardados en lastShotFrames.
       path = [];
@@ -13944,6 +14077,7 @@
     replayBtn.addEventListener('click', restoreLastShot);
     motionReplayBtn.addEventListener('click', playLastMotionReplay);
     randomBtn.addEventListener('click', randomTable);
+    if (resetScoreBtn) resetScoreBtn.addEventListener('click', resetScoreboardOnly);
     if (guideBtn) guideBtn.addEventListener('click', toggleGuide);
     syncTableActionUI();
 
@@ -14016,9 +14150,12 @@
     });
 
     // PWA real para GitHub Pages / Android. En Google Sites incrustada sigue funcionando como app web.
+    // El registro se protege con try/catch porque algunos iframes incrustados pueden bloquear Service Worker.
     if ('serviceWorker' in navigator && location.protocol !== 'file:') {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(() => {});
+        try {
+          navigator.serviceWorker.register('./sw.js').catch(() => {});
+        } catch (_) {}
       });
     }
 
@@ -14026,11 +14163,12 @@
     populatePracticeSelect();
     initDeflectionGuide();
     practicePanel.classList.add('open', 'manual-open');
-    // Inicio limpio: se muestra la Jugada 001 en la mesa, pero el selector queda
-    // en "Selecciona la carambola" y la mesa arranca sin guía visible.
+    // Inicio limpio: se muestra la posición de la Jugada 001 como mesa inicial,
+    // pero el selector queda en "Selecciona la carambola" y puede jugarse como libre.
     if (practiceSelect) practiceSelect.value = '';
     applyPracticeShot(0, false);
     practiceMode = false;
+    explicitFreeMode = true;
     deflectionGuideMode = null;
     guide = false;
     fineAlignMode = false;
@@ -14411,5 +14549,24 @@
     ['resize', 'orientationchange', 'fullscreenchange'].forEach(name => window.addEventListener(name, sync, { passive: true }));
     setInterval(sync, 500);
     sync();
+  });
+})();
+
+
+// v232 · red de seguridad: si la animación terminó por una ruta alterna, desbloquear Tirar.
+(() => {
+  const ready = (fn) => {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn, { once: true });
+    else fn();
+  };
+  ready(() => {
+    setInterval(() => {
+      try {
+        if (!shotActive && !replayingMotion && allStopped() && shootButtonLocked) {
+          setShootButtonLocked(false);
+          updateFloatingControls();
+        }
+      } catch (_) {}
+    }, 250);
   });
 })();
