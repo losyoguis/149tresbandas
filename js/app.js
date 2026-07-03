@@ -43,7 +43,7 @@
     // v182 profesional: guía principal persistente + sincronización exacta del efecto
     // durante la preparación y durante la tacada; ya no se borra al atacar.
     // La potencia puede ser larga, pero el paño, las bandas y el efecto mantienen física estable.
-    const PROFESSIONAL_PHYSICS_VERSION = 'production_v233_inicio_libre';
+    const PROFESSIONAL_PHYSICS_VERSION = 'production_v235_corner_power';
     const PROFESSIONAL_TABLE_FRICTION = 0.99532;
     const PROFESSIONAL_OBJECT_FRICTION = 0.99472;
     const CUE_SWERVE_STRENGTH = 0.00072; // curvatura sutil por efecto lateral antes/después de bandas.
@@ -8466,12 +8466,55 @@
       return Math.round(clamp(quantizePowerPct(removable * eased), 0, removable));
     }
 
-    function cueDragTargetPower(dist) {
-      const directTarget = powerPctFromPullDistance(dist);
+    function edgeCornerPowerDistance(dist, point = null) {
+      // v235: cuando la bola blanca está cerca de una esquina o banda, el taco puede
+      // salirse visualmente de la mesa y el usuario se queda sin espacio físico para
+      // seguir halando. En ese caso se amplifica SOLO la distancia usada para potencia;
+      // la dirección del taco sigue usando el punto real para mantener precisión.
+      const cue = ball('cue');
+      const raw = Math.max(0, Number(dist) || 0);
+      if (!cue || !point) return raw;
+
+      const railProximity = Math.min(cue.x - LEFT, RIGHT - cue.x, cue.y - TOP, BOTTOM - cue.y);
+      const nearRail = railProximity <= (isCoarse ? 98 : 72);
+      if (!nearRail) return raw;
+
+      const outsideLeft = point.x < LEFT;
+      const outsideRight = point.x > RIGHT;
+      const outsideTop = point.y < TOP;
+      const outsideBottom = point.y > BOTTOM;
+      const outsideCount = [outsideLeft, outsideRight, outsideTop, outsideBottom].filter(Boolean).length;
+      const nearHorizontalRail = (cue.x - LEFT) < 105 || (RIGHT - cue.x) < 105;
+      const nearVerticalRail = (cue.y - TOP) < 105 || (BOTTOM - cue.y) < 105;
+      const nearCorner = nearHorizontalRail && nearVerticalRail;
+
+      // Si el dedo/mouse todavía está sobre el paño no se toca la potencia normal.
+      // La ayuda entra cuando el taco sale del marco o cuando la bola está en esquina
+      // y el tirador ya casi no tiene recorrido disponible.
+      const cueLimited = nearCorner && raw < (isCoarse ? 210 : 155);
+      if (!outsideCount && !cueLimited) return raw;
+
+      const outsideDepth = Math.max(
+        outsideLeft ? LEFT - point.x : 0,
+        outsideRight ? point.x - RIGHT : 0,
+        outsideTop ? TOP - point.y : 0,
+        outsideBottom ? point.y - BOTTOM : 0
+      );
+      let factor = nearCorner ? 2.15 : 1.62;
+      if (outsideCount >= 2) factor += 0.42;
+      if (outsideDepth > 55) factor += 0.22;
+      if (isCoarse) factor += 0.18;
+      const boosted = raw * factor + (nearCorner ? 18 : 0);
+      return Math.max(raw, boosted);
+    }
+
+    function cueDragTargetPower(dist, point = null) {
+      const currentPowerDist = edgeCornerPowerDistance(dist, point);
+      const directTarget = powerPctFromPullDistance(currentPowerDist);
       if (!isCoarse || !draggingCue || !cuePointerStart) return directTarget;
       const startPct = clamp(Math.round(Number(cuePowerSessionStartPct) || powerPct || 5), 5, maxPowerPctForShot());
       const startDist = Math.max(0, Number(cuePowerSessionStartDist) || 0);
-      const currentDist = Math.max(0, Number(dist) || 0);
+      const currentDist = Math.max(0, Number(currentPowerDist) || 0);
       const deltaDist = currentDist - startDist;
       const resetDeadZone = 14;
       // v222: potencia móvil reversible y parada rápida tras la carambola y acumulativa.
@@ -11204,7 +11247,7 @@
       syncPlacementUI();
       setMode('libre', false);
       resetShotState();
-      setGuideText('<strong>Listo:</strong> motor profesional v234 activo: la mesa inicial se puede jugar como <span class="route">Modo libre</span> aunque no hayas seleccionado jugada. Puedes tacar con <span class="route">Tirar</span>, barra espaciadora o Enter. Hay 148 jugadas disponibles (001–079 y 081–149; 080 no disponible por falta de imágenes), guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil con menú compacto, controles Tirar/efecto desplazables, potencia móvil reversible y parada rápida tras la carambola.');
+      setGuideText('<strong>Listo:</strong> motor profesional v235 activo: la mesa inicial se puede jugar como <span class="route">Modo libre</span> aunque no hayas seleccionado jugada. Puedes tacar con <span class="route">Tirar</span>, barra espaciadora o Enter. Hay 148 jugadas disponibles (001–079 y 081–149; 080 no disponible por falta de imágenes), guía principal persistente, iluminación final por predicción de 3+ bandas, video móvil optimizado para Android/iOS, Mesa completa móvil con menú compacto, controles Tirar/efecto desplazables, potencia móvil reversible, asistencia de potencia cuando el taco sale por una esquina y parada rápida tras la carambola.');
     }
 
     function randomTable() {
@@ -11601,7 +11644,7 @@
 
       releaseSelectionGuideLock();
       const targetAngle = Math.atan2(dy, dx);
-      const targetPower = cueDragTargetPower(dist);
+      const targetPower = cueDragTargetPower(dist, p);
       const hasRealDrag = draggingCue && cuePointerStart && cuePointerMaxMove > (isCoarse ? 9 : 4);
       let changed = false;
       if (hasRealDrag) {
@@ -11665,7 +11708,7 @@
       cuePowerSessionStartPct = clamp(Math.round(Number(powerPct) || 5), 5, maxPowerPctForShot());
       {
         const cue = ball('cue');
-        cuePowerSessionStartDist = cue && cuePointerStart ? Math.hypot(cue.x - cuePointerStart.x, cue.y - cuePointerStart.y) : 0;
+        cuePowerSessionStartDist = cue && cuePointerStart ? edgeCornerPowerDistance(Math.hypot(cue.x - cuePointerStart.x, cue.y - cuePointerStart.y), cuePointerStart) : 0;
       }
       table.setPointerCapture?.(evt.pointerId);
       setCueFromPoint(evt);
@@ -13857,6 +13900,23 @@
     table.addEventListener('dblclick', shootByDoubleClick, { passive: false });
     table.addEventListener('pointerdown', beginCue, { passive: false });
     table.addEventListener('pointermove', moveCue, { passive: false });
+    // v235: si el taco sale por una esquina, el dedo/mouse puede quedar fuera del div
+    // de la mesa. Estos listeners mantienen el arrastre activo para poder aumentar potencia.
+    window.addEventListener('pointermove', (evt) => {
+      if (!draggingCue) return;
+      if (evt.target === table || table.contains(evt.target)) return;
+      moveCue(evt);
+    }, { passive: false });
+    document.addEventListener('pointerdown', (evt) => {
+      if (!tableFullscreenMode || draggingCue || placingMode || shotActive || replayingMotion || !allStopped()) return;
+      if (table.contains(evt.target)) return;
+      const interactive = evt.target && evt.target.closest && evt.target.closest('button, select, input, textarea, a, [role="button"], .effect-control, .mobile-fs-menu-modal, .video-modal, .instructions-modal, .bottom-table-actions, .hud, .practice-panel');
+      if (interactive) return;
+      const shell = tableShell || table.closest('.table-shell');
+      const fromGameArea = (shell && shell.contains(evt.target)) || document.body.classList.contains('table-fullscreen-mode');
+      if (!fromGameArea) return;
+      beginCue(evt);
+    }, { passive: false, capture: true });
     window.addEventListener('pointerup', endCue, { passive: false });
     window.addEventListener('pointercancel', endCue, { passive: false });
 
