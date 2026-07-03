@@ -1,0 +1,21 @@
+{
+  "version": "production-v234",
+  "contexto": "GitHub Pages + Google Sites embed",
+  "status": "ok",
+  "issues": [],
+  "checks": {
+    "required_files": 15,
+    "sw_core_assets": 75,
+    "jugadas_posicion_inicial": 148,
+    "jugadas_recorrido_guia": 148,
+    "jugadas_guia_referencia": 148,
+    "jugada_080": "no disponible intencionalmente; selector la muestra como no disponible",
+    "title_clean": true,
+    "meta_version": "production-v234",
+    "relative_paths": true,
+    "nojekyll": true,
+    "service_worker_try_catch": true,
+    "google_sites_iframe_fallback": true,
+    "mobile_quick_exit_present": true
+  }
+}

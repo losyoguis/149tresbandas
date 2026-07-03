@@ -613,3 +613,21 @@ Ajustes de producción:
 - El usuario puede tacar con el botón Tirar, barra espaciadora o Enter sin seleccionar una jugada.
 - Si el usuario selecciona una jugada, entra en modo práctica; si sale de práctica, vuelve a modo libre.
 - Se mantiene el bloqueo de Tirar durante la animación para evitar doble clic inconsistente.
+
+
+## production-v234 · Control de calidad GitHub Pages + Google Sites
+
+- Preparado para publicarse directamente en GitHub Pages.
+- Todas las rutas principales son relativas: `index.html`, `css/styles.css`, `js/app.js`, `manifest.webmanifest`, iconos y assets.
+- Se añadió `.nojekyll` para evitar procesamiento innecesario de GitHub Pages.
+- Service Worker actualizado a `production-v234-github-sites` para limpiar caché vieja.
+- El registro del Service Worker queda protegido para funcionar aunque Google Sites limite permisos dentro del iframe.
+- La app conserva modo iframe compatible: si el fullscreen nativo falla, se mantiene la mesa completa por CSS.
+- El título público del navegador permanece limpio: `Entrenador de Carambola Guiada`.
+
+### Publicación recomendada
+
+1. Subir todo el contenido del ZIP a la raíz del repositorio o a la carpeta configurada para GitHub Pages.
+2. Activar GitHub Pages en la rama correspondiente.
+3. Abrir la URL pública `https://usuario.github.io/repositorio/` y borrar caché si venía de una versión anterior.
+4. En Google Sites, insertar la URL pública con **Insertar → Incorporar → URL**.
