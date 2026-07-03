@@ -106,7 +106,7 @@
 
     .scoreboard {
       display: grid;
-      grid-template-columns: repeat(3, minmax(74px, 1fr));
+      grid-template-columns: repeat(3, minmax(74px, 1fr)) minmax(82px, .82fr);
       gap: 8px;
     }
 
@@ -132,6 +132,29 @@
       font-weight: 900;
       line-height: 1.05;
       margin-top: 2px;
+    }
+
+
+
+    .reset-score-btn {
+      min-height: 100%;
+      border-radius: 13px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .03em;
+      color: var(--cream);
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.055));
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 8px 18px rgba(0,0,0,.18);
+      white-space: nowrap;
+    }
+
+    .reset-score-btn:hover,
+    .reset-score-btn:focus-visible {
+      color: #fff7d1;
+      border-color: rgba(255,213,106,.44);
+      box-shadow: 0 0 0 2px rgba(255,213,106,.12), 0 10px 24px rgba(0,0,0,.26);
     }
 
     .buttons {
@@ -1541,10 +1564,11 @@
       .hud-row { grid-template-columns: minmax(180px, .9fr) minmax(250px, 1fr); align-items: center; }
       h1 { font-size: 23px; }
       .mini-help { display: none; }
-      .scoreboard { grid-template-columns: repeat(3, minmax(54px, 1fr)); }
+      .scoreboard { grid-template-columns: repeat(4, minmax(54px, 1fr)); }
       .stat { padding: 6px; }
       .stat .label { font-size: 9px; }
       .stat .value { font-size: 18px; }
+      .reset-score-btn { min-height: 38px; padding: 6px 8px; font-size: 10px; }
       .guide { max-height: 54px; }
       .practice-panel { padding: 8px; }
       .practice-info { display: none; }
@@ -5543,3 +5567,49 @@ body.table-fullscreen-mode #fullscreenTableBtn { order: 20 !important; }
     pointer-events: auto !important;
   }
 }
+
+/* v229 · estado inicial visible para la guía dinámica en pantallas grandes */
+@media (min-width: 861px) and (min-height: 521px) {
+  #deflectionGuidePanel .deflection-guide-status:empty::before {
+    content: 'Selecciona una jugada o apunta el taco para activar la guía dinámica.';
+    color: rgba(255,255,255,.68);
+  }
+}
+
+@media (max-width: 560px) {
+  .scoreboard { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .reset-score-btn { min-height: 44px; grid-column: span 2; }
+}
+
+
+/* production-v231 · Estado visual del botón Modo libre */
+#exitPracticeBtn.free-mode-on,
+#mobileFsFreeBtn[aria-pressed="true"] {
+  border-color: rgba(0, 245, 180, .75) !important;
+  box-shadow: 0 0 0 1px rgba(0,245,180,.25), 0 0 18px rgba(0,245,180,.22) !important;
+  background: linear-gradient(180deg, rgba(20, 130, 105, .95), rgba(8, 79, 71, .95)) !important;
+}
+
+
+/* production-v232 · Tirar bloqueado visualmente durante la animación del tiro. */
+#shootBtn.shot-busy,
+#shootBtn[aria-busy="true"],
+#shootBtn.primary-action.shot-busy {
+  opacity: .62 !important;
+  filter: grayscale(.18) saturate(.78) !important;
+  cursor: wait !important;
+  pointer-events: none !important;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.18), 0 10px 24px rgba(0,0,0,.28) !important;
+}
+#shootBtn.shot-busy::after,
+#shootBtn[aria-busy="true"]::after {
+  content: '';
+  width: .8em;
+  height: .8em;
+  margin-left: .45em;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  animation: shootBusySpin .72s linear infinite;
+}
+@keyframes shootBusySpin { to { transform: rotate(360deg); } }
